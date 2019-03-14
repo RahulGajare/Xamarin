@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using XamarinFirebase.Helper;
-using XamarinFirebase.Model;
+using XamarinFirebase;
 
 namespace XamarinFirebase
 {
@@ -22,10 +22,12 @@ namespace XamarinFirebase
 
         private async void BtnAdd_Clicked(object sender, EventArgs e)
         {
- 
+           
             await firebaseHelper.AddPerson(Convert.ToInt32(txtId.Text), txtName.Text);
             txtId.Text = string.Empty;
             txtName.Text = string.Empty;
+
+
             await DisplayAlert("Success", "Person Added Successfully", "OK");
             var allPersons = await firebaseHelper.GetAllPersons();
             lstPersons.ItemsSource = allPersons;

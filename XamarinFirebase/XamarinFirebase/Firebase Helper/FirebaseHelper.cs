@@ -1,4 +1,4 @@
-﻿using XamarinFirebase.Model;
+﻿using XamarinFirebase;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System.Linq;
@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 
 namespace XamarinFirebase.Helper
 {
-
     public class FirebaseHelper
     {
         FirebaseClient firebase = new FirebaseClient("https://firstapp-c169c.firebaseio.com/");
