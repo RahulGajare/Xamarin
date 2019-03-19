@@ -1,28 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fundoo.FirebaseConnector;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage
-	{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Fundoo.FirebaseConnector;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
 
-        FireBaseConnector fireBaseConnector = new FireBaseConnector();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LoginPage : ContentPage
+    {
 
-        public LoginPage ()
-		{
-			InitializeComponent ();
-		}
+        private FireBaseConnector fireBaseConnector = new FireBaseConnector();
+
+        public LoginPage()
+        {
+            this.InitializeComponent();
+        }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var registerDetails = await fireBaseConnector.GetUserDetail(txtEmail.Text);
+            var registerDetails = await this.fireBaseConnector.GetUserDetail(txtEmail.Text);
 
             if (registerDetails != null)
             {

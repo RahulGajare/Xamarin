@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Fundoo
 {
-    class IFireBaseAuthenticator
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public class IFireBaseAuthenticator
     {
         public interface IFirebaseAuthenticator
         {

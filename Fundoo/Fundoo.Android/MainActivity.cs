@@ -1,15 +1,19 @@
-﻿using System;
-using Firebase;
-using Android.App;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
-
+﻿
 
 namespace Fundoo.Droid
 {
+    using System;
+    using Android.App;
+    using Android.Content.PM;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Views;
+    using Android.Widget;
+   
+    using Firebase;
+   
+   
+
     [Activity(Label = "Fundoo", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -22,7 +26,7 @@ namespace Fundoo.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FirebaseApp.InitializeApp(Application.Context);
-            LoadApplication(new App());
+            this.LoadApplication(new App());
         }
     }
 }

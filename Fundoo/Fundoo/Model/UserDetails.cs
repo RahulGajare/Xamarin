@@ -1,15 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UserDetails.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Fundoo.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class UserDetails
     {
+        /// <summary>
+        /// The first name
+        /// </summary>
         private string firstName;
+
+        /// <summary>
+        /// The last name
+        /// </summary>
         private string lastName;
+
+        /// <summary>
+        /// The email
+        /// </summary>
         private string email;
+
+        /// <summary>
+        /// The phone number
+        /// </summary>
         private string phoneNumber;
+
+        /// <summary>
+        /// The pass word
+        /// </summary>
         private string passWord;
 
         public UserDetails()

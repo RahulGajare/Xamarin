@@ -1,30 +1,52 @@
-﻿using Fundoo.View;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+////[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Fundoo
 {
+    using System;
+    using Fundoo.View;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
     public partial class App : Application
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// </summary>
         public App()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            MainPage = new FirstPage();
+            this.MainPage = new FirstPage();
         }
 
+        /// <summary>
+        /// Application developers override this method to perform actions when the application starts.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnStart()
         {
             // Handle when your app starts
         }
 
+        /// <summary>
+        /// Application developers override this method to perform actions when the application enters the sleeping state.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnSleep()
         {
             // Handle when your app sleeps
         }
 
+        /// <summary>
+        /// Application developers override this method to perform actions when the application resumes from a sleeping state.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnResume()
         {
             // Handle when your app resumes

@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Firebase.Database;
-using Fundoo.FirebaseConnector;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Program.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Fundoo.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Firebase.Database;
+    using Fundoo.FirebaseConnector;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
 
     public partial class RegisterPage : ContentPage
     {
-        FireBaseConnector fireBaseConnector = new FireBaseConnector();
+        public FireBaseConnector fireBaseConnector = new FireBaseConnector();
 
 
         public RegisterPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private async void FormSubmit_Clicked(object sender, EventArgs e)
@@ -28,8 +34,8 @@ namespace Fundoo.View
                 await this.DisplayAlert("Alert", "Required Field", "Ok");
             }
 
-            await fireBaseConnector.AddUserDetails(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
-            await DisplayAlert("Alert", "Registered Succesfully", "Ok");
+            await this.fireBaseConnector.AddUserDetails(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
+            await this.DisplayAlert("Alert", "Registered Succesfully", "Ok");
         }
     }
 }

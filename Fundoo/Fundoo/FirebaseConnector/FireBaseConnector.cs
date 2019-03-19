@@ -1,21 +1,32 @@
-﻿using Fundoo.Model;
-using Firebase.Database;
-using Firebase.Database.Query;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Program.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Fundoo.FirebaseConnector
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Fundoo.Model;
+    using Firebase.Database;
+    using Firebase.Database.Query;
+    using Newtonsoft.Json;
+    
     public class FireBaseConnector
     {
-         FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
+        private  FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
 
+        /// <summary>
+        /// Gets all user details.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<UserDetails>> GetAllUserDetails()
         {
 
-            return (await firebaseClient
+            return (await this.firebaseClient
               .Child("RegisterDetails")
               .OnceAsync<UserDetails>()).Select(item => new UserDetails
               {
@@ -27,6 +38,15 @@ namespace Fundoo.FirebaseConnector
               }).ToList();
         }
 
+        /// <summary>
+        /// Adds the user details.
+        /// </summary>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="lastName">The last name.</param>
+        /// <param name="email">The email.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="phoneNumber">The phone number.</param>
+        /// <returns></returns>
         public async Task AddUserDetails(string firstName, string lastName, string email, string password, string phoneNumber)
         {
             await this.firebaseClient
@@ -34,10 +54,14 @@ namespace Fundoo.FirebaseConnector
               .PostAsync(new UserDetails(firstName, lastName, email, password, phoneNumber));
         }
 
-
+        /// <summary>
+        /// Gets the user detail.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public async Task<UserDetails> GetUserDetail(string email)
         {
-            var registeredDetails = await GetAllUserDetails();
+            var registeredDetails = await this.GetAllUserDetails();
             await this.firebaseClient
               .Child("RegisterDetails")
               .OnceAsync<UserDetails>();
