@@ -1,4 +1,5 @@
 ﻿using System;
+using Firebase;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -20,6 +21,7 @@ namespace Fundoo.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            FirebaseApp.InitializeApp(Application.Context);
             LoadApplication(new App());
         }
     }
