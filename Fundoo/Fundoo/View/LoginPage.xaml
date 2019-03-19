@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundoo.View.LoginPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Entry x:Name="txtEmail" Placeholder="Enter Email Here"/>
+            <Entry x:Name="txtPassWord" Placeholder="Enter Password here" IsPassword="True"/>
+            <Button Text="log in" Clicked="Button_Clicked"/>
+            <ActivityIndicator Color="Red" IsRunning="true" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
