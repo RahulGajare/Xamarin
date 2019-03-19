@@ -19,14 +19,24 @@ namespace Fundoo.View
 
     public partial class RegisterPage : ContentPage
     {
+        /// <summary>
+        /// The fire base connector
+        /// </summary>
         public FireBaseConnector fireBaseConnector = new FireBaseConnector();
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterPage"/> class.
+        /// </summary>
         public RegisterPage()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the FormSubmit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FormSubmit_Clicked(object sender, EventArgs e)
         {
             if (txtFirstName.Text == null || txtFirstName.Text.Trim().Equals(string.Empty))

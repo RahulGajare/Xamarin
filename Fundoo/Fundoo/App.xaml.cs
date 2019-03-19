@@ -1,5 +1,9 @@
-﻿
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="App.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 ////[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Fundoo
 {
@@ -7,6 +11,11 @@ namespace Fundoo
     using Fundoo.View;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
+
+    /// <summary>
+    /// partial App Class
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.Application" />
     public partial class App : Application
     {
         /// <summary>

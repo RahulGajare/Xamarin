@@ -1,23 +1,29 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="Bridgelabz">
+// <copyright file="FireBaseConnector.cs" company="Bridgelabz">
 //   Copyright © 2018 Company
 // </copyright>
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Fundoo.FirebaseConnector
-{
-    using System.Linq;
+{ 
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using System.Linq;
     using Fundoo.Model;
     using Firebase.Database;
     using Firebase.Database.Query;
     using Newtonsoft.Json;
-    
+
+    /// <summary>
+    /// FireBaseConnector class
+    /// </summary>
     public class FireBaseConnector
     {
-        private  FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
+        /// <summary>
+        /// The firebase client
+        /// </summary>
+        private FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
 
         /// <summary>
         /// Gets all user details.
@@ -25,7 +31,6 @@ namespace Fundoo.FirebaseConnector
         /// <returns></returns>
         public async Task<List<UserDetails>> GetAllUserDetails()
         {
-
             return (await this.firebaseClient
               .Child("RegisterDetails")
               .OnceAsync<UserDetails>()).Select(item => new UserDetails

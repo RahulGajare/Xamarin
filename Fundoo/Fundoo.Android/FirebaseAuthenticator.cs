@@ -1,4 +1,9 @@
-﻿
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FirebaseAuthenticator.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 namespace Fundoo
 {
     using System;
@@ -10,8 +15,7 @@ namespace Fundoo
     using static Fundoo.IFireBaseAuthenticator;
 
     public class FirebaseAuthenticator : IFirebaseAuthenticator
-    {
-        
+    {       
             public async Task<string> LoginWithEmailPassword(string email, string password)
             {
                 var user = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);

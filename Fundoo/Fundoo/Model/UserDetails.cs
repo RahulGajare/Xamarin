@@ -11,6 +11,9 @@ namespace Fundoo.Model
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// UserDetails class
+    /// </summary>
     public class UserDetails
     {
         /// <summary>
@@ -38,10 +41,21 @@ namespace Fundoo.Model
         /// </summary>
         private string passWord;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserDetails"/> class.
+        /// </summary>
         public UserDetails()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserDetails"/> class.
+        /// </summary>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="lastName">The last name.</param>
+        /// <param name="email">The email.</param>
+        /// <param name="passWord">The pass word.</param>
+        /// <param name="phoneNumber">The phone number.</param>
         public UserDetails(string firstName, string lastName, string email, string passWord, string phoneNumber)
         {
             this.firstName = firstName;
@@ -51,10 +65,44 @@ namespace Fundoo.Model
             this.PassWord = passWord;
         }
 
+        /// <summary>
+        /// Gets or sets the first name.
+        /// </summary>
+        /// <value>
+        /// The first name.
+        /// </value>
         public string FirstName { get => this.firstName; set => this.firstName = value; }
+
+        /// <summary>
+        /// Gets or sets the last name.
+        /// </summary>
+        /// <value>
+        /// The last name.
+        /// </value>
         public string LastName { get => this.lastName; set => this.lastName = value; }
+
+        /// <summary>
+        /// Gets or sets the email.
+        /// </summary>
+        /// <value>
+        /// The email.
+        /// </value>
         public string Email { get => this.email; set => this.email = value; }
+
+        /// <summary>
+        /// Gets or sets the phone number.
+        /// </summary>
+        /// <value>
+        /// The phone number.
+        /// </value>
         public string PhoneNumber { get => this.phoneNumber; set => this.phoneNumber = value; }
+
+        /// <summary>
+        /// Gets or sets the pass word.
+        /// </summary>
+        /// <value>
+        /// The pass word.
+        /// </value>
         public string PassWord { get => this.passWord; set => this.passWord = value; }
     }
 }
