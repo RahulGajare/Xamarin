@@ -14,6 +14,7 @@ namespace Fundoo.View
     using System.Threading.Tasks;
     using Firebase.Database;
     using Fundoo.FirebaseConnector;
+    using Fundoo.FireBaseThoroughAuthentication;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -40,14 +41,29 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FormSubmit_Clicked(object sender, EventArgs e)
         {
-
-            if (txtFirstName.Text == null || txtFirstName.Text.Trim().Equals(string.Empty))
+            try
             {
-                await this.DisplayAlert("Alert", "Required Field", "Ok");
-            }
+                FireBaseThroughAuthentication fireBaseThroughAuthentication = new FireBaseThroughAuthentication();
 
-            await this.fireBaseConnector.AddUserDetails(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
-            await this.DisplayAlert("Alert", "Registered Succesfully", "Ok");
+                if (txtFirstName.Text == null || txtFirstName.Text.Trim().Equals(string.Empty))
+                {
+                    await this.DisplayAlert("Alert", "Required Field", "Ok");
+                }
+
+                var user = await fireBaseThroughAuthentication.AddUserAsync(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
+                txtFirstName.Text = string.Empty;
+                txtLastName.Text = string.Empty;
+                txtUserEmail.Text = string.Empty;
+                txtUserPassWord.Text = string.Empty;
+                txtUserPhoneNumber.Text = string.Empty;
+                await this.DisplayAlert("Alert", "Registered Succesfully", "Ok");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.Read();
+            }
+           
         }
     }
 }

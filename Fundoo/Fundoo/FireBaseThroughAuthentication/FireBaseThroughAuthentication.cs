@@ -14,7 +14,7 @@ namespace Fundoo.FireBaseThoroughAuthentication
     {
         private FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
 
-        public async Task<string> AddUserAsync(string firstName, string lastName, string email, string password, string cpasswod)
+        public async Task<string> AddUserAsync(string firstName, string lastName, string email, string password, string phoneNumber)
         {
             string uid = await DependencyService.Get<IFirebaseAuthenticator>().AddUserWithEmailPassword(email, password);
             if (uid != null)

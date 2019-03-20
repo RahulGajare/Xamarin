@@ -31,6 +31,7 @@ namespace Fundoo.FirebaseConnector
         /// <returns></returns>
         public async Task<List<UserDetails>> GetAllUserDetails()
         {
+            FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
             return (await this.firebaseClient
               .Child("RegisterDetails")
               .OnceAsync<UserDetails>()).Select(item => new UserDetails
