@@ -34,7 +34,7 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Login_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new NavigationPage( new LoginPage()));
+            Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
         }
 
         /// <summary>

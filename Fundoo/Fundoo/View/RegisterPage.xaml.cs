@@ -40,6 +40,7 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void FormSubmit_Clicked(object sender, EventArgs e)
         {
+
             if (txtFirstName.Text == null || txtFirstName.Text.Trim().Equals(string.Empty))
             {
                 await this.DisplayAlert("Alert", "Required Field", "Ok");

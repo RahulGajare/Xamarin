@@ -22,6 +22,7 @@ namespace Fundoo
         public interface IFirebaseAuthenticator
         {
             Task<string> LoginWithEmailPassword(string email, string password);
+            Task<string> AddUserWithEmailPassword(string email, string password);
         }
     }
 }
