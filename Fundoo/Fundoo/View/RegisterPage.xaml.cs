@@ -21,6 +21,7 @@ namespace Fundoo.View
     {
         /// <summary>
         /// The fire base connector
+        /// 
         /// </summary>
         public FireBaseConnector fireBaseConnector = new FireBaseConnector();
 
