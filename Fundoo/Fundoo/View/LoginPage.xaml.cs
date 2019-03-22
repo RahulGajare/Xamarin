@@ -12,11 +12,15 @@ namespace Fundoo.View
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Fundoo.DependencyServices;
     using Fundoo.FirebaseConnector;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
-    using Fundoo.DependencyServices;
 
+    /// <summary>
+    /// LoginPage Class
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.ContentPage" />
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
@@ -40,19 +44,25 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            FireBaseThroughAuthentication fireBaseThoroughAuthentication = new FireBaseThroughAuthentication();
-            bool isLoggedIn = await fireBaseThoroughAuthentication.LoginUser(txtEmail.Text, txtPassWord.Text);
-
-            if (isLoggedIn)
+            try
             {
-                Message.ShowToastMessage("LoggedIn successfully");
+                FireBaseThroughAuthentication fireBaseThoroughAuthentication = new FireBaseThroughAuthentication();
+                bool isLoggedIn = await fireBaseThoroughAuthentication.LoginUser(txtEmail.Text, txtPassWord.Text);
+
+                if (isLoggedIn)
+                {
+                    Message.ShowToastMessage("LoggedIn successfully");
+                    await Navigation.PushModalAsync(new HomePage());
+                }
+                else
+                {
+                    Message.ShowToastMessage("Login failed");
+                }
             }
-            else
+            catch (Exception)
             {
                 Message.ShowToastMessage("Login failed");
-            }
-
-            
+            }       
         }
     }
 }

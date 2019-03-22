@@ -6,13 +6,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Fundoo.FirebaseConnector
-{ 
-    using System.Threading.Tasks;
+{
     using System.Collections.Generic;
-    using System.Linq;
-    using Fundoo.Model;
+     using System.Linq;
+    using System.Threading.Tasks;
     using Firebase.Database;
-    using Firebase.Database.Query;
+    using Firebase.Database.Query;    
+    using Fundoo.Model;  
     using Newtonsoft.Json;
 
     /// <summary>
@@ -28,7 +28,7 @@ namespace Fundoo.FirebaseConnector
         /// <summary>
         /// Gets all user details.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Returns List of User Details</returns>
         public async Task<List<UserDetails>> GetAllUserDetails()
         {
             FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
@@ -52,7 +52,7 @@ namespace Fundoo.FirebaseConnector
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
         /// <param name="phoneNumber">The phone number.</param>
-        /// <returns></returns>
+        /// <returns>returns Task</returns>
         public async Task AddUserDetails(string firstName, string lastName, string email, string password, string phoneNumber)
         {
             await this.firebaseClient
@@ -64,7 +64,7 @@ namespace Fundoo.FirebaseConnector
         /// Gets the user detail.
         /// </summary>
         /// <param name="email">The email.</param>
-        /// <returns></returns>
+        /// <returns>Returns the User info that matches the criteria</returns>
         public async Task<UserDetails> GetUserDetail(string email)
         {
             var registeredDetails = await this.GetAllUserDetails();

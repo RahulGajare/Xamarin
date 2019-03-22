@@ -1,16 +1,20 @@
-﻿
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FireBaseThroughAuthentication.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Fundoo.DependencyServices
 {
-    using Firebase.Database;
-    using Firebase.Database.Query;
-    using Fundoo.Interfaces;
-    using Fundoo.Model;
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+    using Firebase.Database;
+    using Firebase.Database.Query;
+    using Fundoo.Interfaces;
+    using Fundoo.Model;  
     using Xamarin.Forms;
 
     /// <summary>
@@ -18,7 +22,10 @@ namespace Fundoo.DependencyServices
     /// </summary>
     public class FireBaseThroughAuthentication
     {
-       private FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
+        /// <summary>
+        /// The firebase client
+        /// </summary>
+        private FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
 
         /// <summary>
         /// Registers the user.
@@ -28,7 +35,7 @@ namespace Fundoo.DependencyServices
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
         /// <param name="phoneNumber">The phone number.</param>
-        /// <returns></returns>
+        /// <returns>returns User id</returns>
         public async Task<string> RegisterUser(string firstName, string lastName, string email, string password, string phoneNumber)
         {
             string uid = await DependencyService.Get<IFirebaseAuthenticator>().RegisterUserWithEmailPassword(email, password);
@@ -45,7 +52,7 @@ namespace Fundoo.DependencyServices
         /// </summary>
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
-        /// <returns></returns>
+        /// <returns>returns true or false</returns>
         public async Task<bool> LoginUser(string email, string password)
         {
            bool isLoggedIn = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(email, password);

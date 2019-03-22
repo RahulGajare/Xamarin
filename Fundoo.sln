@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fundoo.Android", "Fundoo\Fu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fundoo.iOS", "Fundoo\Fundoo.iOS\Fundoo.iOS.csproj", "{EE57EDB4-8A34-45DB-AF72-0384903DAB09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fundoo", "Fundoo\Fundoo\Fundoo.csproj", "{F8F3BE2F-BB57-446F-A742-A700739DDF5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fundoo", "Fundoo\Fundoo\Fundoo.csproj", "{F8F3BE2F-BB57-446F-A742-A700739DDF5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

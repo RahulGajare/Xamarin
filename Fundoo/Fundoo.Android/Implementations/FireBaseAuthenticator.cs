@@ -9,6 +9,7 @@ using Fundoo.Droid.Implementations;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(FireBaseAuthenticator))]
+
 namespace Fundoo.Droid.Implementations
 {
     using System;
@@ -18,9 +19,18 @@ namespace Fundoo.Droid.Implementations
     using Firebase.Auth;
     using Fundoo.Interfaces;
 
+    /// <summary>
+    /// FireBaseAuthenticator Class
+    /// </summary>
+    /// <seealso cref="Fundoo.Interfaces.IFirebaseAuthenticator" />
     public class FireBaseAuthenticator : IFirebaseAuthenticator
     {
-
+        /// <summary>
+        /// Logins the with email password.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>Returns true or false</returns>
         public async Task<bool> LoginWithEmailPassword(string email, string password)
         {
             var result = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
@@ -35,6 +45,12 @@ namespace Fundoo.Droid.Implementations
             }
         }
 
+        /// <summary>
+        /// Registers the user with email password.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>returns string</returns>
         public async Task<string> RegisterUserWithEmailPassword(string email, string password)
         {
             var response = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);

@@ -1,10 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Greeting.xamlcs" company="Bridgelabz">
+// <copyright file="Greeting.xaml.cs" company="Bridgelabz">
 //   Copyright © 2018 Company
 // </copyright>
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
-
 
 namespace Fundoo.View
 {
@@ -16,6 +15,10 @@ namespace Fundoo.View
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
+    /// <summary>
+    /// FirstPage class
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.ContentPage" />
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FirstPage : ContentPage
     {
