@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FirstPage.cs" company="Bridgelabz">
+// <copyright file="Greeting.xamlcs" company="Bridgelabz">
 //   Copyright © 2018 Company
 // </copyright>
 // <creator name="Rahul Gajare"/>
@@ -28,7 +28,7 @@ namespace Fundoo.View
         }
 
         /// <summary>
-        /// Handles the Clicked event of the Login control.
+        /// Handles the Clicked event of the LoginUser control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -38,7 +38,7 @@ namespace Fundoo.View
         }
 
         /// <summary>
-        /// Handles the Clicked event of the Register control.
+        /// Handles the Clicked event of the RegisterUser control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
