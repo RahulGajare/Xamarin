@@ -1,14 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Fundoo.View.RegisterPage">
+             xmlns:local="clr-namespace:Fundoo.Validations"
+             x:Class="Fundoo.View.RegisterPage"
+             BackgroundImage="RegisterBG.png" WidthRequest="20" HeightRequest="50">
+
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" >
-            <Entry x:Name="txtFirstName" Placeholder="Enter your First Name Here" TextColor="Black"  MaxLength="10"></Entry>
-            <Entry x:Name="txtLastName" Placeholder="Enter your Last Name Here"  TextColor="Black"></Entry>
-            <Entry x:Name="txtUserEmail" Placeholder="Enter your  Email Here"  TextColor="Black"></Entry>
-            <Entry x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  TextColor="Black"></Entry>
-            <Entry x:Name="txtUserPhoneNumber" Placeholder="Enter your PhoneNumber Here"  TextColor="Black"></Entry>
+            <Label Text ="FirstName"/>
+            <Entry x:Name="txtFirstName" Placeholder="Enter your First Name Here" TextColor="Black"  MaxLength="10">
+                <Entry.Behaviors>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text ="LastName"/>
+            <Entry x:Name="txtLastName" Placeholder="Enter your Last Name Here"  TextColor="Black">
+                <Entry.Behaviors>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text ="Email"/>
+            <Entry x:Name="txtUserEmail" Placeholder="Enter your  Email Here"  TextColor="Black">
+                <Entry.Behaviors>
+                    <local:EmailValidator/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text ="Password"/>
+            <Entry x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  TextColor="Black">
+                <Entry.Behaviors>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text ="Phone Number"/>
+            <Entry x:Name="txtUserPhoneNumber" Placeholder="Enter your PhoneNumber Here"  TextColor="Black">
+                <Entry.Behaviors>
+                </Entry.Behaviors>
+            </Entry>
             <Button x:Name ="FormSubmit"  Text="Sign up" Clicked="FormSubmit_Clicked"/>
         </StackLayout>
     </ContentPage.Content>

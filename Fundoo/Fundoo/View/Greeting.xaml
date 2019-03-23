@@ -10,11 +10,10 @@
 
             <Image x:Name="FundooLogo" Source="FundooLogo.png"  WidthRequest="200" HeightRequest="100"></Image>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Vertical" Margin="0,20,0,0">
-                <Button x:Name="Login" Text="Login" WidthRequest="150"  CornerRadius="25" BorderColor="DarkOrange" BackgroundColor="Cyan" Clicked="Login_Clicked"/>
+                <Button x:Name="Login" Text="Login" WidthRequest="150"  CornerRadius="10" BorderColor="DarkOrange" BackgroundColor="Cyan" Clicked="Login_Clicked"/>
                 <Label>
                 </Label>
-                <Button x:Name="Register" Text="Register" WidthRequest="150" CornerRadius="25" BorderColor="DarkOrange"  Clicked="Register_Clicked"/>
-
+                <Button x:Name="Register" Text="Register" WidthRequest="150" CornerRadius="10" BorderColor="DarkOrange"  Clicked="Register_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -22,7 +22,7 @@ namespace Fundoo.Interfaces
         /// </summary>
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
-        /// <returns></returns>
+        /// <returns>returns true or false</returns>
         Task<bool> LoginWithEmailPassword(string email, string password);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Fundoo.Interfaces
         /// </summary>
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
-        /// <returns></returns>
+        /// <returns>returns User id</returns>
         Task<string> RegisterUserWithEmailPassword(string email, string password);
         }    
 }
