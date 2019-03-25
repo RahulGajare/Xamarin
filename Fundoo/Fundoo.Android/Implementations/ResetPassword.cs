@@ -10,16 +10,18 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Firebase.Auth;
+using Fundoo.Droid.Implementations;
+using Fundoo.Interfaces;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(ResetPassword))]
 namespace Fundoo.Droid.Implementations
 {
-    class ResetPassword
+    public class ResetPassword : IResetPassword
     {
         public void SendPassword(string emailAddress)
         {
-            FirebaseAuth auth = FirebaseAuth.Instance;
-            auth.SendPasswordResetEmailAsync(emailAddress);
+            FirebaseAuth.Instance.SendPasswordResetEmail(emailAddress);
         }
-      
     }
 }

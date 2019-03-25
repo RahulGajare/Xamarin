@@ -9,7 +9,7 @@ using Fundoo.Droid.Implementations;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(Messages))]
-
+    
 namespace Fundoo.Droid.Implementations
 {
     using System;

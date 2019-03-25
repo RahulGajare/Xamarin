@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Fundoo.Interfaces
 {
-    public interface ResetPassword
+    public interface IResetPassword
     {
         void SendPassword(string emailAddress);
     }
