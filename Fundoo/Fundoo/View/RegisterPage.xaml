@@ -3,34 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Fundoo.Validations"
              x:Class="Fundoo.View.RegisterPage"
-             BackgroundImage="RegisterBG.png" WidthRequest="20" HeightRequest="50">
+             BackgroundColor="LightCyan">
 
 
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" >
+        <StackLayout  Orientation="Vertical" >
             <Label Text ="FirstName"/>
-            <Entry x:Name="txtFirstName" Placeholder="Enter your First Name Here" TextColor="Black"  MaxLength="10">
+            <Entry  Margin="20,0,20,0" x:Name="txtFirstName" Placeholder="Enter your First Name Here" BackgroundColor="White" TextColor="Black"  MaxLength="10">
                 <Entry.Behaviors>
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="LastName"/>
-            <Entry x:Name="txtLastName" Placeholder="Enter your Last Name Here"  TextColor="Black">
+            <Entry  Margin="20,0,20,0" x:Name="txtLastName" Placeholder="Enter your Last Name Here"  TextColor="Black">
                 <Entry.Behaviors>
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="Email"/>
-            <Entry x:Name="txtUserEmail" Placeholder="Enter your  Email Here"  TextColor="Black">
+            <Entry Margin="20,0,20,0" x:Name="txtUserEmail" Placeholder="Enter your  Email Here"  TextColor="Black">
                 <Entry.Behaviors>
                     <local:EmailValidator/>
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="Password"/>
-            <Entry x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  IsPassword="True" TextColor="Black">
+            <Entry  Margin="20,0,20,0" x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  IsPassword="True" TextColor="Black">
                 <Entry.Behaviors>
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="Phone Number"/>
-            <Entry x:Name="txtUserPhoneNumber" Placeholder="Enter your PhoneNumber Here"  TextColor="Black">
+            <Entry Margin="20,0,20,0"  x:Name="txtUserPhoneNumber" Placeholder="Enter your PhoneNumber Here"  TextColor="Black">
                 <Entry.Behaviors>
                 </Entry.Behaviors>
             </Entry>
