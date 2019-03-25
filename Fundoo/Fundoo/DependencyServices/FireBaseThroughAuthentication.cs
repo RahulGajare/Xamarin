@@ -20,7 +20,7 @@ namespace Fundoo.DependencyServices
     /// <summary>
     /// FireBaseThroughAuthentication class
     /// </summary>
-    public class FireBaseThroughAuthentication
+    public class FireBaseThroughAuthentication : ContentPage
     {
         /// <summary>
         /// The firebase client
@@ -36,15 +36,16 @@ namespace Fundoo.DependencyServices
         /// <param name="password">The password.</param>
         /// <param name="phoneNumber">The phone number.</param>
         /// <returns>returns User id</returns>
-        public async Task<string> RegisterUser(string firstName, string lastName, string email, string password, string phoneNumber)
+        public async Task<bool> RegisterUser(string firstName, string lastName, string email, string password, string phoneNumber)
         {
-            string uid = await DependencyService.Get<IFirebaseAuthenticator>().RegisterUserWithEmailPassword(email, password);
+            var uid = await DependencyService.Get<IFirebaseAuthenticator>().RegisterUserWithEmailPassword(email, password);
             if (uid != null)
             {
                 await this.firebaseClient.Child("FundooUsers").Child(uid).Child("Userinfo").PostAsync<UserDetails>(new UserDetails() { FirstName = firstName, LastName = lastName, Email = email, PassWord = password, PhoneNumber = phoneNumber });
+                return true;
             }
 
-            return uid;
+            return false;
         }
 
         /// <summary>

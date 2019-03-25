@@ -44,8 +44,22 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Button_Clicked(object sender, EventArgs e)
         {
+
+            if (txtEmail.Text == null || txtEmail.Text.Trim().Equals(string.Empty))
+            {
+                await this.DisplayAlert("Alert", "Email should be specified", "Ok");
+                return;
+            }
+
+            if (txtPassWord.Text == null || txtPassWord.Text.Trim().Equals(string.Empty))
+            {
+                await this.DisplayAlert("Alert", "Password not Specified", "Ok");
+                return;
+            }
+
             try
             {
+                
                 FireBaseThroughAuthentication fireBaseThoroughAuthentication = new FireBaseThroughAuthentication();
                 bool isLoggedIn = await fireBaseThoroughAuthentication.LoginUser(txtEmail.Text, txtPassWord.Text);
 
@@ -63,6 +77,11 @@ namespace Fundoo.View
             {
                 Message.ShowToastMessage("Login failed");
             }       
+        }
+
+        private async void ForgotPassword_Clicked_1(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ForgotPassword());
         }
     }
 }

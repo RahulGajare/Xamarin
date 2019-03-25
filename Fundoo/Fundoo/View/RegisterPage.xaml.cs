@@ -48,13 +48,22 @@ namespace Fundoo.View
                 return;
             }
 
-            var user = await fireBaseThroughAuthentication.RegisterUser(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
+            bool isRegistered =  await fireBaseThroughAuthentication.RegisterUser(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
             txtFirstName.Text = string.Empty;
             txtLastName.Text = string.Empty;
             txtUserEmail.Text = string.Empty;
             txtUserPassWord.Text = string.Empty;
             txtUserPhoneNumber.Text = string.Empty;
-            await this.DisplayAlert("Alert", "Registered Succesfully", "Ok");
+
+            if (isRegistered)
+            {
+                await this.DisplayAlert("Alert","Registerd Successfully","Ok");
+            }
+            else
+            {
+                await this.DisplayAlert("Alert", "Email already in used", "Try again");
+            }
+           
         }
     }
 }

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\FireBaseAuthenticator.cs" />
+    <Compile Include="Implementations\ResetPassword.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Implementations\Messages.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -107,9 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\FundooLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\RegisterBG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

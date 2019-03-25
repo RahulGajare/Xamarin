@@ -33,16 +33,15 @@ namespace Fundoo.Droid.Implementations
         /// <returns>Returns true or false</returns>
         public async Task<bool> LoginWithEmailPassword(string email, string password)
         {
-            var result = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
-            var user = result.User.Uid;
-            if (user != null)
+            try
             {
+                await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
                 return true;
             }
-            else
+            catch (Exception )
             {
                 return false;
-            }
+            }         
         }
 
         /// <summary>
@@ -53,9 +52,15 @@ namespace Fundoo.Droid.Implementations
         /// <returns>returns string</returns>
         public async Task<string> RegisterUserWithEmailPassword(string email, string password)
         {
-            var response = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
-
-            return response.User.Uid;
+            try
+            {
+                var response = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+                return response.User.Uid;
+            }
+            catch (Exception)
+            {             
+                return null;
+            }      
         }
     }
 }

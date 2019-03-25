@@ -25,7 +25,7 @@
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="Password"/>
-            <Entry x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  TextColor="Black">
+            <Entry x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  IsPassword="True" TextColor="Black">
                 <Entry.Behaviors>
                 </Entry.Behaviors>
             </Entry>
