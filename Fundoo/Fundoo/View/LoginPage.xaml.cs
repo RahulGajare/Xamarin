@@ -80,7 +80,7 @@ namespace Fundoo.View
         }
 
         private async void ForgotPassword_Clicked_1(object sender, EventArgs e)
-        {
+            {
             await Navigation.PushModalAsync(new ForgotPassword());
         }
     }

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundoo.View.Test">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Green">
+            <Frame Padding = "10" BackgroundColor="Gray">
+                <StackLayout Orientation="Horizontal">
+
+                    <Image x:Name ="filter" Source="BlueFilterUnfilled.png" />
+                    <Frame Margin ="50" Padding="10">
+                        <DatePicker x:Name="scroller" />
+                    </Frame>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

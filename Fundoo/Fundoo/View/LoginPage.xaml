@@ -7,7 +7,7 @@
             <Entry x:Name="txtEmail" Placeholder="Enter Email Here"/>
             <Entry x:Name="txtPassWord" Placeholder="Enter Password here" IsPassword="True"/>
             <Button Text="log in" Clicked="Button_Clicked"/>
-            <Button Text="Forgot Password?" Clicked="ForgotPassword_Clicked_1"/>
+            <Button Text="Forgot Password?" Clicked="ForgotPassword_Clicked_1" />
             <ActivityIndicator Color="Red" IsRunning="False" />
         </StackLayout>
     </ContentPage.Content>

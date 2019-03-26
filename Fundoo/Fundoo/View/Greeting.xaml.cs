@@ -7,6 +7,7 @@
 
 namespace Fundoo.View
 {
+    using Fundoo.DependencyServices;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -35,9 +36,40 @@ namespace Fundoo.View
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void Login_Clicked(object sender, EventArgs e)
+        private async void Login_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
+            if (txtEmail.Text == null || txtEmail.Text.Trim().Equals(string.Empty))
+            {
+                await this.DisplayAlert("Alert", "Email should be specified", "Ok");
+                return;
+            }
+
+            if (txtPassWord.Text == null || txtPassWord.Text.Trim().Equals(string.Empty))
+            {
+                await this.DisplayAlert("Alert", "Password not Specified", "Ok");
+                return;
+            }
+
+            try
+            {
+
+                FireBaseThroughAuthentication fireBaseThoroughAuthentication = new FireBaseThroughAuthentication();
+                bool isLoggedIn = await fireBaseThoroughAuthentication.LoginUser(txtEmail.Text, txtPassWord.Text);
+
+                if (isLoggedIn)
+                {
+                    Message.ShowToastMessage("LoggedIn successfully");
+                    await Navigation.PushModalAsync(new HomePage());
+                }
+                else
+                {
+                    Message.ShowToastMessage("Login failed");
+                }
+            }
+            catch (Exception)
+            {
+                Message.ShowToastMessage("Login failed");
+            }
         }
 
         /// <summary>
@@ -48,6 +80,11 @@ namespace Fundoo.View
         private void Register_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new RegisterPage());
+        }
+
+        private async void ForgotPassword_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ForgotPassword());
         }
     }
 }

@@ -14,23 +14,23 @@
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="LastName"/>
-            <Entry  Margin="20,0,20,0" x:Name="txtLastName" Placeholder="Enter your Last Name Here"  TextColor="Black">
+            <Entry  Margin="20,0,20,0" x:Name="txtLastName" Placeholder="Enter your Last Name Here"  BackgroundColor="White" TextColor="Black">
                 <Entry.Behaviors>
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="Email"/>
-            <Entry Margin="20,0,20,0" x:Name="txtUserEmail" Placeholder="Enter your  Email Here"  TextColor="Black">
+            <Entry Margin="20,0,20,0" x:Name="txtUserEmail" Placeholder="Enter your  Email Here" BackgroundColor="White" TextColor="Black">
                 <Entry.Behaviors>
                     <local:EmailValidator/>
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="Password"/>
-            <Entry  Margin="20,0,20,0" x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  IsPassword="True" TextColor="Black">
+            <Entry  Margin="20,0,20,0" x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  IsPassword="True" BackgroundColor="White" TextColor="Black">
                 <Entry.Behaviors>
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="Phone Number"/>
-            <Entry Margin="20,0,20,0"  x:Name="txtUserPhoneNumber" Placeholder="Enter your PhoneNumber Here"  TextColor="Black">
+            <Entry Margin="20,0,20,0"  x:Name="txtUserPhoneNumber" Placeholder="Enter your PhoneNumber Here" BackgroundColor="White" TextColor="Black">
                 <Entry.Behaviors>
                 </Entry.Behaviors>
             </Entry>
