@@ -17,16 +17,16 @@ namespace Fundoo.View
     using Xamarin.Forms.Xaml;
 
     /// <summary>
-    /// FirstPage class
+    /// Greeting class
     /// </summary>
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FirstPage : ContentPage
+    public partial class Greeting : ContentPage
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstPage"/> class.
         /// </summary>
-        public FirstPage()
+        public Greeting()
         {
             this.InitializeComponent();
         }
@@ -59,7 +59,10 @@ namespace Fundoo.View
                 if (isLoggedIn)
                 {
                     Message.ShowToastMessage("LoggedIn successfully");
-                    await Navigation.PushModalAsync(new HomePage());
+                    Page fundooNotes = new FundooNotes();
+
+                    await Navigation.PushAsync(fundooNotes);
+                    NavigationPage.SetHasNavigationBar(fundooNotes, true);
                 }
                 else
                 {

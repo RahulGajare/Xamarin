@@ -25,7 +25,10 @@ namespace Fundoo
         {
             this.InitializeComponent();
 
-            this.MainPage = new FirstPage();
+            Page greetingPage = new Greeting();
+            this.MainPage = new NavigationPage(greetingPage);
+            
+
         }
 
         /// <summary>

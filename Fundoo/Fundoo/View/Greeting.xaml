@@ -1,19 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Fundoo.View.FirstPage"
+             x:Class="Fundoo.View.Greeting"
              BackgroundColor="LightCyan">
+
+    <NavigationPage.TitleView>
+     
+            <Label Text="FundooNotes" FontSize="50" HorizontalTextAlignment="Center"/>
+        
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start" Spacing="10" Margin="0,0,0,20">
-                <Label Text="Welcome To FundooNotes"  FontAttributes="Italic" FontSize="50" HorizontalTextAlignment="Center" TextColor="DarkBlue"></Label>
-                <Image x:Name="FundooLogo" Source="FundooLogo.png"  WidthRequest="200" HeightRequest="100"></Image>
+                <!--<Label Text="Welcome To FundooNotes"  FontAttributes="Italic" FontSize="50" HorizontalTextAlignment="Center" TextColor="DarkBlue"></Label>-->
+                <Image x:Name="FundooLogo" Source="FundooLogo.png"  WidthRequest="300" HeightRequest="100"></Image>             
+            </StackLayout>
+            
+            <StackLayout>
                 <Entry x:Name="txtEmail"   Margin="20,0,20,0" Placeholder="Enter Email Here"/>
                 <Entry x:Name="txtPassWord" Margin="20,0,20,0" Placeholder="Enter Password here" IsPassword="True"/>
             </StackLayout>
 
+
             <StackLayout  Spacing="10" HorizontalOptions="Center" VerticalOptions="Start">
-            <Button x:Name="Login"  Margin="20,0,20,0" Text="Login" WidthRequest="300"  CornerRadius="10" BorderColor="DarkOrange" BackgroundColor="Cyan" Clicked="Login_Clicked"/>
+                <Button x:Name="Login"  Margin="20,0,20,0" Text="Login" WidthRequest="300"  CornerRadius="10" BorderColor="DarkOrange" BackgroundColor="Cyan" Clicked="Login_Clicked"/>
                 <Label Text="OR" FontSize="20" HorizontalTextAlignment="Center"/>
                 <Button x:Name="Register"  Margin="20,0,20,0" Text="Register" WidthRequest="150" CornerRadius="10" BorderColor="DarkOrange"  Clicked="Register_Clicked"/>
             </StackLayout>
@@ -24,6 +35,6 @@
 
         </StackLayout>
 
-       
+
     </ContentPage.Content>
 </ContentPage>

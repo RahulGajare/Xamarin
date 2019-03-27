@@ -66,7 +66,10 @@ namespace Fundoo.View
                 if (isLoggedIn)
                 {
                     Message.ShowToastMessage("LoggedIn successfully");
-                    await Navigation.PushModalAsync(new HomePage());
+                    Page fundooNotes = new FundooNotes();
+                   
+                    await Navigation.PushAsync(fundooNotes);
+                    NavigationPage.SetHasNavigationBar(fundooNotes, true);
                 }
                 else
                 {
