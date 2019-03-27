@@ -29,5 +29,10 @@ namespace Fundoo.View
         {
             this.InitializeComponent();
         }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
