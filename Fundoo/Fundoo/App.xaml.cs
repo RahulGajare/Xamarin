@@ -8,6 +8,7 @@
 namespace Fundoo
 {
     using System;
+    using Fundoo.DependencyServices;
     using Fundoo.View;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -24,11 +25,21 @@ namespace Fundoo
         public App()
         {
             this.InitializeComponent();
+            FireBaseThroughAuthentication fireBaseThoroughAuthentication = new FireBaseThroughAuthentication();
 
-            Page greetingPage = new Greeting();
-            this.MainPage = new NavigationPage(greetingPage);
-            
+            //// If user is already Logged in , then navigating to fundooNotes page.
+            var isLoggedin = fireBaseThoroughAuthentication.CheckStatus();
+            if (isLoggedin)
+            {
 
+                this.MainPage = new NavigationPage(new FundooNotes());
+            }
+            else
+            {
+                this.MainPage = new NavigationPage(new Greeting());
+                
+            }
+          
         }
 
         /// <summary>

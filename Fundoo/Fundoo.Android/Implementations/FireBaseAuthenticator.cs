@@ -25,6 +25,20 @@ namespace Fundoo.Droid.Implementations
     /// <seealso cref="Fundoo.Interfaces.IFirebaseAuthenticator" />
     public class FireBaseAuthenticator : IFirebaseAuthenticator
     {
+        public bool IsLoggedin()
+        {
+            var status = FirebaseAuth.Instance.CurrentUser;
+
+            if (status != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Logins the with email password.
         /// </summary>
@@ -61,6 +75,11 @@ namespace Fundoo.Droid.Implementations
             {             
                 return null;
             }      
+        }
+
+        public void Signout()
+        {
+            FirebaseAuth.Instance.SignOut();
         }
     }
 }

@@ -7,6 +7,8 @@
 
 namespace Fundoo.View
 {
+    using Fundoo.DependencyServices;
+    using Fundoo.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -30,9 +32,19 @@ namespace Fundoo.View
             this.InitializeComponent();
         }
 
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        private void logoutIcon_Clicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IFirebaseAuthenticator>().Signout();
+            Message.ShowToastMessage("LoggedOut Successfully");
+
+            
+            Navigation.PopToRootAsync();
+            Navigation.PushAsync(new Greeting());
+            
+
 
         }
+
+      
     }
 }

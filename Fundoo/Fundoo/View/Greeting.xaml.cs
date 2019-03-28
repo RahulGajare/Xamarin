@@ -26,9 +26,29 @@ namespace Fundoo.View
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstPage"/> class.
         /// </summary>
-        public Greeting()
+        public  Greeting()
         {
-            this.InitializeComponent();
+           
+                this.InitializeComponent();
+
+                var tapImage = new TapGestureRecognizer();
+                //// Binding events    
+                tapImage.Tapped += tapImage_Tapped;
+                ///// Associating tap events to the image buttons    
+                googleIcon.GestureRecognizers.Add(tapImage);
+
+          
+        }
+
+        /// <summary>
+        /// Handles the Tapped event of the tapImage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        void tapImage_Tapped(object sender, EventArgs e)
+        {
+            //// handles the tap over google icon   
+            DisplayAlert("Alert", "This is an image button", "OK");
         }
 
         /// <summary>
@@ -62,7 +82,7 @@ namespace Fundoo.View
                     Page fundooNotes = new FundooNotes();
 
                     await Navigation.PushAsync(fundooNotes);
-                    NavigationPage.SetHasNavigationBar(fundooNotes, true);
+                   // NavigationPage.SetHasNavigationBar(fundooNotes, true);
                 }
                 else
                 {
@@ -89,5 +109,9 @@ namespace Fundoo.View
         {
             await Navigation.PushModalAsync(new ForgotPassword());
         }
+
+
     }
+
+
 }

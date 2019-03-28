@@ -59,5 +59,19 @@ namespace Fundoo.DependencyServices
            bool isLoggedIn = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(email, password);
             return isLoggedIn;
         }
+
+        public  bool CheckStatus()
+        {
+           var isLoggedIn =  DependencyService.Get<IFirebaseAuthenticator>().IsLoggedin();
+
+            return isLoggedIn;
+
+        }
+
+        public void LogOut()
+        {
+            DependencyService.Get<IFirebaseAuthenticator>().Signout();
+        }
+
     }
 }
