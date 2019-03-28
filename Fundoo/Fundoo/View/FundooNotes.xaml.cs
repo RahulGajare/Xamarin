@@ -40,9 +40,7 @@ namespace Fundoo.View
             
             Navigation.PopToRootAsync();
             Navigation.PushAsync(new Greeting());
-            
-
-
+            Navigation.RemovePage(new FundooNotes());
         }
 
       

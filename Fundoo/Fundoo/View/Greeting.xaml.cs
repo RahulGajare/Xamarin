@@ -81,8 +81,9 @@ namespace Fundoo.View
                     Message.ShowToastMessage("LoggedIn successfully");
                     Page fundooNotes = new FundooNotes();
 
-                    await Navigation.PushAsync(fundooNotes);
-                   // NavigationPage.SetHasNavigationBar(fundooNotes, true);
+                    await Navigation.PushAsync(fundooNotes);                  
+                    
+                   //// NavigationPage.SetHasNavigationBar(fundooNotes, true);
                 }
                 else
                 {
@@ -105,6 +106,11 @@ namespace Fundoo.View
             Navigation.PushModalAsync(new RegisterPage());
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the ForgotPassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void ForgotPassword_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new ForgotPassword());
