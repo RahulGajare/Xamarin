@@ -24,9 +24,21 @@
                     <local:EmailValidator/>
                 </Entry.Behaviors>
             </Entry>
+           
+
             <Label Text ="Password"/>
             <Entry  Margin="20,0,20,0" x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  IsPassword="True" BackgroundColor="White" TextColor="Black">
                 <Entry.Behaviors>
+                    <local:Password/>
+                </Entry.Behaviors>
+                
+            </Entry>
+            <Label x:Name="errorMessage" TextColor="Red" FontAttributes="Italic" />
+            
+            <Label Text ="Confirm Password"/>
+            <Entry  Margin="20,0,20,0" x:Name="txtConfirmPassWord" Placeholder="Confirm Password Here"  IsPassword="True" BackgroundColor="White" TextColor="Black">
+                <Entry.Behaviors>
+                    <!--<local:/>-->
                 </Entry.Behaviors>
             </Entry>
             <Label Text ="Phone Number"/>

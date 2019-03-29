@@ -37,10 +37,10 @@ namespace Fundoo.View
             DependencyService.Get<IFirebaseAuthenticator>().Signout();
             Message.ShowToastMessage("LoggedOut Successfully");
 
-            
             Navigation.PopToRootAsync();
             Navigation.PushAsync(new Greeting());
-            Navigation.RemovePage(new FundooNotes());
+
+
         }
 
       

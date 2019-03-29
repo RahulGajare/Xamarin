@@ -3,19 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fundoo.View.Greeting"
              BackgroundColor="LightCyan"
-             NavigationPage.HasBackButton="False">
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
 
-    <NavigationPage.TitleView>
-     
-            <Label Text="FundooNotes" FontSize="50" HorizontalTextAlignment="Center"/>
-        
-    </NavigationPage.TitleView>
+  
+
+   
 
     <ContentPage.Content>
         <StackLayout>
+
+            
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start" Spacing="10" Margin="0,0,0,20">
                 <!--<Label Text="Welcome To FundooNotes"  FontAttributes="Italic" FontSize="50" HorizontalTextAlignment="Center" TextColor="DarkBlue"></Label>-->
-                <Image x:Name="FundooLogo" Source="FundooLogo.png"  WidthRequest="300" HeightRequest="100"></Image>             
+                <Image x:Name="FundooLogo" Source="FundooNotes.png"  WidthRequest="300" HeightRequest="100"></Image>             
             </StackLayout>
             
             <StackLayout>

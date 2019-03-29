@@ -31,13 +31,11 @@ namespace Fundoo
             var isLoggedin = fireBaseThoroughAuthentication.CheckStatus();
             if (isLoggedin)
             {
-
                 this.MainPage = new NavigationPage(new FundooNotes());
             }
             else
             {
-                this.MainPage = new NavigationPage(new Greeting());
-                
+                this.MainPage = new NavigationPage(new Greeting());              
             }
           
         }
