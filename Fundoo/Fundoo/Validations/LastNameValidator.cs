@@ -6,11 +6,11 @@ using Xamarin.Forms;
 
 namespace Fundoo.Validations
 {
-    class UserNameValidator : Behavior<Entry>
+   public  class LastNameValidator : Behavior<Entry>
     {
         const string userNameRegex = "^[A-z a - z 0 - 9]{3,15}$";
 
-        public static readonly BindableProperty isValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(PasswordValidator), false, BindingMode.OneWayToSource);
+        public static readonly BindableProperty isValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(LastNameValidator), false, BindingMode.OneWayToSource);
 
 
 
@@ -34,14 +34,14 @@ namespace Fundoo.Validations
 
         void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
-            Label errorLabel = ((Entry)sender).FindByName<Label>("errorMessageFirstName");
+            Label errorLabel = ((Entry)sender).FindByName<Label>("errorMessageLastName");
 
             bool isValid = Regex.IsMatch(e.NewTextValue, userNameRegex);
             IsValid = isValid;
 
             if (isValid)
             {
-                ((Entry)sender).TextColor = Color.Default;
+                ((Entry)sender).TextColor = Color.Green;
                 errorLabel.Text = "";
             }
             else

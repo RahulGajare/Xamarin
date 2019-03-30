@@ -6,11 +6,11 @@ using Xamarin.Forms;
 
 namespace Fundoo.Validations
 {
-    public class PasswordValidator : Behavior<Entry>
+    public class FirstNameValidator : Behavior<Entry>
     {
-        const string passwordRegex = "^(?=.*\\d).{4,8}$";
+        const string userNameRegex = "^[A-z a - z 0 - 9]{3,15}$";
 
-        public static readonly BindableProperty isValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(PasswordValidator), false, BindingMode.OneWayToSource);
+        public static readonly BindableProperty isValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(FirstNameValidator), false, BindingMode.OneWayToSource);
 
 
 
@@ -34,9 +34,9 @@ namespace Fundoo.Validations
 
         void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
-            Label errorLabel = ((Entry)sender).FindByName<Label>("errorMessagePassword");
+            Label errorLabel = ((Entry)sender).FindByName<Label>("errorMessageFirstName");
 
-            bool isValid = Regex.IsMatch(e.NewTextValue, passwordRegex);
+            bool isValid = Regex.IsMatch(e.NewTextValue, userNameRegex);
             IsValid = isValid;
 
             if (isValid)
@@ -47,7 +47,7 @@ namespace Fundoo.Validations
             else
             {
                 ((Entry)sender).TextColor = Color.Red;
-                errorLabel.Text = "Password length should be atleast 4-8 and atleast one numeric";
+                errorLabel.Text = "Length should be atleast 3-15 and should not contain characters";
             }
 
         }

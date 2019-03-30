@@ -7,40 +7,42 @@
 
 
     <ContentPage.Content>
+        
         <ScrollView>
-            <StackLayout  Orientation="Vertical" >
+            
+            <StackLayout  Orientation="Vertical" Spacing="2" >
+                <Image x:Name="FundooLogo" Source="FundooNotes.png"  WidthRequest="80" HeightRequest="30"></Image>
                 <Label Text ="FirstName"/>
                 <Entry  Margin="20,0,20,0" x:Name="txtFirstName" Placeholder="Enter your First Name Here" BackgroundColor="White" TextColor="Black"  MaxLength="10">
                     <Entry.Behaviors>
-                        <local:UserNameValidator x:Name="UserNameValidator"/>
+                        <local:FirstNameValidator x:Name="FirstNameValidator"/>
                     </Entry.Behaviors>
                 </Entry>
-                <Label x:Name="errorMessageFirstName" TextColor="Red" FontAttributes="Italic" />
+                <Label x:Name="errorMessageFirstName" TextColor="Red" FontAttributes="Italic" FontSize="10" />
 
                 <Label Text ="LastName"/>
                 <Entry  Margin="20,0,20,0" x:Name="txtLastName" Placeholder="Enter your Last Name Here"  BackgroundColor="White" TextColor="Black">
                     <Entry.Behaviors>
+                        <local:LastNameValidator x:Name="LastNameValidator"/>
                     </Entry.Behaviors>
                 </Entry>
-                <Label x:Name="errorMessageLastName" TextColor="Red" FontAttributes="Italic" />
+                <Label x:Name="errorMessageLastName" TextColor="Red" FontAttributes="Italic" FontSize="10" />
 
                 <Label Text ="Email"/>
                 <Entry Margin="20,0,20,0" x:Name="txtUserEmail" Placeholder="Enter your  Email Here" BackgroundColor="White" TextColor="Black">
                     <Entry.Behaviors>
-                        <local:EmailValidator/>
+                        <local:EmailValidator x:Name="EmailValidator"/>
                     </Entry.Behaviors>
                 </Entry>
-                <Label x:Name="errorMessageEmail" TextColor="Red" FontAttributes="Italic" />
+                <Label x:Name="errorMessageEmail" TextColor="Red" FontAttributes="Italic" FontSize="10"/>
 
                 <Label Text ="Password"/>
                 <Entry  Margin="20,0,20,0" x:Name="txtUserPassWord" Placeholder="Enter your Password Here"  IsPassword="True" BackgroundColor="White" TextColor="Black">
                     <Entry.Behaviors>
-
                         <local:PasswordValidator x:Name="PasswordValidator"/>
                     </Entry.Behaviors>
-
                 </Entry>
-                <Label x:Name="errorMessagePassword" TextColor="Red" FontAttributes="Italic" />
+                <Label x:Name="errorMessagePassword" TextColor="Red" FontAttributes="Italic" FontSize="10" />
 
                 <Label Text ="Confirm Password"/>
                 <Entry  Margin="20,0,20,0" x:Name="txtConfirmPassWord" Placeholder="Confirm Password Here"  IsPassword="True" BackgroundColor="White" TextColor="Black">
@@ -48,23 +50,23 @@
 
                     </Entry.Behaviors>
                 </Entry>
-                <Label x:Name="errorMessageConfirmPassword" TextColor="Red" FontAttributes="Italic" />
+                <Label x:Name="errorMessageConfirmPassword" TextColor="Red" FontAttributes="Italic" FontSize="10" />
 
                 <Label Text ="Phone Number"/>
                 <Entry Margin="20,0,20,0"  x:Name="txtUserPhoneNumber" Placeholder="Enter your PhoneNumber Here" BackgroundColor="White" TextColor="Black">
                     <Entry.Behaviors>
                     </Entry.Behaviors>
                 </Entry>
-                <Label x:Name="errorMessagePhoneNumber" TextColor="Red" FontAttributes="Italic" />
+                <Label x:Name="errorMessagePhoneNumber" TextColor="Red" FontAttributes="Italic" FontSize="10"/>
 
                 <Button x:Name ="FormSubmit"  Text="Sign up" Clicked="FormSubmit_Clicked">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button"
-                                 Binding="{Binding Source={x:Reference PasswordValidator,UserNameValidator},Path= IsValid}" Value="true">
+                                 Binding="{Binding Source={x:Reference PasswordValidator,FirstNameValidator,LastNameValidator,EmailValidator},Path= IsValid}" Value="true">
                             <Setter Property="IsEnabled" Value="True"/>
                         </DataTrigger>
                         <DataTrigger TargetType="Button"
-                                 Binding="{Binding Source={x:Reference  PasswordValidator,UserNameValidator},Path= IsValid}" Value="false">
+                                 Binding="{Binding Source={x:Reference  PasswordValidator,FirstNameValidator,LastNameValidator,EmailValidator},Path= IsValid}" Value="false">
                             <Setter Property="IsEnabled" Value="False"/>
                         </DataTrigger>
                     </Button.Triggers>
