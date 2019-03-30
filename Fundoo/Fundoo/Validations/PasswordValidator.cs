@@ -6,10 +6,20 @@ using Xamarin.Forms;
 
 namespace Fundoo.Validations
 {
-   public class Password : Behavior<Entry>
+   public class PasswordValidator : Behavior<Entry>
     {
         const string passwordRegex = "^(?=.*\\d).{4,8}$";
 
+        public static readonly BindableProperty isValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(PasswordValidator), false,BindingMode.OneWayToSource);
+
+      
+
+        public bool IsValid
+        {
+            get { return (bool) GetValue(isValidProperty); }
+            set { this.SetValue(isValidProperty, value); }
+
+        }
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);
@@ -24,9 +34,10 @@ namespace Fundoo.Validations
 
         void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
-            Label errorLabel = ((Entry)sender).FindByName<Label>("errorMessage");
+            Label errorLabel = ((Entry)sender).FindByName<Label>("errorMessagePassword");
 
             bool isValid = Regex.IsMatch(e.NewTextValue, passwordRegex);
+            IsValid = isValid;
 
             if (isValid)
             {

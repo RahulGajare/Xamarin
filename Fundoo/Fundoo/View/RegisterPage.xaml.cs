@@ -48,12 +48,18 @@ namespace Fundoo.View
                 return;
             }
 
+
+
+
             bool isRegistered =  await fireBaseThroughAuthentication.RegisterUser(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
             txtFirstName.Text = string.Empty;
             txtLastName.Text = string.Empty;
             txtUserEmail.Text = string.Empty;
             txtUserPassWord.Text = string.Empty;
+            txtConfirmPassWord.Text = string.Empty;
             txtUserPhoneNumber.Text = string.Empty;
+
+
 
             if (isRegistered)
             {

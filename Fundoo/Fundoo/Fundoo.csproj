@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Validations\ConfirmPasswordValidator.cs" />
     <Compile Remove="View\LoginPage.xaml.cs" />
   </ItemGroup>
 
