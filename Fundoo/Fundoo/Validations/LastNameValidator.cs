@@ -32,7 +32,7 @@ namespace Fundoo.Validations
             = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(LastNameValidator), false, BindingMode.OneWayToSource);
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="LastNameValidator"/> is Isvalid.
+        /// Gets or sets a value indicating whether this <see cref="LastNameValidator"/> is valid.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is valid; otherwise, <c>false</c>.

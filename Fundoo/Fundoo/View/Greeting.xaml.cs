@@ -20,7 +20,7 @@ namespace Fundoo.View
     /// Greeting class
     /// </summary>
     /// <seealso cref="Xamarin.Forms.ContentPage" />
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)] 
     public partial class Greeting : ContentPage
     {
         /// <summary>
@@ -34,7 +34,7 @@ namespace Fundoo.View
             this.IsBusy = false;
           
                 var tapImage = new TapGestureRecognizer();
-                //// Binding events    
+                //// Binding events 
                 tapImage.Tapped += this.TapImage_Tapped;
                 ///// Associating tap events to the image buttons    
                 googleIcon.GestureRecognizers.Add(tapImage);   
@@ -48,7 +48,7 @@ namespace Fundoo.View
        public void TapImage_Tapped(object sender, EventArgs e)
         {
             //// handles the tap over google icon   
-            this.DisplayAlert("Alert", "This is an image button", "OK");
+            this.DisplayAlert("Alert", "This is an facebook button", "OK");
         }
 
         /// <summary>

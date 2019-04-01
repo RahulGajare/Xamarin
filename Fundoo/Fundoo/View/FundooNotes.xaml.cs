@@ -18,7 +18,7 @@ namespace Fundoo.View
     using Xamarin.Forms.Xaml;
 
     /// <summary>
-    /// FundooNotes Class
+    /// Fundoo Notes Class
     /// </summary>
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     [XamlCompilation(XamlCompilationOptions.Compile)]
