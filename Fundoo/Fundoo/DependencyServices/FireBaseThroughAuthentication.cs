@@ -60,18 +60,22 @@ namespace Fundoo.DependencyServices
             return isLoggedIn;
         }
 
-        public  bool CheckStatus()
+        /// <summary>
+        /// Checks the status.
+        /// </summary>
+        /// <returns>returns true or false</returns>
+        public bool CheckStatus()
         {
-           var isLoggedIn =  DependencyService.Get<IFirebaseAuthenticator>().IsLoggedin();
-
+           var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().IsLoggedin();
             return isLoggedIn;
-
         }
 
+        /// <summary>
+        /// Logs the out.
+        /// </summary>
         public void LogOut()
         {
             DependencyService.Get<IFirebaseAuthenticator>().Signout();
         }
-
     }
 }

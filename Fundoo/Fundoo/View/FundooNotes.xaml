@@ -5,7 +5,7 @@
         NavigationPage.HasBackButton="false">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="logoutIcon_Clicked"/>
+        <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="LogoutIcon_Clicked"/>
         
     </ContentPage.ToolbarItems>
 

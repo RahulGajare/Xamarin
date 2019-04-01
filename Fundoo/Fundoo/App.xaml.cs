@@ -36,8 +36,7 @@ namespace Fundoo
             else
             {
                 this.MainPage = new NavigationPage(new Greeting());              
-            }
-          
+            }        
         }
 
         /// <summary>

@@ -29,7 +29,7 @@
                 <Button x:Name="Login"  Margin="20,0,20,0" Text="Login" WidthRequest="300"  CornerRadius="10" BorderColor="DarkOrange" BackgroundColor="Cyan" Clicked="Login_Clicked"/>
                 <Label Text="OR" FontSize="20" HorizontalTextAlignment="Center"/>
                 <Button x:Name="Register"  Margin="20,0,20,0" Text="Register" WidthRequest="150" CornerRadius="10" BorderColor="DarkOrange"  Clicked="Register_Clicked"/>
-                
+                <ActivityIndicator x:Name="LoginIndicator" IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">

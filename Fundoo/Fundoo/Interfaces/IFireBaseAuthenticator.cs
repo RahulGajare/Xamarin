@@ -34,18 +34,16 @@ namespace Fundoo.Interfaces
         Task<string> RegisterUserWithEmailPassword(string email, string password);
 
         /// <summary>
-        /// Determines whether this instance is loggedin.
+        /// Determines whether this instance is logged in.
         /// </summary>
         /// <returns>
-        ///   <c>true</c> if this instance is loggedin; otherwise, <c>false</c>.
+        ///   <c>true</c> if this instance is logged in; otherwise, <c>false</c>.
         /// </returns>
         bool IsLoggedin();
 
         /// <summary>
-        /// Signouts this instance.
+        /// Sign outs this instance.
         /// </summary>
         void Signout();
-    }    
-
-
+    }   
 }

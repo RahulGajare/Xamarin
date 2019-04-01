@@ -7,12 +7,12 @@
 
 namespace Fundoo.View
 {
-    using Fundoo.DependencyServices;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Fundoo.DependencyServices;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -24,20 +24,20 @@ namespace Fundoo.View
     public partial class Greeting : ContentPage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirstPage"/> class.
+        /// Initializes a new instance of the <see cref="Greeting"/> class.
         /// </summary>
-        public  Greeting()
-        {
-           
+        public Greeting()
+        {     
                 this.InitializeComponent();
 
+            this.BindingContext = this;
+            this.IsBusy = false;
+          
                 var tapImage = new TapGestureRecognizer();
                 //// Binding events    
-                tapImage.Tapped += tapImage_Tapped;
+                tapImage.Tapped += this.TapImage_Tapped;
                 ///// Associating tap events to the image buttons    
-                googleIcon.GestureRecognizers.Add(tapImage);
-
-          
+                googleIcon.GestureRecognizers.Add(tapImage);   
         }
 
         /// <summary>
@@ -45,10 +45,10 @@ namespace Fundoo.View
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        void tapImage_Tapped(object sender, EventArgs e)
+       public void TapImage_Tapped(object sender, EventArgs e)
         {
             //// handles the tap over google icon   
-            DisplayAlert("Alert", "This is an image button", "OK");
+            this.DisplayAlert("Alert", "This is an image button", "OK");
         }
 
         /// <summary>
@@ -58,11 +58,13 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Login_Clicked(object sender, EventArgs e)
         {
-            if (txtEmail.Text == null || txtEmail.Text.Trim().Equals(string.Empty))
-            {
-                await this.DisplayAlert("Alert", "Email should be specified", "Ok");
-                return;
-            }
+            this.IsBusy = true;
+
+                if (txtEmail.Text == null || txtEmail.Text.Trim().Equals(string.Empty))
+                {
+                    await this.DisplayAlert("Alert", "Email should be specified", "Ok");
+                    return;
+                }
 
             if (txtPassWord.Text == null || txtPassWord.Text.Trim().Equals(string.Empty))
             {
@@ -72,7 +74,6 @@ namespace Fundoo.View
 
             try
             {
-
                 FireBaseThroughAuthentication fireBaseThoroughAuthentication = new FireBaseThroughAuthentication();
                 bool isLoggedIn = await fireBaseThoroughAuthentication.LoginUser(txtEmail.Text, txtPassWord.Text);
 
@@ -115,9 +116,5 @@ namespace Fundoo.View
         {
             await Navigation.PushModalAsync(new ForgotPassword());
         }
-
-
     }
-
-
 }

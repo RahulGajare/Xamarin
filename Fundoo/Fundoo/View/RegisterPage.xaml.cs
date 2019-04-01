@@ -48,10 +48,7 @@ namespace Fundoo.View
                 return;
             }
 
-
-
-
-            bool isRegistered =  await fireBaseThroughAuthentication.RegisterUser(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
+            bool isRegistered = await fireBaseThroughAuthentication.RegisterUser(txtFirstName.Text, txtLastName.Text, txtUserEmail.Text, txtUserPassWord.Text, txtUserPhoneNumber.Text);
             txtFirstName.Text = string.Empty;
             txtLastName.Text = string.Empty;
             txtUserEmail.Text = string.Empty;
@@ -59,17 +56,14 @@ namespace Fundoo.View
             txtConfirmPassWord.Text = string.Empty;
             txtUserPhoneNumber.Text = string.Empty;
 
-
-
             if (isRegistered)
             {
-                await this.DisplayAlert("Alert","Registerd Successfully","Ok");
+                await this.DisplayAlert("Alert", "Registerd Successfully", "Ok");
             }
             else
             {
                 await this.DisplayAlert("Alert", "Email already in used", "Try again");
-            }
-           
+            }          
         }
     }
 }

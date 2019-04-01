@@ -36,7 +36,7 @@ namespace Fundoo.Droid.Implementations
         /// <param name="message">The message.</param>
         public void ShowToast(string message)
         {
-            Toast.MakeText(Android.App.Application.Context, message, ToastLength.Long).Show();
+            Toast.MakeText(Android.App.Application.Context, message, ToastLength.Short).Show();
         }
     }
 }

@@ -62,11 +62,11 @@
                 <Button x:Name ="FormSubmit"  Text="Sign up" Clicked="FormSubmit_Clicked">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button"
-                                 Binding="{Binding Source={x:Reference PasswordValidator,FirstNameValidator,LastNameValidator,EmailValidator},Path= IsValid}" Value="true">
+                                 Binding="{Binding Source={x:Reference PasswordValidator},Path= IsValid}" Value="true">
                             <Setter Property="IsEnabled" Value="True"/>
                         </DataTrigger>
                         <DataTrigger TargetType="Button"
-                                 Binding="{Binding Source={x:Reference  PasswordValidator,FirstNameValidator,LastNameValidator,EmailValidator},Path= IsValid}" Value="false">
+                                 Binding="{Binding Source={x:Reference  PasswordValidator},Path= IsValid}" Value="false">
                             <Setter Property="IsEnabled" Value="False"/>
                         </DataTrigger>
                     </Button.Triggers>
