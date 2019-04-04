@@ -32,7 +32,7 @@ namespace Fundoo.View
         public FundooNotes()
         {
             this.InitializeComponent();
-            aboutList.ItemsSource = GetMenuList();
+            MenuItemList.ItemsSource = GetMenuList();
 
             var homePage = typeof(NotesPage);
             Detail = new NavigationPage((Page)Activator.CreateInstance(homePage));
@@ -45,16 +45,14 @@ namespace Fundoo.View
 
             list.Add(new MasterMenuItems()
             {
-                Text = "Notes",
-               //// Detail = "Basic Info",
+                Text = "Notes",         
                 ImagePath = "notesIcon.png",
                 TargetPage = typeof(NotesPage)
             });
 
             list.Add(new MasterMenuItems()
             {
-                Text = "Reminders",
-                //// Detail = "Basic Info",
+                Text = "Reminders",           
                 ImagePath = "reminderIcon.png",
                 TargetPage = typeof(RemindersPage)
             });

@@ -32,5 +32,10 @@ namespace Fundoo.View
             Navigation.PopToRootAsync();
             Navigation.PushAsync(new Greeting());
         }
+
+        private void TakeaNote_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new WriteNotesPage());
+        }
     }
 }

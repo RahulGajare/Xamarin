@@ -6,6 +6,6 @@ namespace Fundoo.Model
 {
    public class NotesList
     {
-        private List<Note> listOfNotes = new List<Note>();
+        private readonly List<Note> listOfNotes = new List<Note>();
     }
 }

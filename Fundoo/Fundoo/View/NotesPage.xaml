@@ -8,10 +8,23 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout >
             <Label Text="Notes Page"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Button x:Name="TakeaNote" 
+                    Text="Take a note ..."
+                    VerticalOptions="End" 
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Transparent" 
+                    Margin="10,0,175,0"
+                    Clicked="TakeaNote_Clicked">
+                
+            </Button> 
         </StackLayout>
+        
+       
+        
     </ContentPage.Content>
 </ContentPage>
