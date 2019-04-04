@@ -1,19 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fundoo.View.FundooNotes"
-        NavigationPage.HasBackButton="false">
+        NavigationPage.HasBackButton="False"
+                 NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="LogoutIcon_Clicked"/>
-        
-    </ContentPage.ToolbarItems>
+    <MasterDetailPage.Master >
+        <ContentPage  Title="Fundoo Notes">
+           
 
-    <ContentPage.Content>
-        <StackLayout> 
-            <Label Text="Logged In"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+            <ContentPage.Content>
+                <StackLayout>
+                    <Image Source="FundooNotes.png" WidthRequest="20" HeightRequest="20"/>
+                    <!--<Button Text="Notes"/>
+                    <Button Text="Reminders"/>-->
+                    <ListView x:Name="aboutList" ItemSelected="OnMenuItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ImageCell Text="{Binding Text}" Detail="{Binding Detail}"  
+                                           ImageSource="{Binding ImagePath}">
+                                </ImageCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    
+    <MasterDetailPage.Detail>
+        <ContentPage>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

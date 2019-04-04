@@ -8,12 +8,14 @@
 namespace Fundoo.View
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using Fundoo.DependencyServices;
     using Fundoo.Interfaces;
+    using Fundoo.Model;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -22,7 +24,7 @@ namespace Fundoo.View
     /// </summary>
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FundooNotes : ContentPage
+    public partial class FundooNotes : MasterDetailPage
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FundooNotes"/> class.
@@ -30,20 +32,41 @@ namespace Fundoo.View
         public FundooNotes()
         {
             this.InitializeComponent();
+            aboutList.ItemsSource = GetMenuList();
+
+            var homePage = typeof(NotesPage);
+            Detail = new NavigationPage((Page)Activator.CreateInstance(homePage));
+        }
+    
+
+        public List<MasterMenuItems> GetMenuList()
+        {
+            List<MasterMenuItems> list = new List<MasterMenuItems>();
+
+            list.Add(new MasterMenuItems()
+            {
+                Text = "Notes",
+               //// Detail = "Basic Info",
+                ImagePath = "notesIcon.png",
+                TargetPage = typeof(NotesPage)
+            });
+
+            list.Add(new MasterMenuItems()
+            {
+                Text = "Reminders",
+                //// Detail = "Basic Info",
+                ImagePath = "reminderIcon.png",
+                TargetPage = typeof(RemindersPage)
+            });
+            return list;
         }
 
-        /// <summary>
-        /// Handles the Clicked event of the LogoutIcon control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void LogoutIcon_Clicked(object sender, EventArgs e)
+        private void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            DependencyService.Get<IFirebaseAuthenticator>().Signout();
-            Message.ShowToastMessage("LoggedOut Successfully");
-
-            Navigation.PopToRootAsync();
-            Navigation.PushAsync(new Greeting());
-        }    
+            var selectedMenuItem = (MasterMenuItems)e.SelectedItem;
+            Type selectedPage = selectedMenuItem.TargetPage;
+            Detail = new NavigationPage((Page)Activator.CreateInstance(selectedPage));
+            IsPresented = false;
+        }
     }
 }

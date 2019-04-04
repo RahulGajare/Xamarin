@@ -82,9 +82,9 @@ namespace Fundoo.View
                     Message.ShowToastMessage("LoggedIn successfully");
                     Page fundooNotes = new FundooNotes();
 
-                    await Navigation.PushAsync(fundooNotes);               
-                    
-                   //// NavigationPage.SetHasNavigationBar(fundooNotes, true);
+                    await Navigation.PushModalAsync(fundooNotes);
+
+                    //// NavigationPage.SetHasNavigationBar(fundooNotes, true);
                 }
                 else
                 {
@@ -93,7 +93,7 @@ namespace Fundoo.View
             }
             catch (Exception)
             {
-                Message.ShowToastMessage("Exception failed");
+                Message.ShowToastMessage("Exception");
             }
         }
 

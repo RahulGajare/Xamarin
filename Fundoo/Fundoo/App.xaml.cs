@@ -17,7 +17,7 @@ namespace Fundoo
     /// partial App Class
     /// </summary>
     /// <seealso cref="Xamarin.Forms.Application" />
-    public partial class App : Application
+    public partial class App : Application 
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="App"/> class.
@@ -31,7 +31,7 @@ namespace Fundoo
             var isLoggedin = fireBaseThoroughAuthentication.CheckStatus();
             if (isLoggedin)
             {
-                this.MainPage = new NavigationPage(new FundooNotes());
+                this.MainPage =new  NavigationPage(new FundooNotes());
             }
             else
             {
