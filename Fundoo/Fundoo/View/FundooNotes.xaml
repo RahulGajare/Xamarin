@@ -14,16 +14,18 @@
                     <Image Source="FundooNotes.png" WidthRequest="20" HeightRequest="20" Margin="0,10,0,10"/>
                     <!--<Button Text="Notes"/>
                     <Button Text="Reminders"/>-->
-                    <ListView x:Name="MenuItemList" ItemSelected="OnMenuItemSelected">
+                    <ListView x:Name="MenuItemList" ItemSelected="OnMenuItemSelected" RowHeight="60">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <!--<ImageCell  Height="2" Text="{Binding Text}" Detail="{Binding Detail}"  
                                            ImageSource="{Binding ImagePath}" TextColor="Black" >
                                 </ImageCell>-->
-                                <ViewCell Height="100">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding ImagePath}" HorizontalOptions="Start" HeightRequest="30" Margin="10,0,0,0"/>
-                                        <Label Text="{Binding Text}" TextColor="Black" Margin="10,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
+                                <ViewCell >
+                                    <StackLayout Orientation="Vertical" Spacing="20">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="{Binding ImagePath}" HorizontalOptions="Start" HeightRequest="30" Margin="10,0,0,0"/>
+                                            <Label Text="{Binding Text}" TextColor="Black" Margin="40,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
+                                        </StackLayout>
                                     </StackLayout>
                                 </ViewCell>
 

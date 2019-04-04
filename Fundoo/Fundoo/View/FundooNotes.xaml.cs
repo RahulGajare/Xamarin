@@ -48,11 +48,26 @@ namespace Fundoo.View
                 Text = "Notes",         
                 ImagePath = "notesIcon.png",
                 TargetPage = typeof(NotesPage)
+                
             });
 
             list.Add(new MasterMenuItems()
             {
                 Text = "Reminders",           
+                ImagePath = "reminderIcon.png",
+                TargetPage = typeof(RemindersPage)
+            });
+
+            list.Add(new MasterMenuItems()
+            {
+                Text = "CreateNewLable",
+                ImagePath = "reminderIcon.png",
+                TargetPage = typeof(RemindersPage)
+            });
+
+            list.Add(new MasterMenuItems()
+            {
+                Text = "Setting",
                 ImagePath = "reminderIcon.png",
                 TargetPage = typeof(RemindersPage)
             });
