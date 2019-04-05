@@ -31,7 +31,7 @@ namespace Fundoo
             var isLoggedin = fireBaseThoroughAuthentication.CheckStatus();
             if (isLoggedin)
             {
-                this.MainPage =new  NavigationPage(new FundooNotes());
+                this.MainPage = new NavigationPage(new FundooNotes());
             }
             else
             {

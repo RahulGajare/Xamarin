@@ -7,7 +7,7 @@
 
     <MasterDetailPage.Master >
         <ContentPage  Title="Fundoo Notes">
-           
+
 
             <ContentPage.Content>
                 <StackLayout>
@@ -20,12 +20,10 @@
                                 <!--<ImageCell  Height="2" Text="{Binding Text}" Detail="{Binding Detail}"  
                                            ImageSource="{Binding ImagePath}" TextColor="Black" >
                                 </ImageCell>-->
-                                <ViewCell >
-                                    <StackLayout Orientation="Vertical" Spacing="20">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Image Source="{Binding ImagePath}" HorizontalOptions="Start" HeightRequest="30" Margin="10,0,0,0"/>
-                                            <Label Text="{Binding Text}" TextColor="Black" Margin="40,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
-                                        </StackLayout>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" >
+                                        <Image Source="{Binding ImagePath}" HorizontalOptions="Start" HeightRequest="30" Margin="10,0,0,0"/>
+                                        <Label Text="{Binding Text}" TextColor="Black" Margin="15,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
                                     </StackLayout>
                                 </ViewCell>
 
@@ -38,7 +36,7 @@
             </ContentPage.Content>
         </ContentPage>
     </MasterDetailPage.Master>
-    
+
     <MasterDetailPage.Detail>
         <ContentPage>
         </ContentPage>

@@ -31,7 +31,7 @@ namespace Fundoo.Validations
         public static readonly BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(EmailValidator), false, BindingMode.OneWayToSource);
 
         /// <summary>
-        ///Gets or sets a value indicating whether this <see cref="ApplicationUserModel"/> is IsValid.
+        /// Gets or sets a value indicating whether this <see cref="ApplicationUserModel"/> is IsValid.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is valid; otherwise, <c>false</c>.

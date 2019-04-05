@@ -59,6 +59,8 @@ namespace Fundoo.View
             if (isRegistered)
             {
                 await this.DisplayAlert("Alert", "Registerd Successfully", "Ok");
+               await Navigation.PopAsync();
+                await Navigation.PushAsync(new Greeting());
             }
             else
             {

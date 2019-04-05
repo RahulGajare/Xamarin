@@ -25,6 +25,11 @@ namespace Fundoo.Droid.Implementations
     /// <seealso cref="Fundoo.Interfaces.IFirebaseAuthenticator" />
     public class FireBaseAuthenticator : IFirebaseAuthenticator
     {
+        public string GetUid()
+        {
+            return  FirebaseAuth.Instance.CurrentUser.Uid;
+        }
+
         public bool IsLoggedin()
         {
             var status = FirebaseAuth.Instance.CurrentUser;

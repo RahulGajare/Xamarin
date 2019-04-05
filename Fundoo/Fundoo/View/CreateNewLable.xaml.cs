@@ -9,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CreateNewLable : ContentPage
-	{
-		public CreateNewLable ()
-		{
-			InitializeComponent ();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CreateNewLable : ContentPage
+    {
+        public CreateNewLable()
+        {
+            this.InitializeComponent();
+        }
+    }
 }

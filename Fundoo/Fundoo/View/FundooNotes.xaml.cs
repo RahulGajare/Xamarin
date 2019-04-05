@@ -35,7 +35,7 @@ namespace Fundoo.View
             MenuItemList.ItemsSource = GetMenuList();
 
             var homePage = typeof(NotesPage);
-            Detail = new NavigationPage((Page)Activator.CreateInstance(homePage));
+            this.Detail = new NavigationPage((Page)Activator.CreateInstance(homePage));
         }
     
 
@@ -61,19 +61,24 @@ namespace Fundoo.View
             list.Add(new MasterMenuItems()
             {
                 Text = "CreateNewLable",
-                ImagePath = "reminderIcon.png",
+                ImagePath = "addIcon.png",
                 TargetPage = typeof(RemindersPage)
             });
 
             list.Add(new MasterMenuItems()
             {
                 Text = "Setting",
-                ImagePath = "reminderIcon.png",
+                ImagePath = "settingIcon.png",
                 TargetPage = typeof(RemindersPage)
             });
             return list;
         }
 
+        /// <summary>
+        /// Called when [menu item selected].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="SelectedItemChangedEventArgs"/> instance containing the event data.</param>
         private void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var selectedMenuItem = (MasterMenuItems)e.SelectedItem;

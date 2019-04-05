@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Fundoo.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RemindersPage : ContentPage
+    public partial class Setting : ContentPage
     {
-        public RemindersPage()
+        public Setting()
         {
             this.InitializeComponent();
         }

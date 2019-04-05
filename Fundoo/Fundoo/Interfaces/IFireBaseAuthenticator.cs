@@ -45,5 +45,14 @@ namespace Fundoo.Interfaces
         /// Sign outs this instance.
         /// </summary>
         void Signout();
+
+        /// <summary>
+        /// Gets the uid.
+        /// </summary>
+        /// <returns></returns>
+        string GetUid();
+        
     }   
+
+
 }

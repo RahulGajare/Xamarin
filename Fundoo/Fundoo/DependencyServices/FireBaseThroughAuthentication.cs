@@ -60,6 +60,12 @@ namespace Fundoo.DependencyServices
             return isLoggedIn;
         }
 
+        public static string GetUid()
+        {
+            string uid = DependencyService.Get<IFirebaseAuthenticator>().GetUid();
+            return uid;
+        }
+
         /// <summary>
         /// Checks the status.
         /// </summary>
