@@ -69,7 +69,7 @@ namespace Fundoo.FirebaseConnector
         {
             var registeredDetails = await this.GetAllUserDetails();
             await this.firebaseClient
-              .Child("RegisterDetails")
+              .Child("RegisterDetails")             
               .OnceAsync<UserDetails>();
             return registeredDetails.Where(a => a.Email.Equals(email)).FirstOrDefault();
         }

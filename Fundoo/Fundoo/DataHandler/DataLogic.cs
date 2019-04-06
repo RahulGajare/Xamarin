@@ -30,7 +30,6 @@ namespace Fundoo.DataHandler
             {
                 return false;
             }
-
         }
 
         public async Task<List<Note>> GetAllNotes()

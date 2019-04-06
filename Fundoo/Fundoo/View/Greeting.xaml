@@ -6,10 +6,6 @@
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False">
 
-  
-
-   
-
     <ContentPage.Content>
         <StackLayout>
 
