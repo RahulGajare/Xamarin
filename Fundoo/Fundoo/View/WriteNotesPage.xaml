@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout Spacing="20" Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20,0,20,0">
             <Entry x:Name="title" Placeholder="Title"/>
-            <Editor x:Name="info" Placeholder="Note"/>
+            <Editor x:Name="info" Placeholder="Note" AutoSize="TextChanges"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

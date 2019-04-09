@@ -20,6 +20,8 @@ namespace Fundoo.View
 
             this.InitializeComponent();
             this.GetNotes();
+
+            
         }
 
         /// <summary>
@@ -53,7 +55,9 @@ namespace Fundoo.View
         {
             DataLogic dataLogic = new DataLogic();
             var allNotes = await dataLogic.GetAllNotes();
-            NotesList.ItemsSource = allNotes;
+
+            this.DynamicGridView(allNotes);
+            //NotesList.ItemsSource = allNotes;
         }
 
 
@@ -64,5 +68,66 @@ namespace Fundoo.View
             ////var allNotes = await dataLogic.GetAllNotes();
             ////NotesList.ItemsSource = allNotes;
         }
+
+        private void DynamicGridView(List<Model.Note> notesList)
+        {
+            int row = 0;
+            int column = 0;
+
+            var stackLayout =new StackLayout();
+            stackLayout.Spacing = 10;
+            
+            
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(150)});
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(150)});
+            gridLayout.BackgroundColor = Color.DarkTurquoise;
+
+
+            for (int i = 0; i < notesList.Count; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(2, GridUnitType.Auto)});
+                   
+                    row++;
+                }
+
+                var layout = new StackLayout();
+                var title = new Label
+                {
+                    Text = notesList[i].Title,
+                    VerticalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.Center
+                };
+
+                
+
+                var info = new Label
+                {
+                    Text = notesList[i].Info,
+                    VerticalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.Center
+                };
+
+                
+                gridLayout.Children.Add(title, column, row);
+                gridLayout.Children.Add(info, column, row);
+                layout.Spacing = 2;
+
+                var frame = new Frame();
+                frame.BackgroundColor = Color.Black;
+                frame.Content = layout;
+
+                column++;
+
+                if (column == 1)
+                {
+                    column = 0;
+                }
+
+
+            }
+        }
+
     }
 }

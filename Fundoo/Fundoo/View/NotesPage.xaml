@@ -3,49 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fundoo.View.NotesPage">
 
+
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="LogoutIcon_Clicked"/>
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Content>
-     
-            <StackLayout >
-            <Label Text="Notes Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
-                <ListView x:Name="NotesList">
-                <ListView.ItemTemplate>
-                    <DataTemplate >
+   
+        <ContentPage.Content>
+        <RelativeLayout>
+            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="480">
 
-                      
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical" >
+                <Grid x:Name="gridLayout">
 
-                                    <Label Text="{Binding Title}" TextColor="Black" Margin="15,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
-                                    <Label Text="{Binding Info}" TextColor="Black" Margin="20,0,0,0" VerticalOptions="Center" FontAttributes="None"/>
-                                </StackLayout>
-                            </ViewCell>
-                      
+                </Grid>
+            </ScrollView>
 
-
-
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-           
-            <Button x:Name="TakeaNote" 
+            <StackLayout VerticalOptions="End" BackgroundColor="White"  
+                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
+                <!-- Bottom Content -->
+                <StackLayout Orientation="Horizontal">
+                    <Button Text=" Take a note...." BackgroundColor="White" TextColor="Black"  Clicked="TakeaNote_Clicked"/>
+                    <ImageButton  Source="check" HeightRequest="35" WidthRequest="50" BackgroundColor="White"/>
+                    <ImageButton Source="brush" HeightRequest="35" WidthRequest="50" BackgroundColor="White"/>
+                    <ImageButton Source="mic" HeightRequest="35" WidthRequest="50" BackgroundColor="White"/>
+                    <ImageButton Source="gallary" HeightRequest="35" WidthRequest="50" BackgroundColor="White"/>
+                </StackLayout>
+            </StackLayout>
+            <!--<StackLayout VerticalOptions="EndAndExpand">
+                <Button x:Name="TakeaNote" 
                     Text="Take a note ..."
                     VerticalOptions="End" 
                     HorizontalOptions="FillAndExpand"
                     BackgroundColor="Transparent" 
                     Margin="10,0,175,0"
                     Clicked="TakeaNote_Clicked">
-                
-            </Button> 
-        </StackLayout>
+                </Button>
+            </StackLayout>-->
+        </RelativeLayout>
 
-
-            
     </ContentPage.Content>
+
+
 </ContentPage>
