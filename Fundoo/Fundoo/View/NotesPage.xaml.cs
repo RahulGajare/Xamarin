@@ -1,12 +1,12 @@
 ﻿using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Interfaces;
+using Fundoo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,11 +17,9 @@ namespace Fundoo.View
     {
         public NotesPage()
         {
-
             this.InitializeComponent();
-            this.GetNotes();
+            var tapGrid = new TapGestureRecognizer();
 
-            
         }
 
         /// <summary>
@@ -71,62 +69,70 @@ namespace Fundoo.View
 
         private void DynamicGridView(List<Model.Note> notesList)
         {
-            int row = 0;
-            int column = 0;
-
-            var stackLayout =new StackLayout();
-            stackLayout.Spacing = 10;
-            
-            
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(150)});
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(150)});
-            gridLayout.BackgroundColor = Color.DarkTurquoise;
-
-
-            for (int i = 0; i < notesList.Count; i++)
+            if (notesList.Count == 0)
             {
-                if (i % 2 == 0)
+                return;
+            }
+
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110)});
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110)});
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110)});
+            gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+            gridLayout.Margin = 5;
+
+            int column = 0;
+            int row = 0;
+
+
+            foreach (Note note in notesList)
+            {
+                //// For after every 3rd Column adds a new row.
+                if (column == 3)
                 {
-                    gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(2, GridUnitType.Auto)});
-                   
+                    gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+                    column = 0;
                     row++;
                 }
 
-                var layout = new StackLayout();
-                var title = new Label
+                var stackLayout = new StackLayout();
+                //var boxview = new BoxView() { BackgroundColor = Color.BlanchedAlmond, HorizontalOptions = LayoutOptions.FillAndExpand , VerticalOptions = LayoutOptions.FillAndExpand};
+
+                var titleLable = new Label
                 {
-                    Text = notesList[i].Title,
+                    Text = note.Title,
+                    TextColor = Color.Black,
+                    FontAttributes = FontAttributes.Bold,
                     VerticalOptions = LayoutOptions.Center,
-                    HorizontalOptions = LayoutOptions.Center
+                    HorizontalOptions = LayoutOptions.Start,
                 };
 
-                
-
-                var info = new Label
+                var infoLable = new Label
                 {
-                    Text = notesList[i].Info,
+                    Margin = new Thickness(10, 10, 0, 0),
+                    Text = note.Info,
+                    TextColor = Color.Black,
+                    FontAttributes = FontAttributes.None,
                     VerticalOptions = LayoutOptions.Center,
-                    HorizontalOptions = LayoutOptions.Center
+                    HorizontalOptions = LayoutOptions.Start,
                 };
 
-                
-                gridLayout.Children.Add(title, column, row);
-                gridLayout.Children.Add(info, column, row);
-                layout.Spacing = 2;
+                ////stackLayout.Children.Add(boxview);
+                stackLayout.Children.Add(titleLable);
+                stackLayout.Children.Add(infoLable);
+                stackLayout.Spacing = 2;
+                stackLayout.Margin = 2;
+              ///  stackLayout.BackgroundColor = Color.BlanchedAlmond;
 
                 var frame = new Frame();
-                frame.BackgroundColor = Color.Black;
-                frame.Content = layout;
+                frame.BorderColor = Color.Black;
+                
+                frame.Content = stackLayout;
 
+
+                gridLayout.Children.Add(frame, column, row);
                 column++;
 
-                if (column == 1)
-                {
-                    column = 0;
-                }
-
-
-            }
+            }            
         }
 
     }

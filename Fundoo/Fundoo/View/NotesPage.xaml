@@ -11,7 +11,7 @@
 
    
         <ContentPage.Content>
-        <RelativeLayout>
+        <StackLayout>
             <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="480">
 
                 <Grid x:Name="gridLayout">
@@ -19,20 +19,8 @@
                 </Grid>
             </ScrollView>
 
-            <StackLayout VerticalOptions="End" BackgroundColor="White"  
-                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
-                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
-                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
-                <!-- Bottom Content -->
-                <StackLayout Orientation="Horizontal">
-                    <Button Text=" Take a note...." BackgroundColor="White" TextColor="Black"  Clicked="TakeaNote_Clicked"/>
-                    <ImageButton  Source="check" HeightRequest="35" WidthRequest="50" BackgroundColor="White"/>
-                    <ImageButton Source="brush" HeightRequest="35" WidthRequest="50" BackgroundColor="White"/>
-                    <ImageButton Source="mic" HeightRequest="35" WidthRequest="50" BackgroundColor="White"/>
-                    <ImageButton Source="gallary" HeightRequest="35" WidthRequest="50" BackgroundColor="White"/>
-                </StackLayout>
-            </StackLayout>
-            <!--<StackLayout VerticalOptions="EndAndExpand">
+
+            <StackLayout VerticalOptions="EndAndExpand">
                 <Button x:Name="TakeaNote" 
                     Text="Take a note ..."
                     VerticalOptions="End" 
@@ -41,8 +29,8 @@
                     Margin="10,0,175,0"
                     Clicked="TakeaNote_Clicked">
                 </Button>
-            </StackLayout>-->
-        </RelativeLayout>
+            </StackLayout>
+        </StackLayout> 
 
     </ContentPage.Content>
 
