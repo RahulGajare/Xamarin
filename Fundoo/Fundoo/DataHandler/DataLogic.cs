@@ -39,9 +39,24 @@ namespace Fundoo.DataHandler
               .OnceAsync<Note>()).Select(item => new Note
               {
                   Title = item.Object.Title,
-                  Info = item.Object.Info
+                  Info = item.Object.Info,
+                  Key = item.Key
               }).ToList();
         }
 
+        public async Task<Note> GetNote(string noteKey)
+        {
+            Note note = await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).OnceSingleAsync<Note>();
+            return note;
+        }
+
+        public async Task SaveEditedNotes(string noteKey , Note note)
+        {
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(new Note() { Title = note.Title, Info = note.Info, });
+        }
     }
 }
+
+        
+    
+

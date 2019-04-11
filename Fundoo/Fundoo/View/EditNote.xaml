@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundoo.View.EditNote">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20,0,20,0">
+            <Label Text="Title"/>
+            <Entry x:Name="Entrytitle" Placeholder="Title" FontAttributes="Bold"/>
+            <Label Text ="Info"/>
+            <Editor x:Name="Editorinfo" Placeholder="Note" AutoSize="TextChanges"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

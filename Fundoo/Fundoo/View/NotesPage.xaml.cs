@@ -18,7 +18,7 @@ namespace Fundoo.View
         public NotesPage()
         {
             this.InitializeComponent();
-            var tapGrid = new TapGestureRecognizer();
+          
 
         }
 
@@ -67,8 +67,10 @@ namespace Fundoo.View
             ////NotesList.ItemsSource = allNotes;
         }
 
+
         private void DynamicGridView(List<Model.Note> notesList)
         {
+
             if (notesList.Count == 0)
             {
                 return;
@@ -79,7 +81,7 @@ namespace Fundoo.View
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110)});
             gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayout.Margin = 5;
-
+            
             int column = 0;
             int row = 0;
 
@@ -95,7 +97,12 @@ namespace Fundoo.View
                 }
 
                 var stackLayout = new StackLayout();
-                //var boxview = new BoxView() { BackgroundColor = Color.BlanchedAlmond, HorizontalOptions = LayoutOptions.FillAndExpand , VerticalOptions = LayoutOptions.FillAndExpand};
+
+                var tapGestureRecognizer = new TapGestureRecognizer();
+                tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
+                stackLayout.GestureRecognizers.Add(tapGestureRecognizer);
+
+               
 
                 var titleLable = new Label
                 {
@@ -116,16 +123,23 @@ namespace Fundoo.View
                     HorizontalOptions = LayoutOptions.Start,
                 };
 
+                var noteKey = new Label
+                {
+                    Text = note.Key,
+                    IsVisible = false
+                };
+
                 ////stackLayout.Children.Add(boxview);
                 stackLayout.Children.Add(titleLable);
                 stackLayout.Children.Add(infoLable);
+                stackLayout.Children.Add(noteKey);
                 stackLayout.Spacing = 2;
                 stackLayout.Margin = 2;
               ///  stackLayout.BackgroundColor = Color.BlanchedAlmond;
 
                 var frame = new Frame();
                 frame.BorderColor = Color.Black;
-                
+               // frame.BackgroundColor = Color.BlanchedAlmond;
                 frame.Content = stackLayout;
 
 
@@ -135,5 +149,14 @@ namespace Fundoo.View
             }            
         }
 
+        private void stackLayoutTap_Tapped(object sender, EventArgs e)
+        {
+            StackLayout gridNoteStack = (StackLayout)sender;
+            IList<Xamarin.Forms.View> item = gridNoteStack.Children;
+            Label keyValue = (Label)item[2];
+            var keyVal = keyValue.Text;
+            Navigation.PushAsync(new EditNote(keyVal));
+        }
+        
     }
 }

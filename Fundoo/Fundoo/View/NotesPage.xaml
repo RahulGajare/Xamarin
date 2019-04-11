@@ -12,10 +12,9 @@
    
         <ContentPage.Content>
         <StackLayout>
-            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="480">
-
+            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="600">
                 <Grid x:Name="gridLayout">
-
+                                  
                 </Grid>
             </ScrollView>
 
