@@ -2,6 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fundoo.View.EditNote">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="DeleteIcon.png" Text="Log Out" Clicked="DeleteIcon_Clicked"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout Spacing="20" Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20,0,20,0">
             <Label Text="Title"/>

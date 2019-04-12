@@ -54,6 +54,13 @@ namespace Fundoo.DataHandler
         {
             await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(new Note() { Title = note.Title, Info = note.Info, });
         }
+
+        public async Task DeleteNote(string noteKey  )
+        {
+            
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).DeleteAsync();
+
+        }
     }
 }
 

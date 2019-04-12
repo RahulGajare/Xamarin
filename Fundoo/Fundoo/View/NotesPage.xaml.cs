@@ -19,7 +19,6 @@ namespace Fundoo.View
         {
             this.InitializeComponent();
           
-
         }
 
         /// <summary>
@@ -61,10 +60,7 @@ namespace Fundoo.View
 
         protected override void OnAppearing()
         {
-            GetNotes();
-            ////DataLogic dataLogic = new DataLogic();
-            ////var allNotes = await dataLogic.GetAllNotes();
-            ////NotesList.ItemsSource = allNotes;
+            GetNotes();           
         }
 
 
@@ -76,11 +72,12 @@ namespace Fundoo.View
                 return;
             }
 
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110)});
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110)});
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110)});
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
-            gridLayout.Margin = 5;
+            gridLayout.Margin = new Thickness(2,2,2,2);
+            
             
             int column = 0;
             int row = 0;
@@ -96,11 +93,11 @@ namespace Fundoo.View
                     row++;
                 }
 
-                var stackLayout = new StackLayout();
-
+                var stackLayout1 = new StackLayout();
+                  
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
-                stackLayout.GestureRecognizers.Add(tapGestureRecognizer);
+                stackLayout1.GestureRecognizers.Add(tapGestureRecognizer);
 
                
 
@@ -129,19 +126,24 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
-                ////stackLayout.Children.Add(boxview);
-                stackLayout.Children.Add(titleLable);
-                stackLayout.Children.Add(infoLable);
-                stackLayout.Children.Add(noteKey);
-                stackLayout.Spacing = 2;
-                stackLayout.Margin = 2;
-              ///  stackLayout.BackgroundColor = Color.BlanchedAlmond;
+                ////stackLayout1.Children.Add(boxview);
+                stackLayout1.Children.Add(titleLable);
+                stackLayout1.Children.Add(infoLable);
+                stackLayout1.Children.Add(noteKey);
+                stackLayout1.Spacing = 2;
+                stackLayout1.Margin = 2;
+                ////  stackLayout1.BackgroundColor = Color.BlanchedAlmond;
+
+                //var stackLayout2 = new StackLayout();
+                //stackLayout2.Margin = new Thickness(2,2,2,2);
+               
 
                 var frame = new Frame();
                 frame.BorderColor = Color.Black;
-               // frame.BackgroundColor = Color.BlanchedAlmond;
-                frame.Content = stackLayout;
-
+                frame.BackgroundColor = Color.BlanchedAlmond;
+                
+                frame.Content = stackLayout1;
+               
 
                 gridLayout.Children.Add(frame, column, row);
                 column++;
@@ -153,9 +155,9 @@ namespace Fundoo.View
         {
             StackLayout gridNoteStack = (StackLayout)sender;
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;
-            Label keyValue = (Label)item[2];
-            var keyVal = keyValue.Text;
-            Navigation.PushAsync(new EditNote(keyVal));
+            Label key = (Label)item[2];
+            var notekey = key.Text;
+            Navigation.PushAsync(new EditNote(notekey));
         }
         
     }

@@ -12,45 +12,44 @@ using Xamarin.Forms.Xaml;
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EditNote : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class EditNote : ContentPage
+    {
         string noteKey = string.Empty;
+        
 
-		public EditNote (string noteKey)
-		{
-			InitializeComponent ();
+        public EditNote(string noteKey)
+        {
+            InitializeComponent();
             this.noteKey = noteKey;
             GetTappedNotes(noteKey);
 
-		}
+        }
 
         public async void GetTappedNotes(string noteKey)
         {
             DataLogic datalogic = new DataLogic();
-            Note note =await datalogic.GetNote(noteKey);
+            Note note = await datalogic.GetNote(noteKey);
             Entrytitle.Text = note.Title;
             Editorinfo.Text = note.Info;
-
         }
 
         protected override bool OnBackButtonPressed()
         {
-            if (Entrytitle.Text == null && Editorinfo.Text == null)
+            if (string.IsNullOrEmpty(Entrytitle.Text) && string.IsNullOrEmpty(Editorinfo.Text))
             {
                 Message.ShowToastMessage("Empty Notes Discared");
                 return false;
             }
 
-
-            this.CallSaveEditedNoted();
-           
-          
+                this.CallSaveEditedNoted();
+               
             return base.OnBackButtonPressed();
         }
 
         public async void CallSaveEditedNoted()
         {
+
             Note editedNote = new Note()
             {
                 Title = Entrytitle.Text,
@@ -59,6 +58,20 @@ namespace Fundoo.View
             DataLogic datalogic = new DataLogic();
             await datalogic.SaveEditedNotes(this.noteKey, editedNote);
             Message.ShowToastMessage("Notes Saved");
+        }
+
+        private void DeleteIcon_Clicked(object sender, EventArgs e)
+        {
+            this.CallDeleteNote(this.noteKey);
+        }
+
+        public async void CallDeleteNote(string noteKey)
+        {
+            DataLogic datalogic = new DataLogic();
+           await datalogic.DeleteNote(noteKey);
+            Message.ShowToastMessage("Deleted");
+            await Navigation.PopAsync();
+           
         }
     }
 }
