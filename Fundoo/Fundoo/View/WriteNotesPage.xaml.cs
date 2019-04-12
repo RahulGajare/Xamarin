@@ -19,7 +19,32 @@ namespace Fundoo.View
             this.InitializeComponent();
         }
 
-        protected override bool OnBackButtonPressed()
+        //protected override bool OnBackButtonPressed()
+        //{
+
+        //    try
+        //    {
+        //        DataLogic dataLogic = new DataLogic();
+
+        //        if (title.Text == null && info.Text == null)
+        //        {
+        //            Message.ShowToastMessage("Empty Notes Discared");
+        //            return false;
+        //        }
+
+        //        var responce = dataLogic.CreateNotes(title.Text, info.Text);
+        //        Message.ShowToastMessage("Notes Saved");
+                
+        //       return base.OnBackButtonPressed();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        Message.ShowToastMessage("Notes Not saved, ERROR");
+        //        return true;
+        //    }
+        //}
+
+        protected override void OnDisappearing()
         {
 
             try
@@ -29,18 +54,18 @@ namespace Fundoo.View
                 if (title.Text == null && info.Text == null)
                 {
                     Message.ShowToastMessage("Empty Notes Discared");
-                    return false;
+
+                }
+                else
+                {
+                    var responce = dataLogic.CreateNotes(title.Text, info.Text);
+                    Message.ShowToastMessage("Notes Saved");
                 }
 
-                var responce = dataLogic.CreateNotes(title.Text, info.Text);
-                Message.ShowToastMessage("Notes Saved");
-                
-               return base.OnBackButtonPressed();
             }
             catch (Exception)
             {
-                Message.ShowToastMessage("Notes Not saved, ERROR");
-                return true;
+                Message.ShowToastMessage("Notes Not saved, ERROR");             
             }
         }
     }

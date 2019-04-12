@@ -14,7 +14,7 @@ namespace Fundoo.FirebaseConnector
     using Firebase.Database.Query;    
     using Fundoo.Model;  
     using Newtonsoft.Json;
-
+ 
     /// <summary>
     /// FireBaseConnector class
     /// </summary>

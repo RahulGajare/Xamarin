@@ -1,6 +1,7 @@
 ﻿namespace Fundoo.Droid
 {
     using System;
+    using System.Linq;
     using Android.App;
     using Android.Content.PM;
     using Android.OS;
@@ -8,6 +9,7 @@
     using Android.Views;
     using Android.Widget;
     using Firebase;
+    using Fundoo.View;
 
     [Activity(Label = "Fundoo", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]  
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
@@ -22,5 +24,8 @@
             FirebaseApp.InitializeApp(Application.Context);
             this.LoadApplication(new App());
         }
+
+       
+        
     }
 }
