@@ -71,6 +71,15 @@ namespace Fundoo.View
                 ImagePath = "settingIcon.png",
                 TargetPage = typeof(RemindersPage)
             });
+
+            list.Add(new MasterMenuItems()
+            {
+                Text = "Archive",
+                ImagePath = "ArchiveIcon.png",
+                TargetPage = typeof(ArchivePage)
+            });
+
+
             return list;
         }
 

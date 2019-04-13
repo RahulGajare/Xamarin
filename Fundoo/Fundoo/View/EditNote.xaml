@@ -5,7 +5,8 @@
 
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="DeleteIcon.png" Text="Log Out" Clicked="DeleteIcon_Clicked"/>
+        <ToolbarItem Icon="DeleteIcon.png" Text="DeleteIcon" Clicked="DeleteIcon_Clicked"/>
+        <ToolbarItem Icon="ArchiveIcon.png" Text="ArchiveIcon" Clicked="Archive_Clicked"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

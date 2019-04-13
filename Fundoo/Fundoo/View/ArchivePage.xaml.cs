@@ -1,84 +1,54 @@
 ﻿using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
-using Fundoo.Interfaces;
 using Fundoo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Fundoo.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NotesPage : ContentPage
-    {
-        public NotesPage()
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class ArchivePage : ContentPage
+	{
+		public ArchivePage()
+		{
+			InitializeComponent ();
+		}
+
+        protected override void OnAppearing()
         {
-            this.InitializeComponent();
-          
+            this.GetArchivedNotes();
+            base.OnAppearing();
         }
 
-        /// <summary>
-        /// Handles the Clicked event of the LogoutIcon control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void LogoutIcon_Clicked(object sender, EventArgs e)
+        public async void GetArchivedNotes()
         {
-            DependencyService.Get<IFirebaseAuthenticator>().Signout();
-            Message.ShowToastMessage("LoggedOut Successfully");
+            DataLogic dataLogic = new DataLogic();
+            var allArchivedNotes = await dataLogic.GetAllArchivedNotes();
 
-            Navigation.PopToRootAsync();
-            Navigation.PushAsync(new Greeting());
-        }
-
-        /// <summary>
-        /// Handles the Clicked event of the TakeaNote control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void TakeaNote_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new WriteNotesPage());
-        }
-
-        /// <summary>
-        /// Gets the notes.
-        /// </summary>
-        public async void GetNotes()
-        {
-                DataLogic dataLogic = new DataLogic();
-            var allNotes = await dataLogic.GetAllNotes();
-
-            List<Note> notesList = new List<Note>();
-            foreach (Note note in allNotes)
+            List<Archive> notesList = new List<Archive>();
+            foreach(Archive note in allArchivedNotes)
             {
                 notesList.Add(note);
             }
 
-            allNotes = null;
+            allArchivedNotes = null;
 
 
             this.DynamicGridView(notesList);
-            //NotesList.ItemsSource = allNotes;
+            //NotesList.ItemsSource = allArchivedNotes;
         }
 
-
-        protected override void OnAppearing()
+        private void DynamicGridView(List<Model.Archive> archivedNotesList)
         {
-            GetNotes();
-            base.OnAppearing();
-        }
 
 
-        private void DynamicGridView(List<Model.Note> notesList)
-        {
-            
-
-            if (notesList.Count == 0)
+            if (archivedNotesList.Count == 0)
             {
                 return;
             }
@@ -87,14 +57,14 @@ namespace Fundoo.View
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
-            gridLayout.Margin = new Thickness(2,2,2,2);
-            
-            
+            gridLayout.Margin = new Thickness(2, 2, 2, 2);
+
+
             int column = 0;
             int row = 0;
 
 
-            foreach (Note note in notesList)
+            foreach(Archive note in archivedNotesList)
             {
                 //// For after every 3rd Column adds a new row.
                 if (column == 3)
@@ -105,12 +75,12 @@ namespace Fundoo.View
                 }
 
                 var stackLayout1 = new StackLayout();
-                  
+
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
                 stackLayout1.GestureRecognizers.Add(tapGestureRecognizer);
 
-               
+
 
                 var titleLable = new Label
                 {
@@ -147,19 +117,19 @@ namespace Fundoo.View
 
                 //var stackLayout2 = new StackLayout();
                 //stackLayout2.Margin = new Thickness(2,2,2,2);
-               
+
 
                 var frame = new Frame();
                 frame.BorderColor = Color.Black;
                 frame.BackgroundColor = Color.BlanchedAlmond;
-                
+
                 frame.Content = stackLayout1;
-               
+
 
                 gridLayout.Children.Add(frame, column, row);
                 column++;
 
-            }            
+            }
         }
 
         private void stackLayoutTap_Tapped(object sender, EventArgs e)
@@ -168,8 +138,7 @@ namespace Fundoo.View
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;
             Label key = (Label)item[2];
             var notekey = key.Text;
-            Navigation.PushAsync(new EditNote(notekey,false));
+            Navigation.PushAsync(new EditNote(notekey,true));
         }
-        
     }
-}
+}  
