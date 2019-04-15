@@ -13,9 +13,9 @@ using Xamarin.Forms.Xaml;
 namespace Fundoo.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NotesPage : ContentPage
+    public partial class GridNotesPage : ContentPage
     {
-        public NotesPage()
+        public GridNotesPage()
         {
             this.InitializeComponent();
           
@@ -63,7 +63,7 @@ namespace Fundoo.View
 
 
             this.DynamicGridView(notesList);
-            //NotesList.ItemsSource = allNotes;
+          
         }
 
 
@@ -150,10 +150,13 @@ namespace Fundoo.View
                
 
                 var frame = new Frame();
-                frame.BorderColor = Color.Black;
+               /// frame.BorderColor = Color.Black;
+                frame.CornerRadius = 20;
                 frame.BackgroundColor = Color.BlanchedAlmond;
                 
                 frame.Content = stackLayout1;
+                BoxView box = new BoxView();
+                
                
 
                 gridLayout.Children.Add(frame, column, row);
@@ -170,6 +173,11 @@ namespace Fundoo.View
             var notekey = key.Text;
             Navigation.PushAsync(new EditNote(notekey,false));
         }
-        
+
+        private void ListIcon_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ListNotePage());
+            this.Navigation.RemovePage(this);
+        }
     }
 }

@@ -38,6 +38,9 @@
     <Compile Update="View\FundooNotes.xaml.cs">
       <DependentUpon>FundooNotes.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\GridNotesPage.xaml.cs">
+      <DependentUpon>GridNotesPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -59,7 +62,13 @@
     <EmbeddedResource Update="View\FundooNotes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\NotesPage.xaml">
+    <EmbeddedResource Update="View\GridNotesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\LablePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\ListNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\RegisterPage.xaml">

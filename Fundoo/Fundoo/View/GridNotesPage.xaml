@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Fundoo.View.NotesPage">
+             x:Class="Fundoo.View.GridNotesPage">
 
 
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ListIcon.png" Text="Log Out" Clicked="ListIcon_Clicked"/>
         <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="LogoutIcon_Clicked"/>
     </ContentPage.ToolbarItems>
 
@@ -14,10 +15,9 @@
         <StackLayout>
             <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="600">
                 <Grid x:Name="gridLayout">
-                   
+
                 </Grid>
             </ScrollView>
-
 
             <StackLayout VerticalOptions="EndAndExpand">
                 <Button x:Name="TakeaNote" 

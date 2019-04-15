@@ -120,7 +120,7 @@ namespace Fundoo.View
 
 
                 var frame = new Frame();
-                frame.BorderColor = Color.Black;
+                ///frame.BorderColor = Color.Black;
                 frame.BackgroundColor = Color.BlanchedAlmond;
 
                 frame.Content = stackLayout1;

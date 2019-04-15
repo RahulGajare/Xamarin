@@ -34,7 +34,7 @@ namespace Fundoo.View
             this.InitializeComponent();
             MenuItemList.ItemsSource = GetMenuList();
 
-            var homePage = typeof(NotesPage);
+            var homePage = typeof(GridNotesPage);
             this.Detail = new NavigationPage((Page)Activator.CreateInstance(homePage));
         }
     
@@ -47,7 +47,7 @@ namespace Fundoo.View
             {
                 Text = "Notes",         
                 ImagePath = "notesIcon.png",
-                TargetPage = typeof(NotesPage)
+                TargetPage = typeof(GridNotesPage)
                 
             });
 
@@ -60,9 +60,9 @@ namespace Fundoo.View
 
             list.Add(new MasterMenuItems()
             {
-                Text = "CreateNewLable",
+                Text = "CreateNewLabel",
                 ImagePath = "addIcon.png",
-                TargetPage = typeof(RemindersPage)
+                TargetPage = typeof(LablePage)
             });
 
             list.Add(new MasterMenuItems()
