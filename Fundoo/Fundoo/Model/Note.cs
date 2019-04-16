@@ -22,6 +22,11 @@ namespace Fundoo.Model
         private string key;
 
         /// <summary>
+        /// The color
+        /// </summary>
+        private string color;
+
+        /// <summary>
         /// Gets or sets the title.
         /// </summary>
         /// <value>
@@ -44,6 +49,14 @@ namespace Fundoo.Model
         /// The key.
         /// </value>
         public string Key { get => key; set => key = value; }
+
+        /// <summary>
+        /// Gets or sets the color.
+        /// </summary>
+        /// <value>
+        /// The color.
+        /// </value>
+        public string Color { get => color; set => color = value; }
     }
 
 }

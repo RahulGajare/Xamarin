@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,11 +14,16 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditNote : ContentPage
     {
+        Note retrivedNote = null;
+        Archive retrivedArchiveNote = null;
         bool DeleteButtonClicked = false;
         bool ArchivedClicked = false;
         bool isArchive = false;
         string noteKey = string.Empty;
+          
 
+        public Color ColorBackground { get; set; }
+       
 
         public EditNote(string noteKey, bool isArchive)
         {
@@ -27,22 +31,25 @@ namespace Fundoo.View
             this.noteKey = noteKey;
             this.isArchive = isArchive;
             GetTappedNotes(noteKey);
+            
         }
+
 
         public async void GetTappedNotes(string noteKey)
         {
             DataLogic datalogic = new DataLogic();
             if (isArchive)
             {
-                Archive archivedNote = await datalogic.GetArchiveNote(noteKey);
-                Entrytitle.Text = archivedNote.Title;
-                Editorinfo.Text = archivedNote.Info;
+               this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
+                Entrytitle.Text = retrivedArchiveNote.Title;
+                Editorinfo.Text = retrivedArchiveNote.Info;
+                
             }
             else
             {
-                Note note = await datalogic.GetNote(noteKey);
-                Entrytitle.Text = note.Title;
-                Editorinfo.Text = note.Info;
+                this.retrivedNote = await datalogic.GetNote(noteKey);
+                Entrytitle.Text = retrivedNote.Title;
+                Editorinfo.Text = retrivedNote.Info;
             }
         }
 
@@ -155,6 +162,46 @@ namespace Fundoo.View
 
             await datalogic.DeleteNote(noteKey);
             await Navigation.PopAsync();
+        }
+
+        private void Aqua_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Aqua;            
+        }
+
+        private void DarkGoldenrod_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.DarkGoldenrod;
+        }
+
+        private void Green_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Green;
+        }
+
+        private void Gold_Clicked_(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Gold;
+        }
+
+        private void GreenYellow_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.GreenYellow;
+        }
+
+        private void Gray_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Gray;
+        }
+
+        private void Lavender_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Lavender;
+        }
+
+        private void MintCream_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.MintCream; 
         }
     }
 }

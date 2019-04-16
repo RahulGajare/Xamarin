@@ -14,14 +14,15 @@ namespace Fundoo.DataHandler
     {
         private FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
 
-        public async Task<bool> CreateNotes(string title, string info)
+        public async Task<bool> CreateNotes(string title, string info ,string noteColor)
         {
             try
             {
                 await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync<Note>(new Note()
                 {
                     Title = title,
-                    Info = info
+                    Info = info,
+                    Color = noteColor
                 });
 
                 return true;
@@ -56,6 +57,7 @@ namespace Fundoo.DataHandler
               {
                   Title = item.Object.Title,
                   Info = item.Object.Info,
+                  Color = item.Object.Color,
                   Key = item.Key
               }).ToList();
         }
@@ -115,6 +117,7 @@ namespace Fundoo.DataHandler
               {
                   Title = item.Object.Title,
                   Info = item.Object.Info,
+                  Color = item.Object.Color,
                   Key = item.Key
               }).ToList();
         }
