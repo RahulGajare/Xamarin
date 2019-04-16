@@ -64,13 +64,14 @@ namespace Fundoo.View
                     var responce = dataLogic.CreateNotes(title.Text, info.Text ,this.noteColor);
                     Message.ShowToastMessage("Notes Saved");
                 }
-
+          
             }
             catch (Exception)
             {
                 Message.ShowToastMessage("Notes Not saved, ERROR");             
             }
         }
+
 
         private void Aqua_Clicked(object sender, EventArgs e)
         {

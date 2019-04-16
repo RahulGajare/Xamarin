@@ -76,7 +76,7 @@ namespace Fundoo.DataHandler
 
         public async Task SaveEditedNotes(string noteKey , Note note)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(new Note() { Title = note.Title, Info = note.Info, });
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(new Note() { Title = note.Title, Info = note.Info, Color = note.Color});
         }
 
         public async Task<bool> DeleteNote(string noteKey )
@@ -102,7 +102,7 @@ namespace Fundoo.DataHandler
                 await firebaseClient.Child("FundooUsers").Child(uid).Child("ArchivedNotes").Child(noteKey).DeleteAsync();
                 return true;
             }
-            catch (Exception)
+            catch(Exception)
             {
                 return false;
             }

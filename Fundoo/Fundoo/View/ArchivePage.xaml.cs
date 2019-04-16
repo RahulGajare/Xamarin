@@ -1,6 +1,7 @@
 ﻿using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Model;
+using Fundoo.ModelView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,8 +122,8 @@ namespace Fundoo.View
 
                 var frame = new Frame();
                 ///frame.BorderColor = Color.Black;
-                frame.BackgroundColor = Color.BlanchedAlmond;
-
+               //// frame.BackgroundColor = Color.BlanchedAlmond;
+                FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
 
 
@@ -131,6 +132,7 @@ namespace Fundoo.View
 
             }
         }
+
 
         private void stackLayoutTap_Tapped(object sender, EventArgs e)
         {

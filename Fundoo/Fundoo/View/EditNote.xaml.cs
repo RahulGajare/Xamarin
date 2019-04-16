@@ -1,6 +1,7 @@
 ﻿using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Model;
+using Fundoo.ModelView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +24,19 @@ namespace Fundoo.View
           
 
         public Color ColorBackground { get; set; }
+        private string noteColor = "white";
        
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteKey"></param>
+        /// <param name="isArchive"></param>
         public EditNote(string noteKey, bool isArchive)
         {
             InitializeComponent();
             this.noteKey = noteKey;
             this.isArchive = isArchive;
-            GetTappedNotes(noteKey);
-            
+            GetTappedNotes(noteKey);         
         }
 
 
@@ -43,13 +48,15 @@ namespace Fundoo.View
                this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
                 Entrytitle.Text = retrivedArchiveNote.Title;
                 Editorinfo.Text = retrivedArchiveNote.Info;
-                
+              //  this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
             }
             else
             {
                 this.retrivedNote = await datalogic.GetNote(noteKey);
                 Entrytitle.Text = retrivedNote.Title;
                 Editorinfo.Text = retrivedNote.Info;
+                this.noteColor = retrivedNote.Color;
+                this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
             }
         }
 
@@ -76,7 +83,15 @@ namespace Fundoo.View
                 }
                 else
                 {
-                    this.CallSaveEditedNoted();
+                    if (isArchive)
+                    {
+
+                    }
+                    else
+                    {
+                        this.CallSaveEditedNoted();
+                    }
+                    
                 }
             }
         }
@@ -88,7 +103,9 @@ namespace Fundoo.View
             Note editedNote = new Note()
             {
                 Title = Entrytitle.Text,
-                Info = Editorinfo.Text
+                Info = Editorinfo.Text,
+                Color = this.noteColor
+              
             };
 
             DataLogic datalogic = new DataLogic();
@@ -108,10 +125,9 @@ namespace Fundoo.View
             {
                 this.CallDeleteNote(this.noteKey);
 
-                ////this because after deleting pagepopsup and prevents running of code in OnDisappearing().
+                ////this because after deleting, page popsup and prevents running of code in OnDisappearing().
                 this.DeleteButtonClicked = true;
-            }
-          
+            }         
         }
 
 
@@ -166,42 +182,50 @@ namespace Fundoo.View
 
         private void Aqua_Clicked(object sender, EventArgs e)
         {
-            this.BackgroundColor = Color.Aqua;            
+            this.BackgroundColor = Color.Aqua;
+            this.noteColor = "Aqua";
         }
 
         private void DarkGoldenrod_Clicked(object sender, EventArgs e)
         {
             this.BackgroundColor = Color.DarkGoldenrod;
+            this.noteColor = "DarkGoldenrod";
         }
 
         private void Green_Clicked(object sender, EventArgs e)
         {
             this.BackgroundColor = Color.Green;
+            this.noteColor = "Green";
         }
 
         private void Gold_Clicked_(object sender, EventArgs e)
         {
             this.BackgroundColor = Color.Gold;
+            this.noteColor = "Gold";
         }
 
         private void GreenYellow_Clicked(object sender, EventArgs e)
         {
             this.BackgroundColor = Color.GreenYellow;
+            this.noteColor = "GreenYellow";
         }
 
         private void Gray_Clicked(object sender, EventArgs e)
         {
             this.BackgroundColor = Color.Gray;
+            this.noteColor = "Gray";
         }
 
         private void Lavender_Clicked(object sender, EventArgs e)
         {
             this.BackgroundColor = Color.Lavender;
+            this.noteColor = "Lavender";
         }
 
         private void MintCream_Clicked(object sender, EventArgs e)
         {
-            this.BackgroundColor = Color.MintCream; 
+            this.BackgroundColor = Color.MintCream;
+            this.noteColor = "MintCream";
         }
     }
 }

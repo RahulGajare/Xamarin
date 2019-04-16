@@ -138,10 +138,17 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
+                var noteColor = new Label
+                {
+                    Text = note.Color,
+                    IsVisible = false
+                };
+
                 ////stackLayout1.Children.Add(boxview);
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
+                stackLayout1.Children.Add(noteColor);
                 stackLayout1.Spacing = 2;
                 stackLayout1.Margin = 2;
                 ////  stackLayout1.BackgroundColor = Color.BlanchedAlmond;
@@ -154,7 +161,7 @@ namespace Fundoo.View
                /// frame.BorderColor = Color.Black;
                 frame.CornerRadius = 20;
 
-                ColorSetter.GetColor(note ,frame);    
+                FrameColorSetter.GetColor(note ,frame);    
                 frame.Content = stackLayout1;
                         
           
@@ -169,9 +176,11 @@ namespace Fundoo.View
             StackLayout gridNoteStack = (StackLayout)sender;
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;
             Label key = (Label)item[2];
+          ///  Label noteColor = (Label)item[3];
             var notekey = key.Text;
             Navigation.PushAsync(new EditNote(notekey,false));
         }
+
 
         private void ListIcon_Clicked(object sender, EventArgs e)
         {
