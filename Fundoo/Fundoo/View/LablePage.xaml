@@ -3,10 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fundoo.View.LablePage">
     <ContentPage.Content>
-        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Spacing="2" Margin="20,10,20,0">
-            <Image x:Name="CancelIcon" Source="CancelIcon" WidthRequest="30" HorizontalOptions="Start"  HeightRequest="30"/>
-            <Entry x:Name="lable" Placeholder="Create new lable" HorizontalOptions="FillAndExpand" />
-            <Image x:Name="TickIcon" Source="TickIcon" WidthRequest="30" HorizontalOptions="End"  HeightRequest="30"/>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Spacing="2" Margin="20,10,20,0">
+                <Image x:Name="CancelIcon" Source="CancelIcon" WidthRequest="30" HorizontalOptions="Start"  HeightRequest="30"/>
+                <Entry x:Name="UserLable" Placeholder="Create new lable" HorizontalOptions="FillAndExpand" />
+                <Image x:Name="TickIcon" Source="TickIcon" WidthRequest="30" HorizontalOptions="End"  HeightRequest="30"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" >
+                <ListView x:Name="LableList">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" >
+
+                                    <Label Text="{Binding LableName}" TextColor="Black" Margin="15,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
+                                    
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

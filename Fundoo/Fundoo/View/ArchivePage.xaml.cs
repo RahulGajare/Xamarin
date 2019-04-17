@@ -121,8 +121,8 @@ namespace Fundoo.View
 
 
                 var frame = new Frame();
-                ///frame.BorderColor = Color.Black;
-               //// frame.BackgroundColor = Color.BlanchedAlmond;
+                frame.CornerRadius = 20;
+                //// frame.BackgroundColor = Color.BlanchedAlmond;
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
 

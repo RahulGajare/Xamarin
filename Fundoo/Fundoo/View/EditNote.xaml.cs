@@ -2,6 +2,7 @@
 using Fundoo.DependencyServices;
 using Fundoo.Model;
 using Fundoo.ModelView;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,34 +22,52 @@ namespace Fundoo.View
         bool ArchivedClicked = false;
         bool isArchive = false;
         string noteKey = string.Empty;
-          
+
 
         public Color ColorBackground { get; set; }
+
+        private Color backGroundColor;
         private string noteColor = "white";
-       
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="noteKey"></param>
-        /// <param name="isArchive"></param>
-        public EditNote(string noteKey, bool isArchive)
+
+        public EditNote()
+        {
+
+        }
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="noteKey"></param>
+            /// <param name="isArchive"></param>
+            public EditNote(string noteKey, bool isArchive)
         {
             InitializeComponent();
             this.noteKey = noteKey;
             this.isArchive = isArchive;
-            GetTappedNotes(noteKey);         
-        }
+            GetTappedNotes(noteKey);
 
+            var AddBoxIconTap = new TapGestureRecognizer();
+            //// Binding events 
+            AddBoxIconTap.Tapped += this.AddBoxIcon_Tapped;
+            ///// Associating tap events to the image buttons    
+            AddBoxIcon.GestureRecognizers.Add(AddBoxIconTap);
+
+            var VerticalMenuIconTap = new TapGestureRecognizer();
+            //// Binding events 
+            VerticalMenuIconTap.Tapped += this.VerticalMenuIcon_Tapped;
+            ///// Associating tap events to the image buttons    
+            VerticalMenuIcon.GestureRecognizers.Add(VerticalMenuIconTap);
+        }
 
         public async void GetTappedNotes(string noteKey)
         {
             DataLogic datalogic = new DataLogic();
             if (isArchive)
             {
-               this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
+                this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
                 Entrytitle.Text = retrivedArchiveNote.Title;
                 Editorinfo.Text = retrivedArchiveNote.Info;
-              //  this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
+                this.noteColor = retrivedArchiveNote.Color;
+                this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
             }
             else
             {
@@ -68,7 +87,7 @@ namespace Fundoo.View
         //        return false;
         //    }
 
-        //    this.CallSaveEditedNoted();
+        //    this.CallSaveEditedNote();
 
         //    return base.OnBackButtonPressed();
         //}
@@ -85,19 +104,19 @@ namespace Fundoo.View
                 {
                     if (isArchive)
                     {
-
+                        this.CallSaveEditedArchiveNote();
                     }
                     else
                     {
-                        this.CallSaveEditedNoted();
+                        this.CallSaveEditedNote();
                     }
-                    
+
                 }
             }
         }
 
 
-        private async void CallSaveEditedNoted()
+        private async void CallSaveEditedNote()
         {
 
             Note editedNote = new Note()
@@ -105,11 +124,27 @@ namespace Fundoo.View
                 Title = Entrytitle.Text,
                 Info = Editorinfo.Text,
                 Color = this.noteColor
-              
+
             };
 
             DataLogic datalogic = new DataLogic();
-            await datalogic.SaveEditedNotes(this.noteKey, editedNote);
+            await datalogic.SaveEditedNote(this.noteKey, editedNote);
+            Message.ShowToastMessage("Notes Saved");
+        }
+
+        private async void CallSaveEditedArchiveNote()
+        {
+
+            Archive editedArchiveNote = new Archive()
+            {
+                Title = Entrytitle.Text,
+                Info = Editorinfo.Text,
+                Color = this.noteColor
+
+            };
+
+            DataLogic datalogic = new DataLogic();
+            await datalogic.SaveEditedArchiveNote(this.noteKey, editedArchiveNote);
             Message.ShowToastMessage("Notes Saved");
         }
 
@@ -127,13 +162,13 @@ namespace Fundoo.View
 
                 ////this because after deleting, page popsup and prevents running of code in OnDisappearing().
                 this.DeleteButtonClicked = true;
-            }         
+            }
         }
 
 
         public async void CallDeleteNote(string noteKey)
         {
-            
+
             DataLogic datalogic = new DataLogic();
             bool isDeleted = await datalogic.DeleteNote(noteKey);
             if (isDeleted)
@@ -166,7 +201,8 @@ namespace Fundoo.View
             Archive archivedNote = new Archive()
             {
                 Title = Entrytitle.Text,
-                Info = Editorinfo.Text
+                Info = Editorinfo.Text,
+                Color = this.noteColor
             };
 
             DataLogic datalogic = new DataLogic();
@@ -178,6 +214,17 @@ namespace Fundoo.View
 
             await datalogic.DeleteNote(noteKey);
             await Navigation.PopAsync();
+        }
+
+        public void AddBoxIcon_Tapped(object sender, EventArgs e)
+        {
+            //// handles the tap over google icon   
+            this.DisplayAlert("Alert", "AddBoxIcon", "OK");
+        }
+
+        public void VerticalMenuIcon_Tapped(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new NotesSlideUpMenu()); ;
         }
 
         private void Aqua_Clicked(object sender, EventArgs e)
@@ -227,5 +274,17 @@ namespace Fundoo.View
             this.BackgroundColor = Color.MintCream;
             this.noteColor = "MintCream";
         }
+       
+        public  void changeColor()
+        {
+            this.BackgroundColor = Color.MintCream;
+            this.noteColor = "MintCream";
+        }
+
+        protected override void OnAppearing()
+        {
+            this.BackgroundColor = Color.DeepPink;
+            base.OnAppearing();
+        }
     }
-}
+    }

@@ -16,6 +16,7 @@ namespace Fundoo.View
     using Fundoo.DependencyServices;
     using Fundoo.Interfaces;
     using Fundoo.Model;
+    using Fundoo.ModelView;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -32,16 +33,18 @@ namespace Fundoo.View
         public FundooNotes()
         {
             this.InitializeComponent();
-            MenuItemList.ItemsSource = GetMenuList();
-
-            var homePage = typeof(GridNotesPage);
-            this.Detail = new NavigationPage((Page)Activator.CreateInstance(homePage));
+            var gridNotesPage = typeof(GridNotesPage);
+            this.Detail = new NavigationPage((Page)Activator.CreateInstance(gridNotesPage));
         }
-    
 
-        public List<MasterMenuItems> GetMenuList()
+        protected async override void OnAppearing()
         {
-            List<MasterMenuItems> list = new List<MasterMenuItems>();
+            IList<MasterMenuItems> list1 = await GetMenuList();
+            MenuItemList.ItemsSource = list1;
+        }
+        public async Task<IList<MasterMenuItems>> GetMenuList()
+        {
+            IList<MasterMenuItems> list = new List<MasterMenuItems>();
 
             list.Add(new MasterMenuItems()
             {
@@ -57,6 +60,9 @@ namespace Fundoo.View
                 ImagePath = "reminderIcon.png",
                 TargetPage = typeof(RemindersPage)
             });
+
+            ////To add Lables To Master Page
+          await MasterPageLable.AddLablestoMasterPage(list);
 
             list.Add(new MasterMenuItems()
             {
@@ -78,7 +84,6 @@ namespace Fundoo.View
                 ImagePath = "ArchiveIcon.png",
                 TargetPage = typeof(ArchivePage)
             });
-
 
             return list;
         }

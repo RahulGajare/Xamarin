@@ -76,9 +76,7 @@ namespace Fundoo.View
 
 
         private void DynamicGridView(List<Model.Note> notesList)
-        {
-            
-
+        {          
             if (notesList.Count == 0)
             {
                 return;
