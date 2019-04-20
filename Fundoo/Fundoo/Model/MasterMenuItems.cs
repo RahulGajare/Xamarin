@@ -10,5 +10,6 @@ namespace Fundoo.Model
         public string Detail { get; set; }
         public string ImagePath { get; set; }
         public Type TargetPage { get; set; }
+        public string lableKey { get; set; }
     }
 }

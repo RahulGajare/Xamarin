@@ -43,7 +43,7 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TakeaNote_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new WriteNotesPage());
+            Navigation.PushAsync(new WriteNotesPage(false));
         }
 
         /// <summary>
@@ -149,10 +149,7 @@ namespace Fundoo.View
                 stackLayout1.Children.Add(noteColor);
                 stackLayout1.Spacing = 2;
                 stackLayout1.Margin = 2;
-                ////  stackLayout1.BackgroundColor = Color.BlanchedAlmond;
-
-                //var stackLayout2 = new StackLayout();
-                //stackLayout2.Margin = new Thickness(2,2,2,2);
+                
                
 
                 var frame = new Frame();

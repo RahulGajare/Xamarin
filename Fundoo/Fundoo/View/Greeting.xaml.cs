@@ -50,7 +50,7 @@ namespace Fundoo.View
             //// handles the tap over google icon   
             this.DisplayAlert("Alert", "This is an facebook button", "OK");
         }
-
+        
         /// <summary>
         /// Handles the Clicked event of the LoginUser control.
         /// </summary>

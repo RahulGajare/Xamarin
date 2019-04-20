@@ -15,20 +15,24 @@ namespace Fundoo.ModelView
             DataLogic dataLogic = new DataLogic();
            var lablesList = await dataLogic.GetAllLables();
 
-            if (lablesList.Count == 0)
+            if (lablesList == null)
             {
                 return list;
             }
 
+            if (lablesList.Count == 0)
+            {
+                return list;
+            }
 
             foreach (Lable lable in lablesList)
             {
                 list.Add(new MasterMenuItems()
                 {
                     Text = lable.LableName,
-                    ImagePath = "notesIcon.png",
+                    ImagePath = "LableIcon.png",
+                    lableKey = lable.lableKey,
                     TargetPage = typeof(LabledNotePage)
-
                 });
             }
 

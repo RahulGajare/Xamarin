@@ -29,8 +29,6 @@ namespace Fundoo.View
             ///// Associating tap events to the image buttons    
             TickIcon.GestureRecognizers.Add(tapTickIcon);
 
-            
-
         }
 
         private void CancelImage_Tapped(object sender, EventArgs e)
@@ -83,6 +81,5 @@ namespace Fundoo.View
 
             LableList.ItemsSource = LablesList;
         }
-
     }
 }

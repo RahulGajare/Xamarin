@@ -2,11 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fundoo.View.LabledNotePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ListIcon.png" Text="Log Out" />
+        <ToolbarItem Icon="logoutIcon.png" Text="Log Out" />
+        <ToolbarItem  Text="Delete" Order="Secondary" />
+    </ContentPage.ToolbarItems>
+
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+       
+            <StackLayout>
+            <StackLayout>
+                <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="500">
+                    <Grid x:Name="gridLayout">
+
+                    </Grid>
+                </ScrollView>
+            </StackLayout>
+                
+                
+            <StackLayout VerticalOptions="EndAndExpand">
+                    <Button x:Name="TakeaNote" 
+                        HeightRequest="35"
+                    Text="Take a note ..."
+                    VerticalOptions="End" 
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Violet" 
+                    Margin="10,0,0,20"
+                    Clicked="TakeaNote_Clicked">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+     
     </ContentPage.Content>
 </ContentPage>

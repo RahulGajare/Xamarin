@@ -64,7 +64,7 @@ namespace Fundoo.View
 
         private void TakeaNote_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new WriteNotesPage());
+            Navigation.PushAsync(new WriteNotesPage(false));
         }
 
     }

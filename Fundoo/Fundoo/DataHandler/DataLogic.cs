@@ -12,24 +12,35 @@ namespace Fundoo.DataHandler
 {
     public class DataLogic
     {
+        public string responseKey;
         private FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
 
-        public async Task<bool> CreateNotes(string title, string info ,string noteColor)
+        public async Task CreateNotes(string title, string info, string noteColor)
         {
             try
             {
-                await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync<Note>(new Note()
+            var note =  await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync(new Note()
                 {
                     Title = title,
                     Info = info,
                     Color = noteColor
                 });
 
-                return true;
+              string key = note.Key;
+                this.responseKey = key;
+                ///this.responseKey = response.Key;
+                
+                //  await this.firebaseClient
+                //.Child("FundooUsers")
+                //.Child(FireBaseThroughAuthentication.GetUid())
+                //.Child("Notes")
+                //.OrderByKey()
+                //.OnceAsync<Note>();
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -74,9 +85,9 @@ namespace Fundoo.DataHandler
             return note;
         }
 
-        public async Task SaveEditedNote(string noteKey , Note note)
+        public async Task SaveEditedNote(string noteKey, Note note)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(new Note() { Title = note.Title, Info = note.Info, Color = note.Color});
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(new Note() { Title = note.Title, Info = note.Info, Color = note.Color });
         }
 
         public async Task SaveEditedArchiveNote(string noteKey, Archive archiveNote)
@@ -84,7 +95,7 @@ namespace Fundoo.DataHandler
             await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("ArchivedNotes").Child(noteKey).PutAsync<Note>(new Note() { Title = archiveNote.Title, Info = archiveNote.Info, Color = archiveNote.Color });
         }
 
-        public async Task<bool> DeleteNote(string noteKey )
+        public async Task<bool> DeleteNote(string noteKey)
         {
             try
             {
@@ -96,7 +107,7 @@ namespace Fundoo.DataHandler
             {
                 return false;
             }
-           
+
         }
 
         public async Task<bool> DeleteArchivedNote(string noteKey)
@@ -107,7 +118,7 @@ namespace Fundoo.DataHandler
                 await firebaseClient.Child("FundooUsers").Child(uid).Child("ArchivedNotes").Child(noteKey).DeleteAsync();
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -129,22 +140,55 @@ namespace Fundoo.DataHandler
 
         public async Task SaveLable(Lable lable)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").PostAsync<Lable>(new Lable() { LableName = lable.LableName, NoteKeysList = lable.NoteKeysList});
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").PostAsync<Lable>(new Lable() { LableName = lable.LableName, NoteKeysList = lable.NoteKeysList });
         }
 
         public async Task<List<Lable>> GetAllLables()
         {
-            return (await this.firebaseClient
+            try
+            {
+                    return (await this.firebaseClient
               .Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables")
               .OnceAsync<Lable>()).Select(item => new Lable
               {
                   LableName = item.Object.LableName,
-                  Key = item.Key
+                  lableKey = item.Key
               }).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
+
+        //
+        public async Task<bool> SaveLableByKey(Lable lable, string lablekey)
+        {
+            try
+            {
+                await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(lablekey).PutAsync<Lable>(lable);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
+        }
+
+
+        public async Task<Lable> GetLableByKey(string lableKey)
+        {
+            Lable lable = await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(lableKey).OnceSingleAsync<Lable>();
+            return lable;
+        }
+
+       
+
     }
 }
 
-        
-    
+
+
 

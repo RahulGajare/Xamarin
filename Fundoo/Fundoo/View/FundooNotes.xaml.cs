@@ -34,7 +34,7 @@ namespace Fundoo.View
         {
             this.InitializeComponent();
             var gridNotesPage = typeof(GridNotesPage);
-            this.Detail = new NavigationPage((Page)Activator.CreateInstance(gridNotesPage));
+            this.Detail = new NavigationPage((Page)Activator.CreateInstance(gridNotesPage));         
         }
 
         protected async override void OnAppearing()
@@ -56,7 +56,7 @@ namespace Fundoo.View
 
             list.Add(new MasterMenuItems()
             {
-                Text = "Reminders",           
+                Text = "Reminders",
                 ImagePath = "reminderIcon.png",
                 TargetPage = typeof(RemindersPage)
             });
@@ -97,7 +97,16 @@ namespace Fundoo.View
         {
             var selectedMenuItem = (MasterMenuItems)e.SelectedItem;
             Type selectedPage = selectedMenuItem.TargetPage;
-            Detail = new NavigationPage((Page)Activator.CreateInstance(selectedPage));
+
+            if (selectedMenuItem.TargetPage == typeof(LabledNotePage))
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(selectedPage, selectedMenuItem.Text , selectedMenuItem.lableKey));
+            }
+            else
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(selectedPage));
+            }
+           
             IsPresented = false;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
+using Fundoo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,25 @@ namespace Fundoo.View
     {
 
         private string noteColor = "white";
+        private bool isLabled = false;
+        private string lableKey;
+        private string noteKey;
+      
 
-        public WriteNotesPage()
+
+        public WriteNotesPage(bool isLabled)
         {
             this.InitializeComponent();
         }
+
+        public WriteNotesPage(bool islabled, string lableKey)
+        {
+            this.lableKey = lableKey;
+            this.isLabled = islabled;
+            this.InitializeComponent();
+           
+        }
+
 
         //protected override bool OnBackButtonPressed()
         //{
@@ -35,7 +50,7 @@ namespace Fundoo.View
         //            return false;
         //        }
 
-        //        var responce = dataLogic.CreateNotes(title.Text, info.Text);
+        //        var response = dataLogic.CreateNotes(title.Text, info.Text);
         //        Message.ShowToastMessage("Notes Saved");
                 
         //       return base.OnBackButtonPressed();
@@ -47,29 +62,65 @@ namespace Fundoo.View
         //    }
         //}
 
-        protected override void OnDisappearing()
+        protected override async void OnDisappearing()
         {
            
             try
             {
-                DataLogic dataLogic = new DataLogic();
+               //// DataLogic dataLogic = new DataLogic();
 
                 if (title.Text == null && info.Text == null)
                 {
                     Message.ShowToastMessage("Empty Notes Discared");
-
                 }
                 else
                 {
-                    var responce = dataLogic.CreateNotes(title.Text, info.Text ,this.noteColor);
-                    Message.ShowToastMessage("Notes Saved");
-                }
-          
+                    await this.CallCreatenotes();
+
+                    if (noteKey != null)
+                    {
+                        Message.ShowToastMessage("Notes Saved");
+                    }
+
+                    
+                    ////To Check If a Note belongs to a lable
+                    if (isLabled)
+                    {
+                        ////Calling async method
+                        await this.CallGetLableByKey();                           
+                    }                    
+                }        
             }
             catch (Exception)
             {
                 Message.ShowToastMessage("Notes Not saved, ERROR");             
             }
+        }
+
+
+        public async Task CallCreatenotes()
+        {
+             DataLogic dataLogic = new DataLogic();
+              await dataLogic.CreateNotes(title.Text, info.Text, this.noteColor);
+            this.noteKey = dataLogic.responseKey;
+            return;
+        }
+
+
+        public async Task CallGetLableByKey()
+        {
+           
+            DataLogic dataLogic = new DataLogic();
+            Lable lable = await dataLogic.GetLableByKey(this.lableKey);
+
+            lable.NoteKeysList.Add(this.noteKey);
+
+            if (await dataLogic.SaveLableByKey(lable, this.lableKey))
+            {
+                Message.ShowToastMessage("Notes Saved");
+            }
+          
+
         }
 
 
