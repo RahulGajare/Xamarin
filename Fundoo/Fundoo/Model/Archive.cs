@@ -27,6 +27,11 @@ namespace Fundoo.Model
         private string key;
 
         /// <summary>
+        /// The is pinned
+        /// </summary>
+        private bool isPinned;
+
+        /// <summary>
         /// Gets or sets the title.
         /// </summary>
         /// <value>
@@ -49,6 +54,21 @@ namespace Fundoo.Model
         /// The key.
         /// </value>
         public string Key { get => key; set => key = value; }
+
+        /// <summary>
+        /// Gets or sets the color.
+        /// </summary>
+        /// <value>
+        /// The color.
+        /// </value>
         public string Color { get => color; set => color = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is pinned.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is pinned; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsPinned { get => isPinned; set => isPinned = value; }
     }
 }

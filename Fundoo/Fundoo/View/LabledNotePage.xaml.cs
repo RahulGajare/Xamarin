@@ -1,4 +1,5 @@
 ﻿using Fundoo.DataHandler;
+using Fundoo.DependencyServices;
 using Fundoo.Model;
 using Fundoo.ModelView;
 using System;
@@ -163,6 +164,26 @@ namespace Fundoo.View
             ///  Label noteColor = (Label)item[3];
             var notekey = key.Text;
             Navigation.PushAsync(new EditNote(notekey, false));
+        }
+
+        private void DeleteLable_Clicked(object sender, EventArgs e)
+        {             
+            this.CallDeleteLable(this.currentLableKey);
+        }
+
+        public async void CallDeleteLable(string lableKey)
+        {
+           
+            bool result = await this.datalogic.DeleteLableByKey(currentLableKey);
+            if (result)
+            {
+                Message.ShowToastMessage("Lable Deleted");
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                Message.ShowToastMessage("Lable Not Deleted");
+            }
         }
     }
 }

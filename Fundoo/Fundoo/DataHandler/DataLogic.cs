@@ -15,7 +15,7 @@ namespace Fundoo.DataHandler
         public string responseKey;
         private FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
 
-        public async Task CreateNotes(string title, string info, string noteColor)
+        public async Task<bool> CreateNotes(string title, string info, string noteColor ,bool isPinned)
         {
             try
             {
@@ -23,11 +23,15 @@ namespace Fundoo.DataHandler
                 {
                     Title = title,
                     Info = info,
-                    Color = noteColor
+                    Color = noteColor,
+                    IsPinned = isPinned
                 });
 
               string key = note.Key;
                 this.responseKey = key;
+                return true;
+
+
                 ///this.responseKey = response.Key;
                 
                 //  await this.firebaseClient
@@ -69,6 +73,7 @@ namespace Fundoo.DataHandler
                   Title = item.Object.Title,
                   Info = item.Object.Info,
                   Color = item.Object.Color,
+                  IsPinned = item.Object.IsPinned,
                   Key = item.Key
               }).ToList();
         }
@@ -87,12 +92,12 @@ namespace Fundoo.DataHandler
 
         public async Task SaveEditedNote(string noteKey, Note note)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(new Note() { Title = note.Title, Info = note.Info, Color = note.Color });
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(new Note() { Title = note.Title, Info = note.Info, Color = note.Color, IsPinned = note.IsPinned });
         }
 
         public async Task SaveEditedArchiveNote(string noteKey, Archive archiveNote)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("ArchivedNotes").Child(noteKey).PutAsync<Note>(new Note() { Title = archiveNote.Title, Info = archiveNote.Info, Color = archiveNote.Color });
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("ArchivedNotes").Child(noteKey).PutAsync<Note>(new Note() { Title = archiveNote.Title, Info = archiveNote.Info, Color = archiveNote.Color, IsPinned = archiveNote.IsPinned });
         }
 
         public async Task<bool> DeleteNote(string noteKey)
@@ -162,7 +167,7 @@ namespace Fundoo.DataHandler
 
         }
 
-        //
+        
         public async Task<bool> SaveLableByKey(Lable lable, string lablekey)
         {
             try
@@ -184,8 +189,18 @@ namespace Fundoo.DataHandler
             return lable;
         }
 
-       
-
+        public async Task<bool> DeleteLableByKey(string lableKey)
+        {
+            try
+            {
+                await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(lableKey).DeleteAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }                     
+        }
     }
 }
 

@@ -5,7 +5,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ListIcon.png" Text="Log Out" />
         <ToolbarItem Icon="logoutIcon.png" Text="Log Out" />
-        <ToolbarItem  Text="Delete" Order="Secondary" />
+        <ToolbarItem  Text="Delete Lable" Order="Secondary" Clicked="DeleteLable_Clicked"/>
     </ContentPage.ToolbarItems>
 
 

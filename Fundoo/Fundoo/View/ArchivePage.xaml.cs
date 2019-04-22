@@ -41,6 +41,7 @@ namespace Fundoo.View
             allArchivedNotes = null;
 
 
+
             this.DynamicGridView(notesList);
             //NotesList.ItemsSource = allArchivedNotes;
         }

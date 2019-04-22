@@ -13,11 +13,24 @@
    
         <ContentPage.Content>
         <StackLayout>
-            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="600">
-                <Grid x:Name="gridLayout">
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="PINNED" FontAttributes="Bold"/>
+                    <Grid x:Name="gridLayoutPinned">
 
-                </Grid>
-            </ScrollView>
+                    </Grid>
+
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="OTHERS" FontAttributes="Bold"/>
+                    <Grid x:Name="gridLayoutUnpinned">
+
+                    </Grid>
+
+                </StackLayout>
+            </StackLayout>
+
 
             <StackLayout VerticalOptions="EndAndExpand">
                 <Button x:Name="TakeaNote" 

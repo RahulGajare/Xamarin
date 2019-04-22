@@ -20,12 +20,13 @@ namespace Fundoo.View
         private bool isLabled = false;
         private string lableKey;
         private string noteKey;
-      
-
+        private bool isPinned = false;
+  
 
         public WriteNotesPage(bool isLabled)
-        {
+        {          
             this.InitializeComponent();
+            this.InitializeToolBarItems();
         }
 
         public WriteNotesPage(bool islabled, string lableKey)
@@ -34,6 +35,12 @@ namespace Fundoo.View
             this.isLabled = islabled;
             this.InitializeComponent();
            
+        }
+
+        public void InitializeToolBarItems()
+        {
+            ToolbarItems.Clear();
+            ToolbarItems.Add(this.UnPinnedIcon);        
         }
 
 
@@ -52,7 +59,7 @@ namespace Fundoo.View
 
         //        var response = dataLogic.CreateNotes(title.Text, info.Text);
         //        Message.ShowToastMessage("Notes Saved");
-                
+
         //       return base.OnBackButtonPressed();
         //    }
         //    catch (Exception)
@@ -75,6 +82,15 @@ namespace Fundoo.View
                 }
                 else
                 {
+                    if (title.Text == null)
+                    {
+                        title.Text = string.Empty;
+                    }
+
+                    if (info.Text == null)
+                    {
+                        info.Text = string.Empty;
+                    }
                     await this.CallCreatenotes();
 
                     if (noteKey != null)
@@ -101,7 +117,7 @@ namespace Fundoo.View
         public async Task CallCreatenotes()
         {
              DataLogic dataLogic = new DataLogic();
-              await dataLogic.CreateNotes(title.Text, info.Text, this.noteColor);
+              await dataLogic.CreateNotes(title.Text, info.Text, this.noteColor , this.isPinned);
             this.noteKey = dataLogic.responseKey;
             return;
         }
@@ -170,6 +186,22 @@ namespace Fundoo.View
         {
             this.BackgroundColor = Color.MintCream;
             this.noteColor = "MintCream";
+        }
+
+        private void UnPinnedIcon_Clicked(object sender, EventArgs e)
+        {
+            ToolbarItems.Add(PinnedIcon);
+            ToolbarItems.Remove(UnPinnedIcon);
+            this.isPinned = true;
+           
+            ///this.OnAppearing();
+        }
+
+        private void PinnedIcon_Clicked(object sender, EventArgs e)
+        {
+            this.isPinned = false;
+            ToolbarItems.Add(UnPinnedIcon);
+            ToolbarItems.Remove(PinnedIcon);
         }
     }
 }

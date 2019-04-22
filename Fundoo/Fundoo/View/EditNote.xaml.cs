@@ -20,26 +20,30 @@ namespace Fundoo.View
         Archive retrivedArchiveNote = null;
         bool DeleteButtonClicked = false;
         bool ArchivedClicked = false;
+        bool UnArchivedClicked = false;
         bool isArchive = false;
+        bool isPinned;
+
         string noteKey = string.Empty;
 
 
-        public Color ColorBackground { get; set; }
+        /// public Color ColorBackground { get; set; }
 
-        private Color backGroundColor;
+        /// private Color backGroundColor;
         private string noteColor = "white";
 
         public EditNote()
         {
 
         }
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="noteKey"></param>
-            /// <param name="isArchive"></param>
-            public EditNote(string noteKey, bool isArchive)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noteKey"></param>
+        /// <param name="isArchive"></param>
+        public EditNote(string noteKey, bool isArchive)
         {
+            ToolbarItems.Clear();
             InitializeComponent();
             this.noteKey = noteKey;
             this.isArchive = isArchive;
@@ -61,22 +65,97 @@ namespace Fundoo.View
         public async void GetTappedNotes(string noteKey)
         {
             DataLogic datalogic = new DataLogic();
-            if (isArchive)
+            if (this.isArchive)
             {
+                this.InitializeToolBarItems();
                 this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
                 Entrytitle.Text = retrivedArchiveNote.Title;
                 Editorinfo.Text = retrivedArchiveNote.Info;
                 this.noteColor = retrivedArchiveNote.Color;
+                this.isPinned = retrivedArchiveNote.IsPinned;
                 this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
+                
+                
             }
             else
             {
+                this.InitializeToolBarItems();
                 this.retrivedNote = await datalogic.GetNote(noteKey);
                 Entrytitle.Text = retrivedNote.Title;
                 Editorinfo.Text = retrivedNote.Info;
                 this.noteColor = retrivedNote.Color;
-                this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
+                this.isPinned = retrivedNote.IsPinned;
+                this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));              
             }
+        }
+
+        public void InitializeToolBarItems()
+        {
+            if (this.isArchive)
+            {
+                if (isPinned)
+                {
+                    ToolbarItems.Clear();
+                    ToolbarItems.Add(this.DeleteIcon);
+                    ToolbarItems.Add(this.PinnedIcon);
+                    ToolbarItems.Add(this.UnarchiveIcon);
+                    //ToolbarItems.Remove(this.UnPinnedIcon);
+                }
+                else
+                {
+                    ToolbarItems.Clear();
+                    ToolbarItems.Add(this.DeleteIcon);
+                    ToolbarItems.Add(this.UnPinnedIcon);
+                    ToolbarItems.Add(this.UnarchiveIcon);
+                    // ToolbarItems.Remove(this.PinnedIcon);
+                }
+
+            }
+            else
+            {
+                if (isPinned)
+                {
+                    ToolbarItems.Clear();
+                    ToolbarItems.Add(this.DeleteIcon);
+                    ToolbarItems.Add(this.PinnedIcon);
+                    ToolbarItems.Add(this.ArchiveIcon);
+                    //ToolbarItems.Remove(this.UnPinnedIcon);
+                }
+                else
+                {
+                    ToolbarItems.Clear();
+                    ToolbarItems.Add(this.DeleteIcon);
+                    ToolbarItems.Add(this.UnPinnedIcon);
+                    ToolbarItems.Add(this.ArchiveIcon);
+                    // ToolbarItems.Remove(this.PinnedIcon);
+                }
+            }
+
+           
+            
+        }
+
+        private void UnPinnedIcon_Clicked(object sender, EventArgs e)
+        {
+            this.isPinned = true;
+            ToolbarItems.Clear();
+            ToolbarItems.Add(this.DeleteIcon);
+            ToolbarItems.Add(PinnedIcon);
+            ToolbarItems.Add(this.ArchiveIcon);
+            ToolbarItems.Remove(UnPinnedIcon);
+           
+
+            ///this.OnAppearing();
+        }
+
+        private void PinnedIcon_Clicked(object sender, EventArgs e)
+        {
+            this.isPinned = false;
+            ToolbarItems.Clear();
+            ToolbarItems.Add(this.DeleteIcon);
+            ToolbarItems.Add(UnPinnedIcon);
+            ToolbarItems.Add(this.ArchiveIcon);
+            ToolbarItems.Remove(PinnedIcon);
         }
 
         //protected override bool OnBackButtonPressed()
@@ -94,7 +173,7 @@ namespace Fundoo.View
 
         protected override void OnDisappearing()
         {
-            if (DeleteButtonClicked == false && ArchivedClicked == false)
+            if (this.DeleteButtonClicked == false && this.ArchivedClicked == false && this.UnArchivedClicked ==false)
             {
                 if (string.IsNullOrEmpty(Entrytitle.Text) && string.IsNullOrEmpty(Editorinfo.Text))
                 {
@@ -123,7 +202,8 @@ namespace Fundoo.View
             {
                 Title = Entrytitle.Text,
                 Info = Editorinfo.Text,
-                Color = this.noteColor
+                Color = this.noteColor,
+                IsPinned = this.isPinned
 
             };
 
@@ -139,7 +219,8 @@ namespace Fundoo.View
             {
                 Title = Entrytitle.Text,
                 Info = Editorinfo.Text,
-                Color = this.noteColor
+                Color = this.noteColor,
+                IsPinned = this.isPinned
 
             };
 
@@ -192,17 +273,20 @@ namespace Fundoo.View
 
         private void Archive_Clicked(object sender, EventArgs e)
         {
-            this.CallArchiveNote();
+            this.CallAddArchiveNote();
             this.ArchivedClicked = true;
         }
 
-        private async void CallArchiveNote()
+
+
+        private async void CallAddArchiveNote()
         {
             Archive archivedNote = new Archive()
             {
                 Title = Entrytitle.Text,
                 Info = Editorinfo.Text,
-                Color = this.noteColor
+                Color = this.noteColor,
+                IsPinned = this.isPinned
             };
 
             DataLogic datalogic = new DataLogic();
@@ -213,6 +297,31 @@ namespace Fundoo.View
             }
 
             await datalogic.DeleteNote(noteKey);
+            await Navigation.PopAsync();
+        }
+
+        private async void UnarchiveIcon_Clicked(object sender, EventArgs e)
+        {
+
+            this.UnArchivedClicked = true;
+            Note note = new Note()
+            {
+                Title = Entrytitle.Text,
+                Info = Editorinfo.Text,
+                Color = this.noteColor,
+                IsPinned = this.isPinned
+
+
+            };
+
+            DataLogic datalogic = new DataLogic();
+            bool result = await datalogic.CreateNotes(note.Title, note.Info, note.Color, note.IsPinned);
+            if (result)
+            {
+                Message.ShowToastMessage("Notes UnArchived");
+            }
+
+            await datalogic.DeleteArchivedNote(noteKey);
             await Navigation.PopAsync();
         }
 
@@ -274,17 +383,19 @@ namespace Fundoo.View
             this.BackgroundColor = Color.MintCream;
             this.noteColor = "MintCream";
         }
-       
-        public  void changeColor()
+
+        public void changeColor()
         {
             this.BackgroundColor = Color.MintCream;
             this.noteColor = "MintCream";
         }
 
-        protected override void OnAppearing()
-        {
-            this.BackgroundColor = Color.DeepPink;
-            base.OnAppearing();
-        }
+       
+
+        //protected override void OnAppearing()
+        //{
+        //    this.BackgroundColor = Color.DeepPink;
+        //    base.OnAppearing();
+        //}
     }
-    }
+}

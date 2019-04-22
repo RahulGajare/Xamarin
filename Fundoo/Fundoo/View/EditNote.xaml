@@ -6,9 +6,41 @@
 
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="DeleteIcon.png" Text="DeleteIcon" Clicked="DeleteIcon_Clicked"/>
-        <ToolbarItem Icon="ArchiveIcon.png" Text="ArchiveIcon" Clicked="Archive_Clicked"/>
+     
+
+        <ToolbarItem x:Name="DeleteIcon"  Clicked="DeleteIcon_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="DeleteIcon.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="UnPinnedIcon"  Clicked="UnPinnedIcon_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="UnPinnedIcon.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        
+
+        <ToolbarItem x:Name="PinnedIcon"  Clicked="PinnedIcon_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="PinnedIcon.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="ArchiveIcon"  Clicked="Archive_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="ArchiveIcon.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="UnarchiveIcon"  Clicked="UnarchiveIcon_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="UnarchiveIcon.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
+
+   
 
     <ContentPage.Content>
 

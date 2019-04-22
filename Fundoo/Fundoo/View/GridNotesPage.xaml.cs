@@ -52,19 +52,28 @@ namespace Fundoo.View
         public async void GetNotes()
         {
                 DataLogic dataLogic = new DataLogic();
-            var allNotes = await dataLogic.GetAllNotes();
+            var notesList = await dataLogic.GetAllNotes();
+            List<Note> pinnedList = new List<Note>();
+            List<Note> UnpinnedList = new List<Note>();
 
-            List<Note> notesList = new List<Note>();
-            foreach (Note note in allNotes)
+            foreach(Note note in notesList)
             {
-                notesList.Add(note);
+                if (note.IsPinned)
+                {
+                    pinnedList.Add(note);
+                }
+                else
+                {
+                    UnpinnedList.Add(note);
+                }
             }
 
-            allNotes = null;
 
 
-            this.DynamicGridView(notesList);
-          
+            this.DynamicGridViewPinned(pinnedList);
+            this.DynamicGridViewUnpinned(UnpinnedList);
+
+
         }
 
 
@@ -75,18 +84,18 @@ namespace Fundoo.View
         }
 
 
-        private void DynamicGridView(List<Model.Note> notesList)
+        private void DynamicGridViewPinned(List<Model.Note> notesList)
         {          
             if (notesList.Count == 0)
             {
                 return;
             }
 
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
-            gridLayout.Margin = new Thickness(2,2,2,2);
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+            gridLayoutPinned.Margin = new Thickness(2,2,2,2);
             
             
             int column = 0;
@@ -98,7 +107,7 @@ namespace Fundoo.View
                 //// For after every 3rd Column adds a new row.
                 if (column == 3)
                 {
-                    gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
                     column = 0;
                     row++;
                 }
@@ -142,7 +151,7 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
-                ////stackLayout1.Children.Add(boxview);
+                ////stackLayout2.Children.Add(boxview);
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
@@ -158,12 +167,103 @@ namespace Fundoo.View
 
                 FrameColorSetter.GetColor(note ,frame);    
                 frame.Content = stackLayout1;
-                        
-          
-                gridLayout.Children.Add(frame, column, row);
+
+
+                gridLayoutPinned.Children.Add(frame, column, row);
                 column++;
 
             }            
+        }
+
+        private void DynamicGridViewUnpinned(List<Model.Note> notesList)
+        {
+            if (notesList.Count == 0)
+            {
+                return;
+            }
+
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+            gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
+
+
+            int column = 0;
+            int row = 0;
+
+
+            foreach (Note note in notesList)
+            {
+                //// For after every 3rd Column adds a new row.
+                if (column == 3)
+                {
+                    gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+                    column = 0;
+                    row++;
+                }
+
+                var stackLayout2 = new StackLayout();
+
+                var tapGestureRecognizer = new TapGestureRecognizer();
+                tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
+                stackLayout2.GestureRecognizers.Add(tapGestureRecognizer);
+
+
+
+                var titleLable = new Label
+                {
+                    Text = note.Title,
+                    TextColor = Color.Black,
+                    FontAttributes = FontAttributes.Bold,
+                    VerticalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.Start,
+                };
+
+                var infoLable = new Label
+                {
+                    Margin = new Thickness(10, 10, 0, 0),
+                    Text = note.Info,
+                    TextColor = Color.Black,
+                    FontAttributes = FontAttributes.None,
+                    VerticalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.Start,
+                };
+
+                var noteKey = new Label
+                {
+                    Text = note.Key,
+                    IsVisible = false
+                };
+
+                var noteColor = new Label
+                {
+                    Text = note.Color,
+                    IsVisible = false
+                };
+
+                ////stackLayout2.Children.Add(boxview);
+                stackLayout2.Children.Add(titleLable);
+                stackLayout2.Children.Add(infoLable);
+                stackLayout2.Children.Add(noteKey);
+                stackLayout2.Children.Add(noteColor);
+                stackLayout2.Spacing = 2;
+                stackLayout2.Margin = 2;
+
+
+
+                var frame = new Frame();
+                /// frame.BorderColor = Color.Black;
+                frame.CornerRadius = 20;
+
+                FrameColorSetter.GetColor(note, frame);
+                frame.Content = stackLayout2;
+
+
+                gridLayoutUnpinned.Children.Add(frame, column, row);
+                column++;
+
+            }
         }
 
         private void stackLayoutTap_Tapped(object sender, EventArgs e)
