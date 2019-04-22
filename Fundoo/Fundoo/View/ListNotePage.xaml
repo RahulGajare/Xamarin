@@ -9,7 +9,7 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout >
+        <!--<StackLayout >
             <ListView x:Name="NotesList">
                 <ListView.ItemTemplate>
                     <DataTemplate >
@@ -23,8 +23,32 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
 
+        <StackLayout>
+            <ScrollView>
+            <StackLayout>
+                
+                    <StackLayout>
+                        <Label Text="PINNED" FontAttributes="Bold"/>
+                        <Grid x:Name="gridLayoutPinned">
+
+                        </Grid>
+
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="OTHERS" FontAttributes="Bold"/>
+                        <Grid x:Name="gridLayoutUnpinned">
+
+                        </Grid>
+
+                    </StackLayout>
+               
+            </StackLayout>
+            </ScrollView>
+
+            <StackLayout>
             <Button x:Name="TakeaNote" 
                     Text="Take a note ..."
                     VerticalOptions="End" 
@@ -35,6 +59,6 @@
 
             </Button>
         </StackLayout>
-
+            </StackLayout>
     </ContentPage.Content>
 </ContentPage>

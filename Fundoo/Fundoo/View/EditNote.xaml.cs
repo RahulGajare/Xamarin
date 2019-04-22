@@ -66,26 +66,26 @@ namespace Fundoo.View
         {
             DataLogic datalogic = new DataLogic();
             if (this.isArchive)
-            {
-                this.InitializeToolBarItems();
+            {              
                 this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
                 Entrytitle.Text = retrivedArchiveNote.Title;
                 Editorinfo.Text = retrivedArchiveNote.Info;
                 this.noteColor = retrivedArchiveNote.Color;
                 this.isPinned = retrivedArchiveNote.IsPinned;
                 this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
-                
-                
+                this.InitializeToolBarItems();
+
+
             }
             else
-            {
-                this.InitializeToolBarItems();
+            {             
                 this.retrivedNote = await datalogic.GetNote(noteKey);
                 Entrytitle.Text = retrivedNote.Title;
                 Editorinfo.Text = retrivedNote.Info;
                 this.noteColor = retrivedNote.Color;
                 this.isPinned = retrivedNote.IsPinned;
-                this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));              
+                this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
+                this.InitializeToolBarItems();
             }
         }
 
@@ -310,8 +310,6 @@ namespace Fundoo.View
                 Info = Editorinfo.Text,
                 Color = this.noteColor,
                 IsPinned = this.isPinned
-
-
             };
 
             DataLogic datalogic = new DataLogic();
