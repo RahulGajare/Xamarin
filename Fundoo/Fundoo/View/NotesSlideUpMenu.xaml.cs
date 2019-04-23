@@ -15,7 +15,7 @@ namespace Fundoo.View
 	public partial class NotesSlideUpMenu : PopupPage
     {
 
-        string colorName;
+   
 
         public NotesSlideUpMenu ()
 		{

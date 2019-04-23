@@ -56,24 +56,25 @@ namespace Fundoo.View
             List<Note> pinnedList = new List<Note>();
             List<Note> UnpinnedList = new List<Note>();
 
+            
             foreach(Note note in notesList)
             {
-                if (note.IsPinned)
+                if (note.IsTrash == false && note.IsArchive == false)
                 {
-                    pinnedList.Add(note);
+                    if (note.IsPinned)
+                    {
+                        pinnedList.Add(note);
+                    }
+                    else
+                    {
+                        UnpinnedList.Add(note);
+                    }
                 }
-                else
-                {
-                    UnpinnedList.Add(note);
-                }
+               
             }
-
-
 
             this.DynamicGridViewPinned(pinnedList);
             this.DynamicGridViewUnpinned(UnpinnedList);
-
-
         }
 
 
@@ -273,7 +274,7 @@ namespace Fundoo.View
             Label key = (Label)item[2];
           ///  Label noteColor = (Label)item[3];
             var notekey = key.Text;
-            Navigation.PushAsync(new EditNote(notekey,false));
+            Navigation.PushAsync(new EditNote(notekey));
         }
 
 

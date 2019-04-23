@@ -42,6 +42,9 @@
     <Compile Update="View\GridNotesPage.xaml.cs">
       <DependentUpon>GridNotesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\CreateLablePage.xaml.cs">
+      <DependentUpon>CreateLablePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -66,7 +69,7 @@
     <EmbeddedResource Update="View\LabledNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\LablePage.xaml">
+    <EmbeddedResource Update="View\CreateLablePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\ListNotePage.xaml">
@@ -85,6 +88,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Test.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Trash.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\TrashNoteTap.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\WriteNotesPage.xaml">

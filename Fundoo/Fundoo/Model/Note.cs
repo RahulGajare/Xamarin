@@ -32,6 +32,16 @@ namespace Fundoo.Model
         private bool isPinned = false;
 
         /// <summary>
+        /// The is trash
+        /// </summary>
+        private bool isTrash;
+
+        /// <summary>
+        /// The is archive
+        /// </summary>
+        private bool isArchive;
+
+        /// <summary>
         /// Gets or sets the title.
         /// </summary>
         /// <value>
@@ -71,6 +81,22 @@ namespace Fundoo.Model
             ///   <c>true</c> if this instance is pinned; otherwise, <c>false</c>.
         /// </value>
         public bool IsPinned { get => isPinned; set => isPinned = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is trash.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is trash; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsTrash { get => isTrash; set => isTrash = value; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is archive.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is archive; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsArchive { get => isArchive; set => isArchive = value; }
     }
 
 }

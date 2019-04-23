@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundoo.View.TrashNoteTap">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="DeleteIcon"  Clicked="DeleteIcon_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="DeleteIcon.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem x:Name="RestoreIcon"  Clicked="RestoreIcon_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="RestoreIcon.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Spacing="20" Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20,0,20,0">
+                <Label Text="Title"/>
+                <Entry x:Name="Entrytitle" Placeholder="Title" FontAttributes="Bold" IsReadOnly="True"/>
+                <Label Text ="Info"/>
+                <Editor x:Name="Editorinfo" Placeholder="Note" AutoSize="TextChanges" IsReadOnly="True"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

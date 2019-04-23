@@ -12,9 +12,9 @@ using Xamarin.Forms.Xaml;
 namespace Fundoo.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LablePage : ContentPage
+	public partial class CreateLablePage : ContentPage
 	{ 
-		public LablePage ()
+		public CreateLablePage()
 		{
 			InitializeComponent ();
             var tapCancelIcon = new TapGestureRecognizer();

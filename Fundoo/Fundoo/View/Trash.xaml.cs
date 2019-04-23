@@ -1,5 +1,4 @@
 ﻿using Fundoo.DataHandler;
-using Fundoo.DependencyServices;
 using Fundoo.Model;
 using Fundoo.ModelView;
 using System;
@@ -14,56 +13,39 @@ using Xamarin.Forms.Xaml;
 namespace Fundoo.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LabledNotePage : ContentPage
+	public partial class Trash : ContentPage
 	{
-        string lableName;
-        string currentLableKey;
-
-        DataLogic datalogic = new DataLogic();
-
-
-		public LabledNotePage (string lableName, string lableKey)
+		public Trash ()
 		{
-            this.lableName = lableName;
-            this.currentLableKey = lableKey;
 			InitializeComponent ();
 		}
 
-        public LabledNotePage()
-        {
-
-        }
-
-
-        private void TakeaNote_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new WriteNotesPage(true, currentLableKey));
-        }
-
         protected override void OnAppearing()
         {
-            this.Call();
-        }
-
-        public async void Call()
-        {
-            List<Note> notesList = new List<Note>();
-            Lable lable = await this.datalogic.GetLableByKey(currentLableKey);
-
-            foreach (string notekey in lable.NoteKeysList)
-            {
-              Note retrievedNote = await datalogic.GetNote(notekey);
-                if (retrievedNote != null)
-                {
-                    notesList.Add(retrievedNote);
-                }           
-            }
-
-            this.DynamicGridView(notesList);
-
-
+            GetNotes();
             base.OnAppearing();
         }
+
+        public async void GetNotes()
+        {
+            DataLogic dataLogic = new DataLogic();
+            var notesList = await dataLogic.GetAllNotes();
+            List<Note> trashNotesList = new List<Note>();
+
+
+            foreach (Note note in notesList)
+            {
+                if (note.IsTrash == true)
+                {
+                    trashNotesList.Add(note);
+                }
+
+            }
+           
+            this.DynamicGridView(trashNotesList);
+        
+        }
+
 
         private void DynamicGridView(List<Model.Note> notesList)
         {
@@ -83,7 +65,7 @@ namespace Fundoo.View
             int row = 0;
 
 
-            foreach(Note note in notesList)
+            foreach (Note note in notesList)
             {
                 //// For after every 3rd Column adds a new row.
                 if (column == 3)
@@ -132,7 +114,7 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
-                ////stackLayout1.Children.Add(boxview);
+                ////stackLayout2.Children.Add(boxview);
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
@@ -153,8 +135,9 @@ namespace Fundoo.View
                 gridLayout.Children.Add(frame, column, row);
                 column++;
 
-            }         
+            }
         }
+
 
         private void stackLayoutTap_Tapped(object sender, EventArgs e)
         {
@@ -163,27 +146,7 @@ namespace Fundoo.View
             Label key = (Label)item[2];
             ///  Label noteColor = (Label)item[3];
             var notekey = key.Text;
-            Navigation.PushAsync(new EditNote(notekey));
-        }
-
-        private void DeleteLable_Clicked(object sender, EventArgs e)
-        {             
-            this.CallDeleteLable(this.currentLableKey);
-        }
-
-        public async void CallDeleteLable(string lableKey)
-        {
-           
-            bool result = await this.datalogic.DeleteLableByKey(currentLableKey);
-            if (result)
-            {
-                Message.ShowToastMessage("Lable Deleted");
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                Message.ShowToastMessage("Lable Not Deleted");
-            }
+            Navigation.PushAsync(new TrashNoteTap(notekey));
         }
     }
 }

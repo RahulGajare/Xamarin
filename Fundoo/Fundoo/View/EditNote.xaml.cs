@@ -17,19 +17,16 @@ namespace Fundoo.View
     public partial class EditNote : ContentPage
     {
         Note retrivedNote = null;
-        Archive retrivedArchiveNote = null;
+        //  Archive retrivedArchiveNote = null;
         bool DeleteButtonClicked = false;
-        bool ArchivedClicked = false;
-        bool UnArchivedClicked = false;
-        bool isArchive = false;
+
+        bool isArchive;
         bool isPinned;
+        bool isTrash;
 
         string noteKey = string.Empty;
 
 
-        /// public Color ColorBackground { get; set; }
-
-        /// private Color backGroundColor;
         private string noteColor = "white";
 
         public EditNote()
@@ -41,13 +38,12 @@ namespace Fundoo.View
         /// </summary>
         /// <param name="noteKey"></param>
         /// <param name="isArchive"></param>
-        public EditNote(string noteKey, bool isArchive)
+        public EditNote(string noteKey)
         {
             ToolbarItems.Clear();
-            InitializeComponent();
             this.noteKey = noteKey;
-            this.isArchive = isArchive;
             GetTappedNotes(noteKey);
+            InitializeComponent();
 
             var AddBoxIconTap = new TapGestureRecognizer();
             //// Binding events 
@@ -65,28 +61,33 @@ namespace Fundoo.View
         public async void GetTappedNotes(string noteKey)
         {
             DataLogic datalogic = new DataLogic();
-            if (this.isArchive)
-            {              
-                this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
-                Entrytitle.Text = retrivedArchiveNote.Title;
-                Editorinfo.Text = retrivedArchiveNote.Info;
-                this.noteColor = retrivedArchiveNote.Color;
-                this.isPinned = retrivedArchiveNote.IsPinned;
-                this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
-                this.InitializeToolBarItems();
+            //if (this.isArchive)
+            //{              
+            //    this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
+            //    Entrytitle.Text = retrivedArchiveNote.Title;
+            //    Editorinfo.Text = retrivedArchiveNote.Info;
+            //    this.noteColor = retrivedArchiveNote.Color;
+            //    this.isPinned = retrivedArchiveNote.IsPinned;
+            //    this.isTrash = retrivedArchiveNote.IsTrash;
+            //    this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
+            //    this.InitializeToolBarItems();
 
 
-            }
-            else
-            {             
-                this.retrivedNote = await datalogic.GetNote(noteKey);
-                Entrytitle.Text = retrivedNote.Title;
-                Editorinfo.Text = retrivedNote.Info;
-                this.noteColor = retrivedNote.Color;
-                this.isPinned = retrivedNote.IsPinned;
-                this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
-                this.InitializeToolBarItems();
-            }
+            //}
+            //else
+            //{   
+            // }
+
+            this.retrivedNote = await datalogic.GetNote(noteKey);
+            Entrytitle.Text = retrivedNote.Title;
+            Editorinfo.Text = retrivedNote.Info;
+            this.noteColor = retrivedNote.Color;
+            this.isPinned = retrivedNote.IsPinned;
+            this.isTrash = retrivedNote.IsTrash;
+            this.isArchive = retrivedNote.IsArchive;
+            this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
+            this.InitializeToolBarItems();
+
         }
 
         public void InitializeToolBarItems()
@@ -130,9 +131,6 @@ namespace Fundoo.View
                     // ToolbarItems.Remove(this.PinnedIcon);
                 }
             }
-
-           
-            
         }
 
         private void UnPinnedIcon_Clicked(object sender, EventArgs e)
@@ -143,7 +141,7 @@ namespace Fundoo.View
             ToolbarItems.Add(PinnedIcon);
             ToolbarItems.Add(this.ArchiveIcon);
             ToolbarItems.Remove(UnPinnedIcon);
-           
+
 
             ///this.OnAppearing();
         }
@@ -173,25 +171,26 @@ namespace Fundoo.View
 
         protected override void OnDisappearing()
         {
-            if (this.DeleteButtonClicked == false && this.ArchivedClicked == false && this.UnArchivedClicked ==false)
-            {
-                if (string.IsNullOrEmpty(Entrytitle.Text) && string.IsNullOrEmpty(Editorinfo.Text))
-                {
-                    Message.ShowToastMessage("Empty Notes Discared");
-                }
-                else
-                {
-                    if (isArchive)
-                    {
-                        this.CallSaveEditedArchiveNote();
-                    }
-                    else
-                    {
-                        this.CallSaveEditedNote();
-                    }
 
-                }
+            if (string.IsNullOrEmpty(Entrytitle.Text) && string.IsNullOrEmpty(Editorinfo.Text))
+            {
+                Message.ShowToastMessage("Empty Notes Discared");
             }
+            else
+            {
+                //if (isArchive)
+                //{
+                //    this.CallSaveEditedArchiveNote();
+                //}
+                //else
+                //{
+
+                //}
+
+                this.CallSaveEditedNote();
+
+            }
+
         }
 
 
@@ -203,47 +202,74 @@ namespace Fundoo.View
                 Title = Entrytitle.Text,
                 Info = Editorinfo.Text,
                 Color = this.noteColor,
-                IsPinned = this.isPinned
+                IsPinned = this.isPinned,
+                IsTrash = this.isTrash,
+                IsArchive = this.isArchive
 
             };
 
             DataLogic datalogic = new DataLogic();
             await datalogic.SaveEditedNote(this.noteKey, editedNote);
-            Message.ShowToastMessage("Notes Saved");
+
+            if (this.DeleteButtonClicked)
+            {
+                Message.ShowToastMessage("Moved To Trash");
+            }
+            else if (isArchive)
+            {
+                Message.ShowToastMessage("Notes moved to Archived");
+            }
         }
 
-        private async void CallSaveEditedArchiveNote()
+        //private async void CallSaveEditedArchiveNote()
+        //{
+
+        //    Archive editedArchiveNote = new Archive()
+        //    {
+        //        Title = Entrytitle.Text,
+        //        Info = Editorinfo.Text,
+        //        Color = this.noteColor,
+        //        IsPinned = this.isPinned,
+        //        IsTrash = this.isTrash
+
+        //    };
+
+        //    DataLogic datalogic = new DataLogic();
+        //    await datalogic.SaveEditedArchiveNote(this.noteKey, editedArchiveNote);
+        //    if (this.DeleteButtonClicked)
+        //    {
+        //        Message.ShowToastMessage("Moved To Trash");
+        //    }
+        //    else
+        //    {
+        //        Message.ShowToastMessage("Notes Saved");
+        //    }
+
+        //}
+
+
+        private async void DeleteIcon_Clicked(object sender, EventArgs e)
         {
 
-            Archive editedArchiveNote = new Archive()
-            {
-                Title = Entrytitle.Text,
-                Info = Editorinfo.Text,
-                Color = this.noteColor,
-                IsPinned = this.isPinned
-
-            };
-
-            DataLogic datalogic = new DataLogic();
-            await datalogic.SaveEditedArchiveNote(this.noteKey, editedArchiveNote);
-            Message.ShowToastMessage("Notes Saved");
-        }
+            this.isTrash = true;
+            this.DeleteButtonClicked = true;
+            Message.ShowToastMessage("Note moved to Trash");
+            await Navigation.PopAsync();
 
 
-        private void DeleteIcon_Clicked(object sender, EventArgs e)
-        {
-            if (this.isArchive)
-            {
-                this.CallDeleteArchivedNote(this.noteKey);
-                this.DeleteButtonClicked = true;
-            }
-            else
-            {
-                this.CallDeleteNote(this.noteKey);
 
-                ////this because after deleting, page popsup and prevents running of code in OnDisappearing().
-                this.DeleteButtonClicked = true;
-            }
+            //if (this.isArchive)
+            //{
+            //    this.CallDeleteArchivedNote(this.noteKey);
+            //    this.DeleteButtonClicked = true;
+            //}
+            //else
+            //{
+            //    this.CallDeleteNote(this.noteKey);
+
+            //    ////this because after deleting, page popsup and prevents running of code in OnDisappearing().
+            //    this.DeleteButtonClicked = true;
+            //}
         }
 
 
@@ -260,67 +286,57 @@ namespace Fundoo.View
 
         }
 
-        public async void CallDeleteArchivedNote(string noteKey)
+        //public async void CallDeleteArchivedNote(string noteKey)
+        //{
+        //    DataLogic datalogic = new DataLogic();
+        //    bool isDeleted = await datalogic.DeleteArchivedNote(noteKey);
+        //    if (isDeleted)
+        //    {
+        //        Message.ShowToastMessage("Deleted");
+        //        await Navigation.PopAsync();
+        //    }
+        //}
+
+        private async void Archive_Clicked(object sender, EventArgs e)
         {
-            DataLogic datalogic = new DataLogic();
-            bool isDeleted = await datalogic.DeleteArchivedNote(noteKey);
-            if (isDeleted)
-            {
-                Message.ShowToastMessage("Deleted");
-                await Navigation.PopAsync();
-            }
-        }
-
-        private void Archive_Clicked(object sender, EventArgs e)
-        {
-            this.CallAddArchiveNote();
-            this.ArchivedClicked = true;
-        }
-
-
-
-        private async void CallAddArchiveNote()
-        {
-            Archive archivedNote = new Archive()
-            {
-                Title = Entrytitle.Text,
-                Info = Editorinfo.Text,
-                Color = this.noteColor,
-                IsPinned = this.isPinned
-            };
-
-            DataLogic datalogic = new DataLogic();
-            bool isArchived = await datalogic.AddArchiveNote(archivedNote);
-            if (isArchived)
-            {
-                Message.ShowToastMessage("Moved to Archived");
-            }
-
-            await datalogic.DeleteNote(noteKey);
+            // this.CallAddArchiveNote();
+            this.isArchive = true;
+            Message.ShowToastMessage("Notes moved to Archived");
             await Navigation.PopAsync();
+
         }
+
+
+
+        //private async void CallAddArchiveNote()
+        //{
+        //    Archive archivedNote = new Archive()
+        //    {
+        //        Title = Entrytitle.Text,
+        //        Info = Editorinfo.Text,
+        //        Color = this.noteColor,
+        //        IsPinned = this.isPinned
+        //    };
+
+        //    DataLogic datalogic = new DataLogic();
+        //    bool isArchived = await datalogic.AddArchiveNote(archivedNote);
+        //    if (isArchived)
+        //    {
+        //        Message.ShowToastMessage("Moved to Archived");
+        //    }
+
+        //    await datalogic.DeleteNote(noteKey);
+        //    await Navigation.PopAsync();
+        //}
 
         private async void UnarchiveIcon_Clicked(object sender, EventArgs e)
         {
 
-            this.UnArchivedClicked = true;
-            Note note = new Note()
-            {
-                Title = Entrytitle.Text,
-                Info = Editorinfo.Text,
-                Color = this.noteColor,
-                IsPinned = this.isPinned
-            };
-
-            DataLogic datalogic = new DataLogic();
-            bool result = await datalogic.CreateNotes(note.Title, note.Info, note.Color, note.IsPinned);
-            if (result)
-            {
-                Message.ShowToastMessage("Notes UnArchived");
-            }
-
-            await datalogic.DeleteArchivedNote(noteKey);
+            this.isArchive = false;
+            Message.ShowToastMessage("Notes UnArchived");
             await Navigation.PopAsync();
+
+
         }
 
         public void AddBoxIcon_Tapped(object sender, EventArgs e)
@@ -388,12 +404,7 @@ namespace Fundoo.View
             this.noteColor = "MintCream";
         }
 
-       
 
-        //protected override void OnAppearing()
-        //{
-        //    this.BackgroundColor = Color.DeepPink;
-        //    base.OnAppearing();
-        //}
+
     }
 }

@@ -68,7 +68,7 @@ namespace Fundoo.View
             {
                 Text = "CreateNewLabel",
                 ImagePath = "addIcon.png",
-                TargetPage = typeof(LablePage)
+                TargetPage = typeof(CreateLablePage)
             });
 
             list.Add(new MasterMenuItems()
@@ -84,6 +84,14 @@ namespace Fundoo.View
                 ImagePath = "ArchiveIcon.png",
                 TargetPage = typeof(ArchivePage)
             });
+
+            list.Add(new MasterMenuItems()
+            {
+                Text = "Trash",
+                ImagePath = "TrashIcon.png",
+                TargetPage = typeof(Trash)
+            });
+
 
             return list;
         }

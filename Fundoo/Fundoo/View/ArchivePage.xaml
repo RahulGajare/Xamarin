@@ -7,11 +7,23 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="600">
-                    <Grid x:Name="gridLayout">
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="PINNED" FontAttributes="Bold"/>
+                    <Grid x:Name="gridLayoutPinned">
 
                     </Grid>
-                </ScrollView>
+
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="OTHERS" FontAttributes="Bold"/>
+                    <Grid x:Name="gridLayoutUnpinned">
+
+                    </Grid>
+
+                </StackLayout>
+            </StackLayout>
             </StackLayout>
     </ContentPage.Content>
 </ContentPage>

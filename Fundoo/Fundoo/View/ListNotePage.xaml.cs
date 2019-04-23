@@ -35,16 +35,19 @@ namespace Fundoo.View
 
             foreach (Note note in notesList)
             {
-                if (note.IsPinned)
+                if (note.IsTrash == false)
                 {
-                    pinnedList.Add(note);
+                    if (note.IsPinned)
+                    {
+                        pinnedList.Add(note);
+                    }
+                    else
+                    {
+                        UnpinnedList.Add(note);
+                    }
                 }
-                else
-                {
-                    UnpinnedList.Add(note);
-                }
+               
             }
-
 
 
             this.DynamicGridViewPinned(pinnedList);
@@ -247,7 +250,7 @@ namespace Fundoo.View
             Label key = (Label)item[2];
             ///  Label noteColor = (Label)item[3];
             var notekey = key.Text;
-            Navigation.PushAsync(new EditNote(notekey, false));
+            Navigation.PushAsync(new EditNote(notekey));
         }
 
         private void LogoutIcon_Clicked(object sender, EventArgs e)
