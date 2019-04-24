@@ -19,20 +19,20 @@
                     </Grid>
                 </ScrollView>
             </StackLayout>
-                
-                
+
+
             <StackLayout VerticalOptions="EndAndExpand">
-                    <Button x:Name="TakeaNote" 
+                <Button x:Name="TakeaNote" 
                         HeightRequest="35"
                     Text="Take a note ..."
                     VerticalOptions="End" 
                     HorizontalOptions="FillAndExpand"
-                    BackgroundColor="Violet" 
-                    Margin="10,0,0,20"
+                    BackgroundColor="Transparent" 
+                    Margin="10,0,175,20"
                     Clicked="TakeaNote_Clicked">
-                    </Button>
-                </StackLayout>
+                </Button>
             </StackLayout>
+        </StackLayout>
      
     </ContentPage.Content>
 </ContentPage>

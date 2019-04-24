@@ -252,11 +252,12 @@ namespace Fundoo.View
         {
 
             this.isTrash = true;
+            this.isArchive = false; //// Removing from archive,when deleted.
             this.DeleteButtonClicked = true;
             Message.ShowToastMessage("Note moved to Trash");
+            await Task.Delay(3000);
             await Navigation.PopAsync();
-
-
+         
 
             //if (this.isArchive)
             //{
@@ -335,8 +336,6 @@ namespace Fundoo.View
             this.isArchive = false;
             Message.ShowToastMessage("Notes UnArchived");
             await Navigation.PopAsync();
-
-
         }
 
         public void AddBoxIcon_Tapped(object sender, EventArgs e)
@@ -403,8 +402,5 @@ namespace Fundoo.View
             this.BackgroundColor = Color.MintCream;
             this.noteColor = "MintCream";
         }
-
-
-
     }
 }
