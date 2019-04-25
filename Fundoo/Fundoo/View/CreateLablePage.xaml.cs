@@ -84,7 +84,7 @@ namespace Fundoo.View
             }
 
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(350, GridUnitType.Absolute) });
-            gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
+            gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(60, GridUnitType.Absolute) });
             gridLayout.Margin = new Thickness(2, 2, 2, 2);
             gridLayout.RowSpacing = 5;
 
@@ -96,10 +96,10 @@ namespace Fundoo.View
 
             foreach (Model.LabelModel lable in lablesList)
             {
-                //// For after every 2nd Column adds a new row.
+               
                 if (column == 1)
                 {
-                    gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
+                    gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(60, GridUnitType.Absolute) });
                     column = 0;
                     row++;
                 }
@@ -108,6 +108,7 @@ namespace Fundoo.View
                 stackLayout.Orientation = StackOrientation.Horizontal;
                 stackLayout.VerticalOptions = LayoutOptions.StartAndExpand;
                 stackLayout.BackgroundColor = Color.AliceBlue;
+                stackLayout.HeightRequest = 60;
                 stackLayout.Margin = 20;
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
