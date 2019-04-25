@@ -25,7 +25,7 @@ namespace Fundoo.ModelView
                 return list;
             }
 
-            foreach (Lable lable in lablesList)
+            foreach (LabelModel lable in lablesList)
             {
                 list.Add(new MasterMenuItems()
                 {

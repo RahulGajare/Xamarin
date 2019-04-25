@@ -172,18 +172,18 @@ namespace Fundoo.DataHandler
         //      }).ToList();
         //}
 
-        public async Task SaveLable(Lable lable)
+        public async Task SaveLable(LabelModel lable)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").PostAsync<Lable>(new Lable() { LableName = lable.LableName, NoteKeysList = lable.NoteKeysList });
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").PostAsync<LabelModel>(new LabelModel() { LableName = lable.LableName, NoteKeysList = lable.NoteKeysList });
         }
 
-        public async Task<List<Lable>> GetAllLables()
+        public async Task<List<LabelModel>> GetAllLables()
         {
             try
             {
                     return (await this.firebaseClient
               .Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables")
-              .OnceAsync<Lable>()).Select(item => new Lable
+              .OnceAsync<LabelModel>()).Select(item => new LabelModel
               {
                   LableName = item.Object.LableName,
                   lableKey = item.Key
@@ -197,11 +197,11 @@ namespace Fundoo.DataHandler
         }
 
         
-        public async Task<bool> SaveLableByKey(Lable lable, string lablekey)
+        public async Task<bool> SaveLableByKey(LabelModel lable, string lablekey)
         {
             try
             {
-                await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(lablekey).PutAsync<Lable>(lable);
+                await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(lablekey).PutAsync<LabelModel>(lable);
                 return true;
             }
             catch (Exception ex)
@@ -212,9 +212,9 @@ namespace Fundoo.DataHandler
         }
 
 
-        public async Task<Lable> GetLableByKey(string lableKey)
+        public async Task<LabelModel> GetLableByKey(string lableKey)
         {
-            Lable lable = await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(lableKey).OnceSingleAsync<Lable>();
+            LabelModel lable = await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(lableKey).OnceSingleAsync<LabelModel>();
             return lable;
         }
 

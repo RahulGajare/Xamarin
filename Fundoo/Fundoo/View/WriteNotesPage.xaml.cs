@@ -127,7 +127,7 @@ namespace Fundoo.View
         {
            
             DataLogic dataLogic = new DataLogic();
-            Lable lable = await dataLogic.GetLableByKey(this.lableKey);
+            Model.LabelModel lable = await dataLogic.GetLableByKey(this.lableKey);
 
             lable.NoteKeysList.Add(this.noteKey);
 

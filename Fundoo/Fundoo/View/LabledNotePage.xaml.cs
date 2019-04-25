@@ -48,7 +48,7 @@ namespace Fundoo.View
         public async void Call()
         {
             List<Note> notesList = new List<Note>();
-            Lable lable = await this.datalogic.GetLableByKey(currentLableKey);
+            Model.LabelModel lable = await this.datalogic.GetLableByKey(currentLableKey);
 
             foreach (string notekey in lable.NoteKeysList)
             {
@@ -101,7 +101,7 @@ namespace Fundoo.View
 
 
 
-                var titleLable = new Label
+                var titleLable = new Xamarin.Forms.Label
                 {
                     Text = note.Title,
                     TextColor = Color.Black,
@@ -110,7 +110,7 @@ namespace Fundoo.View
                     HorizontalOptions = LayoutOptions.Start,
                 };
 
-                var infoLable = new Label
+                var infoLable = new Xamarin.Forms.Label
                 {
                     Margin = new Thickness(10, 10, 0, 0),
                     Text = note.Info,
@@ -120,13 +120,13 @@ namespace Fundoo.View
                     HorizontalOptions = LayoutOptions.Start,
                 };
 
-                var noteKey = new Label
+                var noteKey = new Xamarin.Forms.Label
                 {
                     Text = note.Key,
                     IsVisible = false
                 };
 
-                var noteColor = new Label
+                var noteColor = new Xamarin.Forms.Label
                 {
                     Text = note.Color,
                     IsVisible = false
@@ -160,7 +160,7 @@ namespace Fundoo.View
         {
             StackLayout gridNoteStack = (StackLayout)sender;
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;
-            Label key = (Label)item[2];
+            Xamarin.Forms.Label key = (Xamarin.Forms.Label)item[2];
             ///  Label noteColor = (Label)item[3];
             var notekey = key.Text;
             Navigation.PushAsync(new EditNote(notekey));
@@ -177,12 +177,12 @@ namespace Fundoo.View
             bool result = await this.datalogic.DeleteLableByKey(currentLableKey);
             if (result)
             {
-                Message.ShowToastMessage("Lable Deleted");
+                Message.ShowToastMessage("Label Deleted");
                 await Navigation.PopAsync();
             }
             else
             {
-                Message.ShowToastMessage("Lable Not Deleted");
+                Message.ShowToastMessage("Label Not Deleted");
             }
         }
     }
