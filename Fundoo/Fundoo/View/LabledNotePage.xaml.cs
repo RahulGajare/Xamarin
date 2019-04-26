@@ -53,8 +53,10 @@ namespace Fundoo.View
             foreach (string notekey in lable.NoteKeysList)
             {
               Note retrievedNote = await datalogic.GetNote(notekey);
+               
                 if (retrievedNote != null)
                 {
+                    retrievedNote.Key = notekey;
                     notesList.Add(retrievedNote);
                 }           
             }

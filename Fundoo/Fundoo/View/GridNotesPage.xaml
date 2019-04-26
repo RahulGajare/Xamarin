@@ -38,7 +38,7 @@
             </ScrollView>
 
 
-            <StackLayout VerticalOptions="EndAndExpand">
+            <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal">
                 <Button x:Name="TakeaNote" 
                         HeightRequest="35"
                     Text="Take a note ..."
@@ -48,6 +48,7 @@
                     Margin="10,0,175,20"
                     Clicked="TakeaNote_Clicked">
                 </Button>
+                <Image x:Name="cameraIcon" Source="CameraIcon"  />
             </StackLayout>
         </StackLayout> 
 

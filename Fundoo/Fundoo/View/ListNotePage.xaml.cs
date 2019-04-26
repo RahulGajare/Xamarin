@@ -30,6 +30,8 @@ namespace Fundoo.View
         {
             DataLogic dataLogic = new DataLogic();
             var notesList = await dataLogic.GetAllNotes();
+            var labelsList = await dataLogic.GetAllLables();
+
             List<Note> pinnedList = new List<Note>();
             List<Note> UnpinnedList = new List<Note>();
 
@@ -50,8 +52,8 @@ namespace Fundoo.View
             }
 
 
-            this.DynamicGridViewPinned(pinnedList);
-            this.DynamicGridViewUnpinned(UnpinnedList);
+            this.DynamicGridViewPinned(pinnedList, labelsList);
+            this.DynamicGridViewUnpinned(UnpinnedList, labelsList);
 
         }
 
@@ -61,7 +63,7 @@ namespace Fundoo.View
             base.OnAppearing();
         }
 
-        private void DynamicGridViewPinned(List<Model.Note> notesList)
+        private void DynamicGridViewPinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
             if (notesList.Count == 0)
             {
@@ -71,7 +73,7 @@ namespace Fundoo.View
             //gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             //gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             //gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
 
@@ -84,7 +86,7 @@ namespace Fundoo.View
                 //// For after every 3rd Column adds a new row.
                 if (column == 1)
                 {
-                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
                     column = 0;
                     row++;
                 }
@@ -136,6 +138,27 @@ namespace Fundoo.View
                 stackLayout1.Spacing = 2;
                 stackLayout1.Margin = 2;
 
+                foreach (LabelModel label in labelsList)
+                {
+                    List<string> noteKeyList = label.NoteKeysList;
+                    foreach (string id in noteKeyList)
+                    {
+                        if (note.Key.Equals(id))
+                        {
+                            var labelName = new Label
+                            {
+                                Text = label.LableName,
+                                TextColor = Color.Black
+                            };
+                            var labelFrame = new Frame();
+                            labelFrame.BorderColor = Color.Black;
+                            labelFrame.CornerRadius = 30;
+                            labelFrame.HeightRequest = 20;
+                            labelFrame.Content = labelName;
+                            stackLayout1.Children.Add(labelFrame);
+                        }
+                    }
+                }
 
 
                 var frame = new Frame();
@@ -152,7 +175,7 @@ namespace Fundoo.View
             }
         }
 
-        private void DynamicGridViewUnpinned(List<Model.Note> notesList)
+        private void DynamicGridViewUnpinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
             if (notesList.Count == 0)
             {
@@ -162,7 +185,7 @@ namespace Fundoo.View
             //gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             //gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             //gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
 
 
@@ -175,7 +198,7 @@ namespace Fundoo.View
                 //// For after every 3rd Column adds a new row.
                 if (column == 1)
                 {
-                    gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+                    gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
                     column = 0;
                     row++;
                 }
@@ -226,6 +249,28 @@ namespace Fundoo.View
                 stackLayout2.Children.Add(noteColor);
                 stackLayout2.Spacing = 2;
                 stackLayout2.Margin = 2;
+
+                foreach (LabelModel label in labelsList)
+                {
+                    List<string> noteKeyList = label.NoteKeysList;
+                    foreach (string id in noteKeyList)
+                    {
+                        if (note.Key.Equals(id))
+                        {
+                            var labelName = new Label
+                            {
+                                Text = label.LableName,
+                                TextColor = Color.Black
+                            };
+                            var labelFrame = new Frame();
+                            labelFrame.BorderColor = Color.Black;
+                            labelFrame.CornerRadius = 30;
+                            labelFrame.HeightRequest = 20;
+                            labelFrame.Content = labelName;
+                            stackLayout2.Children.Add(labelFrame);
+                        }
+                    }
+                }
 
 
 

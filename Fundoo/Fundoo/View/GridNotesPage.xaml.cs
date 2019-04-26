@@ -3,6 +3,8 @@ using Fundoo.DependencyServices;
 using Fundoo.Interfaces;
 using Fundoo.Model;
 using Fundoo.ModelView;
+using Plugin.Media;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,40 @@ namespace Fundoo.View
         public GridNotesPage()
         {
             this.InitializeComponent();
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += this.Camaera_Tapped;
+            cameraIcon.GestureRecognizers.Add(tapGestureRecognizer);
 
+        }
+
+        private async void Camaera_Tapped(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsTakePhotoSupported && CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await this.DisplayAlert("alert", "take photo not supported", "ok");
+                return;
+            }
+            else
+            {
+                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+                    Directory = "Images",
+                    Name = DateTime.Now + "_test.jpg"
+                });
+
+                if (file == null)
+                    return;
+                await this.DisplayAlert("file path", file.Path, "ok");
+
+               cameraIcon.Source = ImageSource.FromStream(() =>
+                {
+                    var steam = file.GetStream();
+                    return steam;
+                });
+            }
+            //await Navigation.PushModalAsync(new CameraPermition());
+            await PopupNavigation.Instance.PopAsync(true);
         }
 
         /// <summary>
@@ -97,7 +132,7 @@ namespace Fundoo.View
             gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
           ///  gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Star) });
+            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
 
@@ -110,7 +145,7 @@ namespace Fundoo.View
                 //// For after every 3rd Column adds a new row.
                 if (column == 2)
                 {
-                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Star) });
+                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
                     column = 0;
                     row++;
                 }
@@ -209,7 +244,7 @@ namespace Fundoo.View
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
          //   gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Star) });
+            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
 
 
@@ -222,7 +257,7 @@ namespace Fundoo.View
                 //// For after every 3rd Column adds a new row.
                 if (column == 2)
                 {
-                    gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Star) });
+                    gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
                     column = 0;
                     row++;
                 }

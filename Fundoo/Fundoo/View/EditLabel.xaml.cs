@@ -14,7 +14,7 @@ namespace Fundoo.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditLabel : ContentPage
 	{
-
+        DataLogic dataLogic = new DataLogic();
         Fundoo.Model.LabelModel retrivedLabel = null;
         string labelKey; 
 
@@ -74,7 +74,7 @@ namespace Fundoo.View
            bool result = await DisplayAlert("Attention","Are you sure you want to delete this Label","Yes", "Cancel");
             if (true)
             {
-                DataLogic dataLogic = new DataLogic();
+               
                 await dataLogic.DeleteLableByKey(this.labelKey);
 
                 Message.ShowToastMessage("Label Deleted");
@@ -95,13 +95,18 @@ namespace Fundoo.View
                 return;
             }
 
-            Model.LabelModel newLabel = new Model.LabelModel();
-            newLabel.LableName = UserLable.Text;
 
-            DataLogic dataLogic = new DataLogic();
-            await dataLogic.SaveLableByKey(newLabel,this.labelKey);
+            retrivedLabel.LableName = UserLable.Text;
+
+            await dataLogic.SaveLableByKey(retrivedLabel, this.labelKey);
             Message.ShowToastMessage("Label saved");
             await Navigation.PopAsync();
+        }
+
+        protected async override void OnAppearing()
+        {
+           this.retrivedLabel = await dataLogic.GetLableByKey(labelKey);
+            base.OnAppearing();
         }
     }
 }
