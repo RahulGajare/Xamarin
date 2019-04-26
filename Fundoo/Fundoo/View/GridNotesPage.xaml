@@ -13,8 +13,12 @@
    
         <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
+
+            <ScrollView>
                 <StackLayout>
+              
+                    <StackLayout>
+                    
                     <Label Text="PINNED" FontAttributes="Bold"/>
                     <Grid x:Name="gridLayoutPinned">
 
@@ -29,7 +33,9 @@
                     </Grid>
 
                 </StackLayout>
+               
             </StackLayout>
+            </ScrollView>
 
 
             <StackLayout VerticalOptions="EndAndExpand">

@@ -186,6 +186,7 @@ namespace Fundoo.DataHandler
               .OnceAsync<LabelModel>()).Select(item => new LabelModel
               {
                   LableName = item.Object.LableName,
+                  NoteKeysList = item.Object.NoteKeysList,
                   lableKey = item.Key
               }).ToList();
             }
