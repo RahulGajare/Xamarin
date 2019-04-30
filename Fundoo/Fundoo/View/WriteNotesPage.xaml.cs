@@ -34,7 +34,8 @@ namespace Fundoo.View
             this.lableKey = lableKey;
             this.isLabled = islabled;
             this.InitializeComponent();
-           
+            this.InitializeToolBarItems();
+
         }
 
         public void InitializeToolBarItems()

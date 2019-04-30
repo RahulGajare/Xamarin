@@ -18,6 +18,7 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GridNotesPage : ContentPage
     {
+        List<Note> notesList = new List<Note>();
         public GridNotesPage()
         {
             this.InitializeComponent();
@@ -47,11 +48,11 @@ namespace Fundoo.View
                     return;
                 await this.DisplayAlert("file path", file.Path, "ok");
 
-               cameraIcon.Source = ImageSource.FromStream(() =>
-                {
-                    var steam = file.GetStream();
-                    return steam;
-                });
+                cameraIcon.Source = ImageSource.FromStream(() =>
+                 {
+                     var steam = file.GetStream();
+                     return steam;
+                 });
             }
             //await Navigation.PushModalAsync(new CameraPermition());
             await PopupNavigation.Instance.PopAsync(true);
@@ -131,7 +132,7 @@ namespace Fundoo.View
 
             gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-          ///  gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            ///  gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
@@ -215,6 +216,8 @@ namespace Fundoo.View
                             labelFrame.HeightRequest = 20;
                             labelFrame.Content = labelName;
                             stackLayout1.Children.Add(labelFrame);
+
+                            FrameColorSetter.GetColor(note, labelFrame);
                         }
                     }
                 }
@@ -243,7 +246,7 @@ namespace Fundoo.View
 
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-         //   gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            //   gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
 
@@ -319,12 +322,19 @@ namespace Fundoo.View
                             var labelName = new Label
                             {
                                 Text = label.LableName,
-                                TextColor = Color.Black
+                                TextColor = Color.Black,
+
+                                VerticalOptions = LayoutOptions.Center
+
                             };
                             var labelFrame = new Frame();
                             labelFrame.BorderColor = Color.Black;
                             labelFrame.CornerRadius = 30;
                             labelFrame.HeightRequest = 20;
+                            labelFrame.WidthRequest = 5;
+
+                            FrameColorSetter.GetColor(note, labelFrame);
+
                             labelFrame.Content = labelName;
                             stackLayout2.Children.Add(labelFrame);
                         }
@@ -356,11 +366,24 @@ namespace Fundoo.View
             Navigation.PushAsync(new EditNote(notekey));
         }
 
-
         private void ListIcon_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ListNotePage());
             this.Navigation.RemovePage(this);
+        }
+
+        //private void NotesSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    var keyWord = NotesSearchBar.Text;
+        //    var suggestion = this.notesList.Where(c => c.Title.ToLower().Contains(keyWord.ToLower()));
+        //    foundList.ItemsSource = suggestion;
+        //}
+
+
+
+        private void SearchIcon_clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SearchPage());
         }
     }
 }

@@ -14,6 +14,13 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
 
+        <ToolbarItem x:Name="ReminderAddIcon"  Clicked="ReminderIcon_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="ReminderAddIcon.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+
+
         <ToolbarItem x:Name="UnPinnedIcon"  Clicked="UnPinnedIcon_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:DataType="FileImageSource" Android="UnPinnedIcon.png"></OnPlatform>

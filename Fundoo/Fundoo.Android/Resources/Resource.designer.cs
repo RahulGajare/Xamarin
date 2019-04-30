@@ -4405,26 +4405,26 @@ namespace Fundoo.Droid
 			// aapt resource value: 0x7f020056
 			public const int avd_hide_password = 2130837590;
 			
-			// aapt resource value: 0x7f02015e
-			public const int avd_hide_password_1 = 2130837854;
-			
-			// aapt resource value: 0x7f02015f
-			public const int avd_hide_password_2 = 2130837855;
-			
 			// aapt resource value: 0x7f020160
-			public const int avd_hide_password_3 = 2130837856;
+			public const int avd_hide_password_1 = 2130837856;
+			
+			// aapt resource value: 0x7f020161
+			public const int avd_hide_password_2 = 2130837857;
+			
+			// aapt resource value: 0x7f020162
+			public const int avd_hide_password_3 = 2130837858;
 			
 			// aapt resource value: 0x7f020057
 			public const int avd_show_password = 2130837591;
 			
-			// aapt resource value: 0x7f020161
-			public const int avd_show_password_1 = 2130837857;
-			
-			// aapt resource value: 0x7f020162
-			public const int avd_show_password_2 = 2130837858;
-			
 			// aapt resource value: 0x7f020163
-			public const int avd_show_password_3 = 2130837859;
+			public const int avd_show_password_1 = 2130837859;
+			
+			// aapt resource value: 0x7f020164
+			public const int avd_show_password_2 = 2130837860;
+			
+			// aapt resource value: 0x7f020165
+			public const int avd_show_password_3 = 2130837861;
 			
 			// aapt resource value: 0x7f020058
 			public const int BackbuttonIcon = 2130837592;
@@ -5167,11 +5167,11 @@ namespace Fundoo.Droid
 			// aapt resource value: 0x7f02014e
 			public const int notification_icon_background = 2130837838;
 			
-			// aapt resource value: 0x7f02015c
-			public const int notification_template_icon_bg = 2130837852;
+			// aapt resource value: 0x7f02015e
+			public const int notification_template_icon_bg = 2130837854;
 			
-			// aapt resource value: 0x7f02015d
-			public const int notification_template_icon_low_bg = 2130837853;
+			// aapt resource value: 0x7f02015f
+			public const int notification_template_icon_low_bg = 2130837855;
 			
 			// aapt resource value: 0x7f02014f
 			public const int notification_tile_bg = 2130837839;
@@ -5183,34 +5183,40 @@ namespace Fundoo.Droid
 			public const int PinnedIcon = 2130837841;
 			
 			// aapt resource value: 0x7f020152
-			public const int reminderIcon = 2130837842;
+			public const int ReminderAddIcon = 2130837842;
 			
 			// aapt resource value: 0x7f020153
-			public const int RestoreIcon = 2130837843;
+			public const int reminderIcon = 2130837843;
 			
 			// aapt resource value: 0x7f020154
-			public const int settingIcon = 2130837844;
+			public const int RestoreIcon = 2130837844;
 			
 			// aapt resource value: 0x7f020155
-			public const int TickIcon = 2130837845;
+			public const int SearchIcon = 2130837845;
 			
 			// aapt resource value: 0x7f020156
-			public const int tooltip_frame_dark = 2130837846;
+			public const int settingIcon = 2130837846;
 			
 			// aapt resource value: 0x7f020157
-			public const int tooltip_frame_light = 2130837847;
+			public const int TickIcon = 2130837847;
 			
 			// aapt resource value: 0x7f020158
-			public const int TrashIcon = 2130837848;
+			public const int tooltip_frame_dark = 2130837848;
 			
 			// aapt resource value: 0x7f020159
-			public const int UnarchiveIcon = 2130837849;
+			public const int tooltip_frame_light = 2130837849;
 			
 			// aapt resource value: 0x7f02015a
-			public const int UnPinnedIcon = 2130837850;
+			public const int TrashIcon = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int VerticalMenuIcon = 2130837851;
+			public const int UnarchiveIcon = 2130837851;
+			
+			// aapt resource value: 0x7f02015c
+			public const int UnPinnedIcon = 2130837852;
+			
+			// aapt resource value: 0x7f02015d
+			public const int VerticalMenuIcon = 2130837853;
 			
 			static Drawable()
 			{

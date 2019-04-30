@@ -98,6 +98,7 @@ namespace Fundoo.View
                 {
                     ToolbarItems.Clear();
                     ToolbarItems.Add(this.DeleteIcon);
+                    ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.PinnedIcon);
                     ToolbarItems.Add(this.UnarchiveIcon);
                     //ToolbarItems.Remove(this.UnPinnedIcon);
@@ -106,6 +107,7 @@ namespace Fundoo.View
                 {
                     ToolbarItems.Clear();
                     ToolbarItems.Add(this.DeleteIcon);
+                    ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.UnPinnedIcon);
                     ToolbarItems.Add(this.UnarchiveIcon);
                     // ToolbarItems.Remove(this.PinnedIcon);
@@ -118,6 +120,7 @@ namespace Fundoo.View
                 {
                     ToolbarItems.Clear();
                     ToolbarItems.Add(this.DeleteIcon);
+                    ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.PinnedIcon);
                     ToolbarItems.Add(this.ArchiveIcon);
                     //ToolbarItems.Remove(this.UnPinnedIcon);
@@ -126,6 +129,7 @@ namespace Fundoo.View
                 {
                     ToolbarItems.Clear();
                     ToolbarItems.Add(this.DeleteIcon);
+                    ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.UnPinnedIcon);
                     ToolbarItems.Add(this.ArchiveIcon);
                     // ToolbarItems.Remove(this.PinnedIcon);
@@ -138,6 +142,7 @@ namespace Fundoo.View
             this.isPinned = true;
             ToolbarItems.Clear();
             ToolbarItems.Add(this.DeleteIcon);
+            ToolbarItems.Add(this.ReminderAddIcon);
             ToolbarItems.Add(PinnedIcon);
             ToolbarItems.Add(this.ArchiveIcon);
             ToolbarItems.Remove(UnPinnedIcon);
@@ -151,6 +156,7 @@ namespace Fundoo.View
             this.isPinned = false;
             ToolbarItems.Clear();
             ToolbarItems.Add(this.DeleteIcon);
+            ToolbarItems.Add(this.ReminderAddIcon);
             ToolbarItems.Add(UnPinnedIcon);
             ToolbarItems.Add(this.ArchiveIcon);
             ToolbarItems.Remove(PinnedIcon);
@@ -402,5 +408,12 @@ namespace Fundoo.View
             this.BackgroundColor = Color.MintCream;
             this.noteColor = "MintCream";
         }
+
+        private void ReminderIcon_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new RemindersPage());
+        }
+
+     
     }
 }

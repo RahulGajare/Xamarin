@@ -156,6 +156,7 @@ namespace Fundoo.View
                             labelFrame.HeightRequest = 20;
                             labelFrame.Content = labelName;
                             stackLayout1.Children.Add(labelFrame);
+                            FrameColorSetter.GetColor(note, labelFrame);
                         }
                     }
                 }
@@ -268,6 +269,7 @@ namespace Fundoo.View
                             labelFrame.HeightRequest = 20;
                             labelFrame.Content = labelName;
                             stackLayout2.Children.Add(labelFrame);
+                            FrameColorSetter.GetColor(note, labelFrame);
                         }
                     }
                 }
