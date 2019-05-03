@@ -1,4 +1,12 @@
-﻿using Fundoo.DataHandler;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EditLabel.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using System;
 using System.Collections.Generic;
@@ -16,8 +24,11 @@ namespace Fundoo.View
 	{
         DataLogic dataLogic = new DataLogic();
         Fundoo.Model.LabelModel retrivedLabel = null;
-        string labelKey; 
+        string labelKey;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditLabel"/> class.
+        /// </summary>
         public EditLabel ()
 		{
 			InitializeComponent ();
@@ -44,31 +55,24 @@ namespace Fundoo.View
             this.GetTappedNotes(labelKey);
         }
 
+        /// <summary>
+        /// Gets the tapped notes.
+        /// </summary>
+        /// <param name="labelKey">The label key.</param>
         public async void GetTappedNotes(string labelKey)
         {
             DataLogic datalogic = new DataLogic();
-            //if (this.isArchive)
-            //{              
-            //    this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
-            //    Entrytitle.Text = retrivedArchiveNote.Title;
-            //    Editorinfo.Text = retrivedArchiveNote.Info;
-            //    this.noteColor = retrivedArchiveNote.Color;
-            //    this.isPinned = retrivedArchiveNote.IsPinned;
-            //    this.isTrash = retrivedArchiveNote.IsTrash;
-            //    this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
-            //    this.InitializeToolBarItems();
-
-
-            //}
-            //else
-            //{   
-            // }
-
+            
             this.retrivedLabel = await datalogic.GetLableByKey(labelKey);
             UserLable.Text = retrivedLabel.LableName;
      
         }
 
+        /// <summary>
+        /// Handles the Tapped event of the DeleteIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void  DeleteIcon_Tapped(object sender, EventArgs e)
         {
            bool result = await DisplayAlert("Attention","Are you sure you want to delete this Label","Yes", "Cancel");
@@ -84,8 +88,12 @@ namespace Fundoo.View
           
         }
 
-       
 
+        /// <summary>
+        /// Handles the Tapped event of the TickImage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs" /> instance containing the event data.</param>
         private async void TickImage_Tapped(object sender, EventArgs e)
         {
 
@@ -103,6 +111,12 @@ namespace Fundoo.View
             await Navigation.PopAsync();
         }
 
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected async override void OnAppearing()
         {
            this.retrivedLabel = await dataLogic.GetLableByKey(labelKey);

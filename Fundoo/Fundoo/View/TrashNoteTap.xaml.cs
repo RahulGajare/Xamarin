@@ -1,4 +1,12 @@
-﻿using Fundoo.DataHandler;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TrashNoteTap.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Model;
 using Fundoo.ModelView;

@@ -9,22 +9,6 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <!--<StackLayout >
-            <ListView x:Name="NotesList">
-                <ListView.ItemTemplate>
-                    <DataTemplate >
-
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" >
-
-                                <Label Text="{Binding Title}" TextColor="Black" Margin="15,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
-                                <Label Text="{Binding Info}" TextColor="Black" Margin="20,0,0,0" VerticalOptions="Center" FontAttributes="None"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-
         <StackLayout>
             <ScrollView>
             <StackLayout>

@@ -1,22 +1,33 @@
-﻿using Fundoo.DataHandler;
-using Fundoo.DependencyServices;
-using Fundoo.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CreateLablePage.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Fundoo.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Fundoo.DataHandler;
+    using Fundoo.DependencyServices;
+    using Fundoo.Model;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateLablePage : ContentPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateLablePage"/> class.
+        /// </summary>
         public CreateLablePage()
         {
             InitializeComponent();
+
             var tapCancelIcon = new TapGestureRecognizer();
             //// Binding events 
             tapCancelIcon.Tapped += this.CancelImage_Tapped;
@@ -28,29 +39,12 @@ namespace Fundoo.View
             tapTickIcon.Tapped += this.TickImage_Tapped;
             ///// Associating tap events to the image buttons    
             TickIcon.GestureRecognizers.Add(tapTickIcon);
-
         }
 
-        private void CancelImage_Tapped(object sender, EventArgs e)
-        {
-            UserLable.Text = string.Empty;
-        }
-
-        private void TickImage_Tapped(object sender, EventArgs e)
-        {
-
-            if (string.IsNullOrEmpty(UserLable.Text) || UserLable.Text.Trim().Equals(""))
-            {
-                Message.ShowToastMessage("Lable must Not be Empty");
-                return;
-            }
-
-            Model.LabelModel lable = new Model.LabelModel();
-            lable.LableName = UserLable.Text;
-            this.CallSaveLable(lable);
-
-        }
-
+        /// <summary>
+        /// Calls the save lable.
+        /// </summary>
+        /// <param name="lable">The lable.</param>
         public async void CallSaveLable(Model.LabelModel lable)
         {
             DataLogic dataLogic = new DataLogic();
@@ -60,22 +54,60 @@ namespace Fundoo.View
             this.OnAppearing();
         }
 
+        /// <summary>
+        /// Handles the Tapped event of the CancelImage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CancelImage_Tapped(object sender, EventArgs e)
+        {
+            UserLable.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Handles the Tapped event of the TickImage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TickImage_Tapped(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(UserLable.Text) || UserLable.Text.Trim().Equals(string.Empty))
+            {
+                Message.ShowToastMessage("Lable must Not be Empty");
+                return;
+            }
+
+            Model.LabelModel lable = new Model.LabelModel();
+            lable.LableName = UserLable.Text;
+            this.CallSaveLable(lable);
+        }
+
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnAppearing()
         {
-            GetAllLables();
-
+            this.GetAllLables();
             base.OnAppearing();
         }
 
+        /// <summary>
+        /// Gets all lables.
+        /// </summary>
         public async void GetAllLables()
         {
             DataLogic dataLogic = new DataLogic();
             var allLables = await dataLogic.GetAllLables();
-
-            //LableList.ItemsSource = allLables;
             this.DynamicGridView(allLables);
         }
 
+        /// <summary>
+        /// Dynamics the grid view.
+        /// </summary>
+        /// <param name="lablesList">The labels list.</param>
         private void DynamicGridView(List<Model.LabelModel> lablesList)
         {
             if (lablesList.Count == 0)
@@ -88,15 +120,12 @@ namespace Fundoo.View
             gridLayout.Margin = new Thickness(2, 2, 2, 2);
             gridLayout.RowSpacing = 5;
 
-
-
             int column = 0;
             int row = 0;
 
-
             foreach (Model.LabelModel lable in lablesList)
             {
-               
+                ////Inserting new row after each label as list.
                 if (column == 1)
                 {
                     gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(60, GridUnitType.Absolute) });
@@ -110,11 +139,11 @@ namespace Fundoo.View
                 stackLayout.BackgroundColor = Color.AliceBlue;
                 stackLayout.HeightRequest = 60;
                 stackLayout.Margin = 20;
+
+                ////Adding stackLayout to TapGesture.
                 var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
+                tapGestureRecognizer.Tapped += this.StackLayoutTap_Tapped;
                 stackLayout.GestureRecognizers.Add(tapGestureRecognizer);
-
-
 
                 var labelName = new Xamarin.Forms.Label
                 {
@@ -124,8 +153,6 @@ namespace Fundoo.View
                     VerticalOptions = LayoutOptions.Center,
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
                 };
-
-
 
                 var labelKey = new Xamarin.Forms.Label
                 {
@@ -151,55 +178,28 @@ namespace Fundoo.View
                     Source = "EditIcon",
                 };
 
-                //var tapImage1 = new TapGestureRecognizer();
-                ////// Binding events 
-                //tapImage1.Tapped += this.DeleteIcon_Tapped;
-                /////// Associating tap events to the image buttons    
-                //deleteButton.GestureRecognizers.Add(tapImage1);
-
-                //var tapImage2 = new TapGestureRecognizer();
-                ////// Binding events 
-                //tapImage2.Tapped += this.EditIcon_Tapped;
-                /////// Associating tap events to the image buttons    
-                //editButton.GestureRecognizers.Add(tapImage2);
-
                 stackLayout.Children.Add(labelIcon);
                 stackLayout.Children.Add(labelName);
                 stackLayout.Children.Add(editButton);
                 stackLayout.Children.Add(labelKey);
 
-
-
-                //var frame = new Frame();
-                ///// frame.BorderColor = Color.Black;
-                //frame.Content = stackLayout;
-
-
                 gridLayout.Children.Add(stackLayout, column, row);
                 column++;
-
             }
         }
 
-        private void stackLayoutTap_Tapped(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Tapped event of the stackLayoutTap control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void StackLayoutTap_Tapped(object sender, EventArgs e)
         {
             StackLayout gridNoteStack = (StackLayout)sender;
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;
             Xamarin.Forms.Label key = (Xamarin.Forms.Label)item[3];
-            ///  Label noteColor = (Label)item[3];
             var labelKey = key.Text;
             Navigation.PushAsync(new EditLabel(labelKey));
         }
-
-        //private void EditIcon_Tapped(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void DeleteIcon_Tapped(object sender, EventArgs e)
-        //{
-            
-        //    throw new NotImplementedException();
-        //}
     }
 }

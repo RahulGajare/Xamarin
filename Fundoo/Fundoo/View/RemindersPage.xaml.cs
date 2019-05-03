@@ -1,4 +1,12 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RemindersPage.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,7 +30,7 @@ namespace Fundoo.View
             Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
         }
 
-        bool OnTimerTick()
+        bool OnTimerTick() 
         {
             if (_switch.IsToggled && DateTime.Now >= _triggerTime)
             {

@@ -1,4 +1,11 @@
-﻿using Fundoo.DataHandler;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ListNotePage.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Interfaces;
 using Fundoo.Model;

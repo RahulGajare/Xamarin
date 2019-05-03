@@ -1,4 +1,11 @@
-﻿using Fundoo.DataHandler;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MasterPageLable.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+using Fundoo.DataHandler;
 using Fundoo.Model;
 using Fundoo.View;
 using System;

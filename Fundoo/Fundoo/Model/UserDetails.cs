@@ -42,6 +42,11 @@ namespace Fundoo.Model
         private string passWord;
 
         /// <summary>
+        /// The profile pic
+        /// </summary>
+        private string profilePic;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="UserDetails"/> class.
         /// </summary>
         public UserDetails()
@@ -104,5 +109,13 @@ namespace Fundoo.Model
         /// The pass word.
         /// </value>
         public string PassWord { get => this.passWord; set => this.passWord = value; }
+
+        /// <summary>
+        /// Gets or sets the profile pic.
+        /// </summary>
+        /// <value>
+        /// The profile pic.
+        /// </value>
+        public string ProfilePic { get => profilePic; set => profilePic = value; }
     }
 }

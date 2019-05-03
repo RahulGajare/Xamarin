@@ -1,4 +1,12 @@
-﻿using Fundoo.DataHandler;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EditNote.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Model;
 using Fundoo.ModelView;
@@ -17,18 +25,17 @@ namespace Fundoo.View
     public partial class EditNote : ContentPage
     {
         Note retrivedNote = null;
-        //  Archive retrivedArchiveNote = null;
-        bool DeleteButtonClicked = false;
 
+        bool DeleteButtonClicked = false;
         bool isArchive;
         bool isPinned;
         bool isTrash;
-
         string noteKey = string.Empty;
-
-
         private string noteColor = "white";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditNote"/> class.
+        /// </summary>
         public EditNote()
         {
 
@@ -58,26 +65,14 @@ namespace Fundoo.View
             VerticalMenuIcon.GestureRecognizers.Add(VerticalMenuIconTap);
         }
 
+        /// <summary>
+        /// Gets the tapped notes.
+        /// </summary>
+        /// <param name="noteKey">The note key.</param>
         public async void GetTappedNotes(string noteKey)
         {
             DataLogic datalogic = new DataLogic();
-            //if (this.isArchive)
-            //{              
-            //    this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
-            //    Entrytitle.Text = retrivedArchiveNote.Title;
-            //    Editorinfo.Text = retrivedArchiveNote.Info;
-            //    this.noteColor = retrivedArchiveNote.Color;
-            //    this.isPinned = retrivedArchiveNote.IsPinned;
-            //    this.isTrash = retrivedArchiveNote.IsTrash;
-            //    this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
-            //    this.InitializeToolBarItems();
-
-
-            //}
-            //else
-            //{   
-            // }
-
+           
             this.retrivedNote = await datalogic.GetNote(noteKey);
             Entrytitle.Text = retrivedNote.Title;
             Editorinfo.Text = retrivedNote.Info;
@@ -87,9 +82,11 @@ namespace Fundoo.View
             this.isArchive = retrivedNote.IsArchive;
             this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
             this.InitializeToolBarItems();
-
         }
 
+        /// <summary>
+        /// Initializes the tool bar items.
+        /// </summary>
         public void InitializeToolBarItems()
         {
             if (this.isArchive)
@@ -112,7 +109,6 @@ namespace Fundoo.View
                     ToolbarItems.Add(this.UnarchiveIcon);
                     // ToolbarItems.Remove(this.PinnedIcon);
                 }
-
             }
             else
             {
@@ -137,6 +133,11 @@ namespace Fundoo.View
             }
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the UnPinnedIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void UnPinnedIcon_Clicked(object sender, EventArgs e)
         {
             this.isPinned = true;
@@ -145,12 +146,14 @@ namespace Fundoo.View
             ToolbarItems.Add(this.ReminderAddIcon);
             ToolbarItems.Add(PinnedIcon);
             ToolbarItems.Add(this.ArchiveIcon);
-            ToolbarItems.Remove(UnPinnedIcon);
-
-
-            ///this.OnAppearing();
+            ToolbarItems.Remove(UnPinnedIcon);     
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the PinnedIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void PinnedIcon_Clicked(object sender, EventArgs e)
         {
             this.isPinned = false;
@@ -162,48 +165,30 @@ namespace Fundoo.View
             ToolbarItems.Remove(PinnedIcon);
         }
 
-        //protected override bool OnBackButtonPressed()
-        //{
-        //    if (string.IsNullOrEmpty(Entrytitle.Text) && string.IsNullOrEmpty(Editorinfo.Text))
-        //    {
-        //        Message.ShowToastMessage("Empty Notes Discared");
-        //        return false;
-        //    }
-
-        //    this.CallSaveEditedNote();
-
-        //    return base.OnBackButtonPressed();
-        //}
-
+        /// <summary>
+        /// When overridden, allows the application developer to customize behavior as the <see cref="T:Xamarin.Forms.Page" /> disappears.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnDisappearing()
         {
-
             if (string.IsNullOrEmpty(Entrytitle.Text) && string.IsNullOrEmpty(Editorinfo.Text))
             {
                 Message.ShowToastMessage("Empty Notes Discared");
             }
             else
             {
-                //if (isArchive)
-                //{
-                //    this.CallSaveEditedArchiveNote();
-                //}
-                //else
-                //{
-
-                //}
-
                 this.CallSaveEditedNote();
-
             }
-
         }
 
-
+        /// <summary>
+        /// Calls the save edited note.
+        /// </summary>
         private async void CallSaveEditedNote()
         {
-
-            Note editedNote = new Note()
+           Note editedNote = new Note()
             {
                 Title = Entrytitle.Text,
                 Info = Editorinfo.Text,
@@ -211,7 +196,6 @@ namespace Fundoo.View
                 IsPinned = this.isPinned,
                 IsTrash = this.isTrash,
                 IsArchive = this.isArchive
-
             };
 
             DataLogic datalogic = new DataLogic();
@@ -227,59 +211,25 @@ namespace Fundoo.View
             }
         }
 
-        //private async void CallSaveEditedArchiveNote()
-        //{
-
-        //    Archive editedArchiveNote = new Archive()
-        //    {
-        //        Title = Entrytitle.Text,
-        //        Info = Editorinfo.Text,
-        //        Color = this.noteColor,
-        //        IsPinned = this.isPinned,
-        //        IsTrash = this.isTrash
-
-        //    };
-
-        //    DataLogic datalogic = new DataLogic();
-        //    await datalogic.SaveEditedArchiveNote(this.noteKey, editedArchiveNote);
-        //    if (this.DeleteButtonClicked)
-        //    {
-        //        Message.ShowToastMessage("Moved To Trash");
-        //    }
-        //    else
-        //    {
-        //        Message.ShowToastMessage("Notes Saved");
-        //    }
-
-        //}
-
-
+        /// <summary>
+        /// Handles the Clicked event of the DeleteIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void DeleteIcon_Clicked(object sender, EventArgs e)
         {
-
             this.isTrash = true;
             this.isArchive = false; //// Removing from archive,when deleted.
             this.DeleteButtonClicked = true;
             Message.ShowToastMessage("Note moved to Trash");
             await Task.Delay(3000);
             await Navigation.PopAsync();
-         
-
-            //if (this.isArchive)
-            //{
-            //    this.CallDeleteArchivedNote(this.noteKey);
-            //    this.DeleteButtonClicked = true;
-            //}
-            //else
-            //{
-            //    this.CallDeleteNote(this.noteKey);
-
-            //    ////this because after deleting, page popsup and prevents running of code in OnDisappearing().
-            //    this.DeleteButtonClicked = true;
-            //}
         }
 
-
+        /// <summary>
+        /// Calls the delete note.
+        /// </summary>
+        /// <param name="noteKey">The note key.</param>
         public async void CallDeleteNote(string noteKey)
         {
 
@@ -293,17 +243,11 @@ namespace Fundoo.View
 
         }
 
-        //public async void CallDeleteArchivedNote(string noteKey)
-        //{
-        //    DataLogic datalogic = new DataLogic();
-        //    bool isDeleted = await datalogic.DeleteArchivedNote(noteKey);
-        //    if (isDeleted)
-        //    {
-        //        Message.ShowToastMessage("Deleted");
-        //        await Navigation.PopAsync();
-        //    }
-        //}
-
+        /// <summary>
+        /// Handles the Clicked event of the Archive control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Archive_Clicked(object sender, EventArgs e)
         {
             // this.CallAddArchiveNote();
@@ -313,29 +257,11 @@ namespace Fundoo.View
 
         }
 
-
-
-        //private async void CallAddArchiveNote()
-        //{
-        //    Archive archivedNote = new Archive()
-        //    {
-        //        Title = Entrytitle.Text,
-        //        Info = Editorinfo.Text,
-        //        Color = this.noteColor,
-        //        IsPinned = this.isPinned
-        //    };
-
-        //    DataLogic datalogic = new DataLogic();
-        //    bool isArchived = await datalogic.AddArchiveNote(archivedNote);
-        //    if (isArchived)
-        //    {
-        //        Message.ShowToastMessage("Moved to Archived");
-        //    }
-
-        //    await datalogic.DeleteNote(noteKey);
-        //    await Navigation.PopAsync();
-        //}
-
+        /// <summary>
+        /// Handles the Clicked event of the UnarchiveIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void UnarchiveIcon_Clicked(object sender, EventArgs e)
         {
 
@@ -344,6 +270,11 @@ namespace Fundoo.View
             await Navigation.PopAsync();
         }
 
+        /// <summary>
+        /// Handles the Tapped event of the AddBoxIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void AddBoxIcon_Tapped(object sender, EventArgs e)
         {
             //// handles the tap over google icon   
@@ -403,17 +334,23 @@ namespace Fundoo.View
             this.noteColor = "MintCream";
         }
 
+        /// <summary>
+        /// Changes the color.
+        /// </summary>
         public void changeColor()
         {
             this.BackgroundColor = Color.MintCream;
             this.noteColor = "MintCream";
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the ReminderIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ReminderIcon_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new RemindersPage());
         }
-
-     
     }
 }

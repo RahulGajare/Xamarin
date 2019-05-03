@@ -1,4 +1,12 @@
-﻿using Fundoo.DataHandler;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="WriteNotesPage.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Model;
 using System;
@@ -45,30 +53,7 @@ namespace Fundoo.View
         }
 
 
-        //protected override bool OnBackButtonPressed()
-        //{
-
-        //    try
-        //    {
-        //        DataLogic dataLogic = new DataLogic();
-
-        //        if (title.Text == null && info.Text == null)
-        //        {
-        //            Message.ShowToastMessage("Empty Notes Discared");
-        //            return false;
-        //        }
-
-        //        var response = dataLogic.CreateNotes(title.Text, info.Text);
-        //        Message.ShowToastMessage("Notes Saved");
-
-        //       return base.OnBackButtonPressed();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Message.ShowToastMessage("Notes Not saved, ERROR");
-        //        return true;
-        //    }
-        //}
+      
 
         protected override async void OnDisappearing()
         {

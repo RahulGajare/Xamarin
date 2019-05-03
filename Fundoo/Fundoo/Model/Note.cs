@@ -1,9 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Note.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 namespace Fundoo.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class Note
     {
         /// <summary>
@@ -77,8 +83,7 @@ namespace Fundoo.Model
         /// Gets or sets a value indicating whether this instance is pinned.
         /// </summary>
         /// <value>
-
-            ///   <c>true</c> if this instance is pinned; otherwise, <c>false</c>.
+        ///   <c>true</c> if this instance is pinned; otherwise, <c>false</c>.
         /// </value>
         public bool IsPinned { get => isPinned; set => isPinned = value; }
 

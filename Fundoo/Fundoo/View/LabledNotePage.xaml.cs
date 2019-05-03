@@ -1,4 +1,11 @@
-﻿using Fundoo.DataHandler;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LabledNotePage.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Model;
 using Fundoo.ModelView;
@@ -21,19 +28,25 @@ namespace Fundoo.View
 
         DataLogic datalogic = new DataLogic();
 
-
-		public LabledNotePage (string lableName, string lableKey)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LabledNotePage"/> class.
+        /// </summary>
+        /// <param name="lableName">Name of the lable.</param>
+        /// <param name="lableKey">The lable key.</param>
+        public LabledNotePage (string lableName, string lableKey)
 		{
             this.lableName = lableName;
             this.currentLableKey = lableKey;
 			InitializeComponent ();
 		}
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LabledNotePage"/> class.
+        /// </summary>
         public LabledNotePage()
         {
 
         }
-
 
         private void TakeaNote_Clicked(object sender, EventArgs e)
         {

@@ -1,4 +1,11 @@
-﻿using Fundoo.DataHandler;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GridNotesPage.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Interfaces;
 using Fundoo.Model;
@@ -115,14 +122,17 @@ namespace Fundoo.View
             this.DynamicGridViewUnpinned(UnpinnedList, labelsList);
         }
 
-
         protected override void OnAppearing()
         {
             GetNotes();
             base.OnAppearing();
         }
 
-
+        /// <summary>
+        /// Dynamics the grid view pinned.
+        /// </summary>
+        /// <param name="notesList">The notes list.</param>
+        /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewPinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
             if (notesList.Count == 0)
@@ -153,11 +163,10 @@ namespace Fundoo.View
 
                 var stackLayout1 = new StackLayout();
 
+                ////Adding Tap Gesture To StackLayout1.
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
                 stackLayout1.GestureRecognizers.Add(tapGestureRecognizer);
-
-
 
                 var titleLable = new Label
                 {
@@ -217,11 +226,11 @@ namespace Fundoo.View
                             labelFrame.Content = labelName;
                             stackLayout1.Children.Add(labelFrame);
 
+                            ////this Methods Set the BackGround Color Of frame same as notes Color.
                             FrameColorSetter.GetColor(note, labelFrame);
                         }
                     }
                 }
-
 
                 var frame = new Frame();
                 /// frame.BorderColor = Color.Black;
@@ -229,24 +238,24 @@ namespace Fundoo.View
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
-
-
                 gridLayoutPinned.Children.Add(frame, column, row);
                 column++;
-
             }
         }
 
+        /// <summary>
+        /// Dynamics the grid view unpinned.
+        /// </summary>
+        /// <param name="notesList">The notes list.</param>
+        /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewUnpinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
             if (notesList.Count == 0)
             {
                 return;
             }
-
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            //   gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
 
@@ -267,6 +276,7 @@ namespace Fundoo.View
 
                 var stackLayout2 = new StackLayout();
 
+                //// Adding TapGesture To stackLayout2.
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
                 stackLayout2.GestureRecognizers.Add(tapGestureRecognizer);
@@ -304,7 +314,7 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
-                ////stackLayout2.Children.Add(boxview);
+              
                 stackLayout2.Children.Add(titleLable);
                 stackLayout2.Children.Add(infoLable);
                 stackLayout2.Children.Add(noteKey);
@@ -333,6 +343,7 @@ namespace Fundoo.View
                             labelFrame.HeightRequest = 20;
                             labelFrame.WidthRequest = 5;
 
+                            ////this Methods Set the BackGround Color Of frame same as notes Color.
                             FrameColorSetter.GetColor(note, labelFrame);
 
                             labelFrame.Content = labelName;
@@ -356,6 +367,11 @@ namespace Fundoo.View
             }
         }
 
+        /// <summary>
+        /// Handles the Tapped event of the stackLayoutTap control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void stackLayoutTap_Tapped(object sender, EventArgs e)
         {
             StackLayout gridNoteStack = (StackLayout)sender;
@@ -366,21 +382,22 @@ namespace Fundoo.View
             Navigation.PushAsync(new EditNote(notekey));
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the ListIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ListIcon_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ListNotePage());
             this.Navigation.RemovePage(this);
         }
 
-        //private void NotesSearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    var keyWord = NotesSearchBar.Text;
-        //    var suggestion = this.notesList.Where(c => c.Title.ToLower().Contains(keyWord.ToLower()));
-        //    foundList.ItemsSource = suggestion;
-        //}
-
-
-
+        /// <summary>
+        /// Handles the clicked event of the SearchIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SearchIcon_clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SearchPage());

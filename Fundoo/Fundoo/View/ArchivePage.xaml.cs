@@ -1,39 +1,60 @@
-﻿using Fundoo.DataHandler;
-using Fundoo.DependencyServices;
-using Fundoo.Model;
-using Fundoo.ModelView;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ArchivePage.xaml.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator name="Rahul Gajare"/>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ArchivePage : ContentPage
-	{
-		public ArchivePage()
-		{
-			InitializeComponent ();
-		}
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Fundoo.DataHandler;
+    using Fundoo.DependencyServices;
+    using Fundoo.Model;
+    using Fundoo.ModelView;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
 
+    /// <summary>
+    /// ArchivePage Class
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.ContentPage" />
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ArchivePage : ContentPage
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArchivePage"/> class.
+        /// </summary>
+        public ArchivePage()
+        {
+            this.InitializeComponent();
+        }
+
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnAppearing()
         {
             this.GetNotes();
             base.OnAppearing();
         }
 
+        /// <summary>
+        /// Gets the notes.
+        /// </summary>
         public async void GetNotes()
         {
             DataLogic dataLogic = new DataLogic();
             var notesList = await dataLogic.GetAllNotes();
             List<Note> pinnedList = new List<Note>();
-            List<Note> UnpinnedList = new List<Note>();
-
+            List<Note> unpinnedList = new List<Note>();
 
             foreach (Note note in notesList)
             {
@@ -45,16 +66,19 @@ namespace Fundoo.View
                     }
                     else
                     {
-                        UnpinnedList.Add(note);
+                        unpinnedList.Add(note);
                     }
                 }
-
             }
 
             this.DynamicGridViewPinned(pinnedList);
-            this.DynamicGridViewUnpinned(UnpinnedList);
+            this.DynamicGridViewUnpinned(unpinnedList);
         }
 
+        /// <summary>
+        /// Dynamics the grid view pinned.
+        /// </summary>
+        /// <param name="notesList">The notes list.</param>
         private void DynamicGridViewPinned(List<Model.Note> notesList)
         {
             if (notesList.Count == 0)
@@ -68,11 +92,8 @@ namespace Fundoo.View
             gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
-
             int column = 0;
             int row = 0;
-
-
             foreach (Note note in notesList)
             {
                 //// For after every 3rd Column adds a new row.
@@ -85,12 +106,11 @@ namespace Fundoo.View
 
                 var stackLayout1 = new StackLayout();
 
+                ////Adding TapGesture to StackLayout
                 var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
+                tapGestureRecognizer.Tapped += this.StackLayoutTap_Tapped;
                 stackLayout1.GestureRecognizers.Add(tapGestureRecognizer);
-
-
-
+                ////Labee for Title
                 var titleLable = new Label
                 {
                     Text = note.Title,
@@ -100,6 +120,7 @@ namespace Fundoo.View
                     HorizontalOptions = LayoutOptions.Start,
                 };
 
+                ////Label for Notes Descreption
                 var infoLable = new Label
                 {
                     Margin = new Thickness(10, 10, 0, 0),
@@ -122,7 +143,6 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
-                ////stackLayout2.Children.Add(boxview);
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
@@ -130,22 +150,21 @@ namespace Fundoo.View
                 stackLayout1.Spacing = 2;
                 stackLayout1.Margin = 2;
 
-
-
                 var frame = new Frame();
-                /// frame.BorderColor = Color.Black;
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
 
-
                 gridLayoutPinned.Children.Add(frame, column, row);
                 column++;
-
             }
         }
 
+        /// <summary>
+        /// Dynamics the grid view unpinned.
+        /// </summary>
+        /// <param name="notesList">The notes list.</param>
         private void DynamicGridViewUnpinned(List<Model.Note> notesList)
         {
             if (notesList.Count == 0)
@@ -159,11 +178,8 @@ namespace Fundoo.View
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
 
-
             int column = 0;
             int row = 0;
-
-
             foreach (Note note in notesList)
             {
                 //// For after every 3rd Column adds a new row.
@@ -176,12 +192,12 @@ namespace Fundoo.View
 
                 var stackLayout2 = new StackLayout();
 
+                ////Adding TapGesture to StackLayout
                 var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
+                tapGestureRecognizer.Tapped += this.StackLayoutTap_Tapped;
                 stackLayout2.GestureRecognizers.Add(tapGestureRecognizer);
 
-
-
+                ////Labee for Title
                 var titleLable = new Label
                 {
                     Text = note.Title,
@@ -191,6 +207,7 @@ namespace Fundoo.View
                     HorizontalOptions = LayoutOptions.Start,
                 };
 
+                ////Label for Notes Description
                 var infoLable = new Label
                 {
                     Margin = new Thickness(10, 10, 0, 0),
@@ -221,24 +238,24 @@ namespace Fundoo.View
                 stackLayout2.Spacing = 2;
                 stackLayout2.Margin = 2;
 
-
-
                 var frame = new Frame();
-                /// frame.BorderColor = Color.Black;
+
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout2;
 
-
                 gridLayoutUnpinned.Children.Add(frame, column, row);
                 column++;
-
             }
         }
 
-
-        private void stackLayoutTap_Tapped(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Tapped event of the stackLayoutTap control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void StackLayoutTap_Tapped(object sender, EventArgs e)
         {
             StackLayout gridNoteStack = (StackLayout)sender;
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;
@@ -247,4 +264,4 @@ namespace Fundoo.View
             Navigation.PushAsync(new EditNote(notekey));
         }
     }
-}  
+}

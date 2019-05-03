@@ -12,7 +12,9 @@ namespace Fundoo
     using Fundoo.View;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
-
+    using Microsoft.AppCenter;
+    using Microsoft.AppCenter.Push;
+   
     /// <summary>
     /// partial App Class
     /// </summary>
@@ -48,6 +50,8 @@ namespace Fundoo
         protected override void OnStart()
         {
             // Handle when your app starts
+            AppCenter.Start("4451c333-7a45-472f-8c06-7336aeae7a74", typeof(Push));
+            AppCenter.Start("4451c333-7a45-472f-8c06-7336aeae7a74", typeof(Push));
         }
 
         /// <summary>

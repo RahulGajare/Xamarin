@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fundoo.View.Setting">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Start" HorizontalOptions="Start">
-            <Button x:Name="changePassword" Text="changePasswword" BackgroundColor="Transparent">
-                
-            </Button>
+        <StackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="10">
+            <Button x:Name="changePassword" Text="change Passwword" WidthRequest="100" HeightRequest="100" BackgroundColor="Transparent" FontAttributes="20"/>
+            <Button x:Name="ProfilePic" Text="Change ProfilePic"  WidthRequest="100" HeightRequest="100" BackgroundColor="Transparent" FontAttributes="20"/>
 
         </StackLayout>
     </ContentPage.Content>

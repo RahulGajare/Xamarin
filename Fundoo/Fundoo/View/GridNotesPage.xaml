@@ -9,6 +9,7 @@
         <ToolbarItem Icon="ListIcon.png" Text="list" Clicked="ListIcon_Clicked"/>
         <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="LogoutIcon_Clicked"/>
         <ToolbarItem Icon="SearchIcon.png" Text="SearchIcon" Clicked="SearchIcon_clicked"/>
+       
     </ContentPage.ToolbarItems>
 
 
