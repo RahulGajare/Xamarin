@@ -57,7 +57,7 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void CancelImage_Tapped(object sender, EventArgs e)
         {
-            UserLable.Text = string.Empty;
+            UserLabel.Text = string.Empty;
         }
 
         /// <summary>
@@ -67,14 +67,15 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TickImage_Tapped(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(UserLable.Text) || UserLable.Text.Trim().Equals(string.Empty))
+            ////Checking for empty label
+            if (string.IsNullOrEmpty(UserLabel.Text) || UserLabel.Text.Trim().Equals(string.Empty))
             {
-                Message.ShowToastMessage("Lable must Not be Empty");
+                Message.ShowToastMessage("Label must Not be Empty");
                 return;
             }
 
             Model.LabelModel lable = new Model.LabelModel();
-            lable.LableName = UserLable.Text;
+            lable.LableName = UserLabel.Text;
             this.CallSaveLable(lable);
         }
 

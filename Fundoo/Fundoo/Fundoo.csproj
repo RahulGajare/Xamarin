@@ -37,6 +37,10 @@
       <ExcludeFromSourceAnalysis>False</ExcludeFromSourceAnalysis>
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
+    <Compile Update="View\ForgotPassword.xaml.cs">
+      <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Update="View\Greeting.xaml.cs">
       <DependentUpon>Greeting.xaml</DependentUpon>
     </Compile>
@@ -50,6 +54,9 @@
     </Compile>
     <Compile Update="View\CreateLablePage.xaml.cs">
       <DependentUpon>CreateLablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\LabeledNotePage.xaml.cs">
+      <DependentUpon>LabeledNotePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -75,7 +82,7 @@
     <EmbeddedResource Update="View\GridNotesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\LabledNotePage.xaml">
+    <EmbeddedResource Update="View\LabeledNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\CreateLablePage.xaml">

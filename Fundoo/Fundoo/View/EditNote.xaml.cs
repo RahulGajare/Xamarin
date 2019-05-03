@@ -5,25 +5,25 @@
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
-
-using Fundoo.DataHandler;
-using Fundoo.DependencyServices;
-using Fundoo.Model;
-using Fundoo.ModelView;
-using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace Fundoo.View
 {
+    using Fundoo.DataHandler;
+    using Fundoo.DependencyServices;
+    using Fundoo.Model;
+    using Fundoo.ModelView;
+    using Rg.Plugins.Popup.Services;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditNote : ContentPage
     {
+
         Note retrivedNote = null;
 
         bool DeleteButtonClicked = false;
@@ -38,19 +38,18 @@ namespace Fundoo.View
         /// </summary>
         public EditNote()
         {
-
         }
+
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="EditNote"/> class.
         /// </summary>
-        /// <param name="noteKey"></param>
-        /// <param name="isArchive"></param>
+        /// <param name="noteKey">The note key.</param>
         public EditNote(string noteKey)
         {
             ToolbarItems.Clear();
             this.noteKey = noteKey;
-            GetTappedNotes(noteKey);
-            InitializeComponent();
+            this.GetTappedNotes(noteKey);
+            this.InitializeComponent();
 
             var AddBoxIconTap = new TapGestureRecognizer();
             //// Binding events 
@@ -66,6 +65,15 @@ namespace Fundoo.View
         }
 
         /// <summary>
+        /// Changes the color.
+        /// </summary>
+        public void changeColor()
+        {
+            this.BackgroundColor = Color.MintCream;
+            this.noteColor = "MintCream";
+        }
+
+        /// <summary>
         /// Gets the tapped notes.
         /// </summary>
         /// <param name="noteKey">The note key.</param>
@@ -74,12 +82,12 @@ namespace Fundoo.View
             DataLogic datalogic = new DataLogic();
            
             this.retrivedNote = await datalogic.GetNote(noteKey);
-            Entrytitle.Text = retrivedNote.Title;
-            Editorinfo.Text = retrivedNote.Info;
-            this.noteColor = retrivedNote.Color;
-            this.isPinned = retrivedNote.IsPinned;
-            this.isTrash = retrivedNote.IsTrash;
-            this.isArchive = retrivedNote.IsArchive;
+            Entrytitle.Text = this.retrivedNote.Title;
+            Editorinfo.Text = this.retrivedNote.Info;
+            this.noteColor = this.retrivedNote.Color;
+            this.isPinned = this.retrivedNote.IsPinned;
+            this.isTrash = this.retrivedNote.IsTrash;
+            this.isArchive = this.retrivedNote.IsArchive;
             this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
             this.InitializeToolBarItems();
         }
@@ -92,7 +100,7 @@ namespace Fundoo.View
             ////Adds ToolBar Items Based On Condition.
             if (this.isArchive)
             {
-                if (isPinned)
+                if (this.isPinned)
                 {
                     ToolbarItems.Clear();
                     ToolbarItems.Add(this.DeleteIcon);
@@ -111,7 +119,7 @@ namespace Fundoo.View
             }
             else
             {
-                if (isPinned)
+                if (this.isPinned)
                 {
                     ToolbarItems.Clear();
                     ToolbarItems.Add(this.DeleteIcon);
@@ -143,9 +151,9 @@ namespace Fundoo.View
             ToolbarItems.Clear();
             ToolbarItems.Add(this.DeleteIcon);
             ToolbarItems.Add(this.ReminderAddIcon);
-            ToolbarItems.Add(PinnedIcon);
+            ToolbarItems.Add(this.PinnedIcon);
             ToolbarItems.Add(this.ArchiveIcon);
-            ToolbarItems.Remove(UnPinnedIcon);     
+            ToolbarItems.Remove(this.UnPinnedIcon);     
         }
 
         /// <summary>
@@ -161,7 +169,7 @@ namespace Fundoo.View
             ToolbarItems.Add(this.ReminderAddIcon);
             ToolbarItems.Add(UnPinnedIcon);
             ToolbarItems.Add(this.ArchiveIcon);
-            ToolbarItems.Remove(PinnedIcon);
+            ToolbarItems.Remove(this.PinnedIcon);
         }
 
         /// <summary>
@@ -204,7 +212,7 @@ namespace Fundoo.View
             {
                 Message.ShowToastMessage("Moved To Trash");
             }
-            else if (isArchive)
+            else if (this.isArchive)
             {
                 Message.ShowToastMessage("Notes moved to Archived");
             }
@@ -239,7 +247,6 @@ namespace Fundoo.View
                 Message.ShowToastMessage("Deleted");
                 await Navigation.PopAsync();
             }
-
         }
 
         /// <summary>
@@ -253,7 +260,6 @@ namespace Fundoo.View
             this.isArchive = true;
             Message.ShowToastMessage("Notes moved to Archived");
             await Navigation.PopAsync();
-
         }
 
         /// <summary>
@@ -279,6 +285,11 @@ namespace Fundoo.View
             this.DisplayAlert("Alert", "AddBoxIcon", "OK");
         }
 
+        /// <summary>
+        /// Handles the Tapped event of the VerticalMenuIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void VerticalMenuIcon_Tapped(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new NotesSlideUpMenu());
@@ -327,15 +338,6 @@ namespace Fundoo.View
         }
 
         private void MintCream_Clicked(object sender, EventArgs e)
-        {
-            this.BackgroundColor = Color.MintCream;
-            this.noteColor = "MintCream";
-        }
-
-        /// <summary>
-        /// Changes the color.
-        /// </summary>
-        public void changeColor()
         {
             this.BackgroundColor = Color.MintCream;
             this.noteColor = "MintCream";

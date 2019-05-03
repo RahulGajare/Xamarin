@@ -22,7 +22,7 @@ namespace Fundoo.View
     using Xamarin.Forms.Xaml;
 
     /// <summary>
-    /// Fundoo Notes Class
+    /// FundooNotes Class
     /// </summary>
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -32,15 +32,11 @@ namespace Fundoo.View
         /// Initializes a new instance of the <see cref="FundooNotes"/> class.
         /// </summary>
         public FundooNotes()
-        {
-            DataLogic dataLogic = new DataLogic();
+        {         
             this.InitializeComponent();
-
-            var imgsource = new UriImageSource { Uri = new Uri("https://firebasestorage.googleapis.com/v0/b/fundoousers-a9d30.appspot.com/o/XamarinMonkeys%2Fimage.jpg?alt=media&token=5b137659-5f00-4db5-a200-e56b7eca7e9a") };
-            imgsource.CachingEnabled = false;
-            ProfilePic.Source = imgsource;
-            ProfilePic.HeightRequest = 100;
-            ProfilePic.WidthRequest = 100;
+            this.LoadProfilePic();
+          
+          
 
             var userImage = new TapGestureRecognizer();
             //// Binding events 
@@ -52,6 +48,17 @@ namespace Fundoo.View
             this.Detail = new NavigationPage((Page)Activator.CreateInstance(gridNotesPage));
         }
 
+        public async void LoadProfilePic()
+        {
+            DataLogic dataLogic = new DataLogic();
+            ////Gets The Image Url from FireBase Storage.
+            string url = await dataLogic.GetPicUrl();
+            var imgsource = new UriImageSource { Uri = new Uri(url)};
+            imgsource.CachingEnabled = false;
+            ProfilePic.Source = imgsource;
+            ProfilePic.HeightRequest = 100;
+            ProfilePic.WidthRequest = 100;
+        }
         /// <summary>
         /// Invokes when Current Page appears.
         /// </summary>
@@ -71,6 +78,10 @@ namespace Fundoo.View
             Navigation.PushAsync(new ProfilePicEdit());
         }
 
+        /// <summary>
+        /// Gets the List Of Menu Items.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IList<MasterMenuItems>> GetMenuList()
         {
             IList<MasterMenuItems> list = new List<MasterMenuItems>();
@@ -80,7 +91,6 @@ namespace Fundoo.View
                 Text = "Notes",
                 ImagePath = "notesIcon.png",
                 TargetPage = typeof(GridNotesPage)
-
             });
 
             list.Add(new MasterMenuItems()
@@ -134,7 +144,7 @@ namespace Fundoo.View
             var selectedMenuItem = (MasterMenuItems)e.SelectedItem;
             Type selectedPage = selectedMenuItem.TargetPage;
 
-            if (selectedMenuItem.TargetPage == typeof(LabledNotePage))
+            if (selectedMenuItem.TargetPage == typeof(LabeledNotePage))
             {
                 Detail = new NavigationPage((Page)Activator.CreateInstance(selectedPage, selectedMenuItem.Text, selectedMenuItem.lableKey));
             }

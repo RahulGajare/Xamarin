@@ -5,51 +5,59 @@
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Fundoo.DataHandler;
-using Fundoo.DependencyServices;
-using Fundoo.Model;
-using Fundoo.ModelView;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LabledNotePage : ContentPage
-	{
-        string lableName;
-        string currentLableKey;
+    using Fundoo.DataHandler;
+    using Fundoo.DependencyServices;
+    using Fundoo.Model;
+    using Fundoo.ModelView;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
 
-        DataLogic datalogic = new DataLogic();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LabeledNotePage : ContentPage
+    {
+        /// <summary>
+        /// The lable name
+        /// </summary>
+        public string labelName;
+
+        /// <summary>
+        /// The current label key
+        /// </summary>
+        public string currentLableKey;
+
+        /// <summary>
+        /// The datalogic
+        /// </summary>
+       public DataLogic datalogic = new DataLogic();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LabledNotePage"/> class.
         /// </summary>
-        /// <param name="lableName">Name of the lable.</param>
-        /// <param name="lableKey">The lable key.</param>
-        public LabledNotePage (string lableName, string lableKey)
-		{
-            this.lableName = lableName;
-            this.currentLableKey = lableKey;
-			InitializeComponent ();
-		}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LabledNotePage"/> class.
-        /// </summary>
-        public LabledNotePage()
+        /// <param name="labelName">Name of the label.</param>
+        /// <param name="labelKey">The lable key.</param>
+        public LabeledNotePage(string lableName, string lableKey)
         {
-
+            this.labelName = lableName;
+            this.currentLableKey = lableKey;
+            InitializeComponent();
         }
 
         /// <summary>
-        /// Handles the Clicked event of the TakeaNote control.
+        /// Initializes a new instance of the <see cref="LabledNotePage"/> class.
+        /// </summary>
+        public LabeledNotePage()
+        {
+        }
+
+        /// <summary>
+        /// Handles the Clicked event of the Take a Note control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -58,6 +66,12 @@ namespace Fundoo.View
             Navigation.PushAsync(new WriteNotesPage(true, currentLableKey));
         }
 
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnAppearing()
         {
             this.Call();
@@ -76,13 +90,13 @@ namespace Fundoo.View
             //// Retrieving notes Under this Current Label.
             foreach (string notekey in lable.NoteKeysList)
             {
-              Note retrievedNote = await datalogic.GetNote(notekey);
-               
+                Note retrievedNote = await datalogic.GetNote(notekey);
+
                 if (retrievedNote != null)
                 {
                     retrievedNote.Key = notekey;
                     notesList.Add(retrievedNote);
-                }           
+                }
             }
 
             this.DynamicGridView(notesList);
@@ -102,17 +116,17 @@ namespace Fundoo.View
             }
             ////initializing with 2 columns and 1 row.
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });      
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayout.Margin = new Thickness(2, 2, 2, 2);
 
             int column = 0;
             int row = 0;
 
-            foreach(Note note in notesList)
+            foreach (Note note in notesList)
             {
                 //// For after every 3rd Column adds a new row.
-                if (column ==2)
+                if (column == 2)
                 {
                     gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
                     column = 0;
@@ -155,7 +169,7 @@ namespace Fundoo.View
                     Text = note.Color,
                     IsVisible = false
                 };
-              
+
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
@@ -163,14 +177,14 @@ namespace Fundoo.View
                 stackLayout1.Spacing = 2;
                 stackLayout1.Margin = 2;
 
-                var frame = new Frame();                
+                var frame = new Frame();
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
                 gridLayout.Children.Add(frame, column, row);
                 column++;
-            }         
+            }
         }
 
         /// <summary>
@@ -194,16 +208,16 @@ namespace Fundoo.View
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void DeleteLable_Clicked(object sender, EventArgs e)
-        {             
+        {
             this.CallDeleteLable(this.currentLableKey);
         }
 
         /// <summary>
         /// Calls the delete lable.
         /// </summary>
-        /// <param name="lableKey">The lable key.</param>
-        public async void CallDeleteLable(string lableKey)
-        {    
+        /// <param name="labelKey">The label key.</param>
+        public async void CallDeleteLable(string labelKey)
+        {
             ////Deletes The Current Label.(Notes are Note Deleted)
             bool result = await this.datalogic.DeleteLableByKey(currentLableKey);
             if (result)

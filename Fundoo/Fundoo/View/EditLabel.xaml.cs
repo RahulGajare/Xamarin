@@ -19,9 +19,9 @@ using Xamarin.Forms.Xaml;
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EditLabel : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class EditLabel : ContentPage
+    {
         DataLogic dataLogic = new DataLogic();
         Fundoo.Model.LabelModel retrivedLabel = null;
         string labelKey;
@@ -29,10 +29,10 @@ namespace Fundoo.View
         /// <summary>
         /// Initializes a new instance of the <see cref="EditLabel"/> class.
         /// </summary>
-        public EditLabel ()
-		{
-			InitializeComponent ();
-		}
+        public EditLabel()
+        {
+            InitializeComponent();
+        }
 
         public EditLabel(string labelKey)
         {
@@ -50,7 +50,7 @@ namespace Fundoo.View
             tapTickIcon.Tapped += this.TickImage_Tapped;
             ///// Associating tap events to the image buttons    
             TickIcon.GestureRecognizers.Add(tapTickIcon);
-    
+
             this.GetTappedNotes(labelKey);
         }
 
@@ -61,10 +61,10 @@ namespace Fundoo.View
         public async void GetTappedNotes(string labelKey)
         {
             DataLogic datalogic = new DataLogic();
-            
+
             this.retrivedLabel = await datalogic.GetLableByKey(labelKey);
             UserLable.Text = retrivedLabel.LableName;
-     
+
         }
 
         /// <summary>
@@ -72,15 +72,15 @@ namespace Fundoo.View
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private async void  DeleteIcon_Tapped(object sender, EventArgs e)
+        private async void DeleteIcon_Tapped(object sender, EventArgs e)
         {
-           bool result = await DisplayAlert("Attention","Are you sure you want to delete this Label","Yes", "Cancel");
+            bool result = await DisplayAlert("Attention", "Are you sure you want to delete this Label", "Yes", "Cancel");
             if (result)
-            {            
+            {
                 await dataLogic.DeleteLableByKey(this.labelKey);
                 Message.ShowToastMessage("Label Deleted");
                 await Navigation.PopAsync();
-            }     
+            }
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Fundoo.View
         /// </remarks>
         protected async override void OnAppearing()
         {
-           this.retrivedLabel = await dataLogic.GetLableByKey(labelKey);
+            this.retrivedLabel = await dataLogic.GetLableByKey(labelKey);
             base.OnAppearing();
         }
     }

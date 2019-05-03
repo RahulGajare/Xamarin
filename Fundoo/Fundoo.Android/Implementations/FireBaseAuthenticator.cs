@@ -25,11 +25,21 @@ namespace Fundoo.Droid.Implementations
     /// <seealso cref="Fundoo.Interfaces.IFirebaseAuthenticator" />
     public class FireBaseAuthenticator : IFirebaseAuthenticator
     {
+        /// <summary>
+        /// Gets the uid.
+        /// </summary>
+        /// <returns></returns>
         public string GetUid()
         {
-            return  FirebaseAuth.Instance.CurrentUser.Uid;
+            return FirebaseAuth.Instance.CurrentUser.Uid;
         }
 
+        /// <summary>
+        /// Determines whether this instance is logged in.
+        /// </summary>
+        /// <returns>
+        /// <c>true</c> if this instance is logged in; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsLoggedin()
         {
             var status = FirebaseAuth.Instance.CurrentUser;
@@ -57,7 +67,7 @@ namespace Fundoo.Droid.Implementations
                 await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return false;
             }         
@@ -82,6 +92,9 @@ namespace Fundoo.Droid.Implementations
             }      
         }
 
+        /// <summary>
+        /// Sign outs this instance.
+        /// </summary>
         public void Signout()
         {
             FirebaseAuth.Instance.SignOut();

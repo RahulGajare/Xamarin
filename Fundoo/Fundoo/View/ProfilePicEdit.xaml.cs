@@ -5,25 +5,24 @@
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
-
-using Plugin.Media;
-using Plugin.Media.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Firebase.Storage;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using System.IO;
-using System.Diagnostics;
-using Fundoo.DependencyServices;
-using Fundoo.DataHandler;
-
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    using Plugin.Media;
+    using Plugin.Media.Abstractions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Firebase.Storage;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+    using System.IO;
+    using System.Diagnostics;
+    using Fundoo.DependencyServices;
+    using Fundoo.DataHandler;
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ProfilePicEdit : ContentPage
 	{
         public Xamarin.Forms.ImageSource img { get; set; }
@@ -32,6 +31,9 @@ namespace Fundoo.View
 
         public UriImageSource ProductImage { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProfilePicEdit"/> class.
+        /// </summary>
         public ProfilePicEdit()
         {
             InitializeComponent();             
@@ -91,14 +93,14 @@ namespace Fundoo.View
                 .PutAsync(imageStream);
             string imgurl = stroageImage;
             this.imgurl = imgurl;
-            this.SavePicURl(imgurl);
+            await this.SavePicURl(imgurl);
         }
 
         /// <summary>
         /// Saves the pic url.
         /// </summary>
         /// <param name="url">The URL.</param>
-        public async void SavePicURl(string url)
+        public async Task SavePicURl(string url)
         {
             DataLogic dataLogic = new DataLogic();
             await dataLogic.SavePicUrl(url);

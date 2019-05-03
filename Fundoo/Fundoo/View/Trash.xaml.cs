@@ -19,16 +19,16 @@ using Xamarin.Forms.Xaml;
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Trash : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Trash : ContentPage
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="Trash"/> class.
         /// </summary>
-        public Trash ()
-		{
-			InitializeComponent ();
-		}
+        public Trash()
+        {
+            InitializeComponent();
+        }
 
         /// <summary>
         /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
@@ -59,8 +59,8 @@ namespace Fundoo.View
                     trashNotesList.Add(note);
                 }
             }
-           
-            this.DynamicGridView(trashNotesList);      
+
+            this.DynamicGridView(trashNotesList);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Fundoo.View
             }
             ////initializing with 2 columns and 1 row.
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });         
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayout.Margin = new Thickness(2, 2, 2, 2);
 
@@ -96,7 +96,7 @@ namespace Fundoo.View
 
                 ////Adding TapGesture to stackLayout1.
                 var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
+                tapGestureRecognizer.Tapped += this.StackLayoutTap_Tapped;
                 stackLayout1.GestureRecognizers.Add(tapGestureRecognizer);
 
                 var titleLable = new Label
@@ -130,15 +130,12 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
-                ////stackLayout2.Children.Add(boxview);
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
                 stackLayout1.Children.Add(noteColor);
                 stackLayout1.Spacing = 2;
                 stackLayout1.Margin = 2;
-
-
 
                 var frame = new Frame();
                 /// frame.BorderColor = Color.Black;
@@ -154,8 +151,12 @@ namespace Fundoo.View
             }
         }
 
-
-        private void stackLayoutTap_Tapped(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Tapped event of the StackLayoutTap control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void StackLayoutTap_Tapped(object sender, EventArgs e)
         {
             StackLayout gridNoteStack = (StackLayout)sender;
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;

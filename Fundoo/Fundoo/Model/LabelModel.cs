@@ -30,7 +30,7 @@ namespace Fundoo.Model
         /// Gets or sets the lable key.
         /// </summary>
         /// <value>
-        /// The lable key.
+        /// The label key.
         /// </value>
        public string lableKey { get => key; set => key = value; }
 
@@ -38,7 +38,7 @@ namespace Fundoo.Model
         /// Gets or sets the name of the lable.
         /// </summary>
         /// <value>
-        /// The name of the lable.
+        /// The name of the label.
         /// </value>
         public string LableName { get => lableName; set => lableName = value; }
 

@@ -32,6 +32,12 @@
             this.LoadApplication(new App());
         }
 
+        /// <summary>
+        /// Called when [request permissions result].
+        /// </summary>
+        /// <param name="requestCode">The request code.</param>
+        /// <param name="permissions">The permissions.</param>
+        /// <param name="grantResults">The grant results.</param>
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);

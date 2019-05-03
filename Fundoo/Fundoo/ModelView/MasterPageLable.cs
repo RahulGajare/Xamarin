@@ -39,7 +39,7 @@ namespace Fundoo.ModelView
                     Text = lable.LableName,
                     ImagePath = "LableIcon.png",
                     lableKey = lable.lableKey,
-                    TargetPage = typeof(LabledNotePage)
+                    TargetPage = typeof(LabeledNotePage)
                 });
             }
 

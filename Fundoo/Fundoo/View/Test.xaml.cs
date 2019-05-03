@@ -5,23 +5,25 @@
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Test : ContentPage
-	{
-		public Test ()
-		{
-			InitializeComponent ();
-		}
-	}
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Test : ContentPage
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Test"/> class.
+        /// </summary>
+        public Test()
+        {
+            this.InitializeComponent();
+        }
+    }
 }

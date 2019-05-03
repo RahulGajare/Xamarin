@@ -23,7 +23,7 @@
                 </ListView>-->
                 <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Spacing="2" Margin="20,10,20,0">
                     <Image x:Name="CancelIcon" Source="CancelIcon" WidthRequest="30" HorizontalOptions="Start"  HeightRequest="30"/>
-                    <Entry x:Name="UserLable" Placeholder="Create new lable" HorizontalOptions="FillAndExpand" />
+                    <Entry x:Name="UserLabel" Placeholder="Create new lable" HorizontalOptions="FillAndExpand" />
                     <Image x:Name="TickIcon" Source="TickIcon" WidthRequest="30" HorizontalOptions="End"  HeightRequest="30"/>
                 </StackLayout>
                 <Grid x:Name="gridLayout" VerticalOptions="Start">

@@ -58,6 +58,7 @@ namespace Fundoo.View
 
             foreach (Note note in notesList)
             {
+                ////Adding only Notes That are Archived
                 if (note.IsArchive)
                 {
                     if (note.IsPinned)
@@ -87,8 +88,7 @@ namespace Fundoo.View
             }
 
             gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });     
             gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
@@ -97,7 +97,7 @@ namespace Fundoo.View
             foreach (Note note in notesList)
             {
                 //// For after every 3rd Column adds a new row.
-                if (column == 3)
+                if (column == 2)
                 {
                     gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
                     column = 0;
@@ -174,7 +174,6 @@ namespace Fundoo.View
 
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
 
@@ -183,7 +182,7 @@ namespace Fundoo.View
             foreach (Note note in notesList)
             {
                 //// For after every 3rd Column adds a new row.
-                if (column == 3)
+                if (column == 2)
                 {
                     gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
                     column = 0;
@@ -229,8 +228,7 @@ namespace Fundoo.View
                     Text = note.Color,
                     IsVisible = false
                 };
-
-                ////stackLayout2.Children.Add(boxview);
+              
                 stackLayout2.Children.Add(titleLable);
                 stackLayout2.Children.Add(infoLable);
                 stackLayout2.Children.Add(noteKey);

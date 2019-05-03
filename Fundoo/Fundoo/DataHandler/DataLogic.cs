@@ -46,7 +46,7 @@ namespace Fundoo.DataHandler
 
                 string key = note.Key;
                 this.responseKey = key;
-                return true;             
+                return true;
             }
             catch (Exception ex)
             {
@@ -67,16 +67,6 @@ namespace Fundoo.DataHandler
                 await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync<Note>(note);
 
                 return true;
-
-                ///this.responseKey = response.Key;
-
-                //  await this.firebaseClient
-                //.Child("FundooUsers")
-                //.Child(FireBaseThroughAuthentication.GetUid())
-                //.Child("Notes")
-                //.OrderByKey()
-                //.OnceAsync<Note>();
-
             }
             catch (Exception ex)
             {
@@ -115,22 +105,22 @@ namespace Fundoo.DataHandler
             return note;
         }
 
-        //public async Task<Archive> GetArchiveNote(string noteKey)
-        //{
-        //    Archive note = await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("ArchivedNotes").Child(noteKey).OnceSingleAsync<Archive>();
-        //    return note;
-        //}
-
+        /// <summary>
+        /// Saves the edited note.
+        /// </summary>
+        /// <param name="noteKey">The note key.</param>
+        /// <param name="note">The note.</param>
+        /// <returns></returns>
         public async Task SaveEditedNote(string noteKey, Note note)
         {
             await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(note);
         }
 
-        //public async Task SaveEditedArchiveNote(string noteKey, Archive archiveNote)
-        //{
-        //    await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("ArchivedNotes").Child(noteKey).PutAsync<Archive>(archiveNote);
-        //}
-
+        /// <summary>
+        /// Deletes the note.
+        /// </summary>
+        /// <param name="noteKey">The note key.</param>
+        /// <returns></returns>
         public async Task<bool> DeleteNote(string noteKey)
         {
             try
@@ -143,7 +133,6 @@ namespace Fundoo.DataHandler
             {
                 return false;
             }
-
         }
 
         /// <summary>
