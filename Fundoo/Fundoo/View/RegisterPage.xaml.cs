@@ -22,7 +22,7 @@ namespace Fundoo.View
     /// RegisterPage Class
     /// </summary>
     /// <seealso cref="Xamarin.Forms.ContentPage" />
-     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
         /// <summary>
@@ -59,13 +59,13 @@ namespace Fundoo.View
             if (isRegistered)
             {
                 await this.DisplayAlert("Alert", "Registerd Successfully", "Ok");
-               await Navigation.PopAsync();
+                await Navigation.PopAsync();
                 await Navigation.PushAsync(new Greeting());
             }
             else
             {
                 await this.DisplayAlert("Alert", "Email already in used", "Try again");
-            }          
+            }
         }
     }
 }

@@ -18,10 +18,30 @@ namespace Fundoo.Model
         private string lableName;
         private string key;
 
-        public List<string> NoteKeysList { get => noteKeys; set => noteKeys = value; }     
-        public string lableKey { get => key; set => key = value; }
+        /// <summary>
+        /// Gets or sets the note keys list.
+        /// </summary>
+        /// <value>
+        /// The note keys list.
+        /// </value>
+        public List<string> NoteKeysList { get => noteKeys; set => noteKeys = value; }
+
+        /// <summary>
+        /// Gets or sets the lable key.
+        /// </summary>
+        /// <value>
+        /// The lable key.
+        /// </value>
+       public string lableKey { get => key; set => key = value; }
+
+        /// <summary>
+        /// Gets or sets the name of the lable.
+        /// </summary>
+        /// <value>
+        /// The name of the lable.
+        /// </value>
         public string LableName { get => lableName; set => lableName = value; }
 
-       
+
     }
 }

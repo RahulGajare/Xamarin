@@ -32,11 +32,11 @@ namespace Fundoo.DataHandler
         /// <param name="isPinned">if set to <c>true</c> [is pinned].</param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<bool> CreateNotes(string title, string info, string noteColor ,bool isPinned)
+        public async Task<bool> CreateNotes(string title, string info, string noteColor, bool isPinned)
         {
             try
             {
-            var note =  await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync(new Note()
+                var note = await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync(new Note()
                 {
                     Title = title,
                     Info = info,
@@ -44,20 +44,9 @@ namespace Fundoo.DataHandler
                     IsPinned = isPinned
                 });
 
-              string key = note.Key;
+                string key = note.Key;
                 this.responseKey = key;
-                return true;
-
-
-                ///this.responseKey = response.Key;
-                
-                //  await this.firebaseClient
-                //.Child("FundooUsers")
-                //.Child(FireBaseThroughAuthentication.GetUid())
-                //.Child("Notes")
-                //.OrderByKey()
-                //.OnceAsync<Note>();
-
+                return true;             
             }
             catch (Exception ex)
             {
@@ -76,9 +65,8 @@ namespace Fundoo.DataHandler
             try
             {
                 await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync<Note>(note);
-               
-                return true;
 
+                return true;
 
                 ///this.responseKey = response.Key;
 
@@ -95,8 +83,6 @@ namespace Fundoo.DataHandler
                 throw new Exception(ex.Message);
             }
         }
-
-        
 
         /// <summary>
         /// Gets all notes.
@@ -161,13 +147,13 @@ namespace Fundoo.DataHandler
         }
 
         /// <summary>
-        /// Saves the lable.
+        /// Saves the label.
         /// </summary>
-        /// <param name="lable">The lable.</param>
+        /// <param name="lable">The label.</param>
         /// <returns></returns>
-        public async Task SaveLable(LabelModel lable)
+        public async Task SaveLable(LabelModel label)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").PostAsync<LabelModel>(new LabelModel() { LableName = lable.LableName, NoteKeysList = lable.NoteKeysList });
+            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").PostAsync<LabelModel>(new LabelModel() { LableName = label.LableName, NoteKeysList = label.NoteKeysList });
         }
 
         /// <summary>
@@ -195,16 +181,16 @@ namespace Fundoo.DataHandler
         }
 
         /// <summary>
-        /// Saves the lable by key.
+        /// Saves the label by key.
         /// </summary>
-        /// <param name="lable">The lable.</param>
-        /// <param name="lablekey">The lablekey.</param>
+        /// <param name="lable">The label.</param>
+        /// <param name="lablekey">The labelkey.</param>
         /// <returns></returns>
-        public async Task<bool> SaveLableByKey(LabelModel lable, string lablekey)
+        public async Task<bool> SaveLableByKey(LabelModel label, string labelkey)
         {
             try
             {
-                await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(lablekey).PutAsync<LabelModel>(lable);
+                await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(labelkey).PutAsync<LabelModel>(label);
                 return true;
             }
             catch (Exception ex)
@@ -215,9 +201,9 @@ namespace Fundoo.DataHandler
         }
 
         /// <summary>
-        /// Gets the lable by key.
+        /// Gets the label by key.
         /// </summary>
-        /// <param name="lableKey">The lable key.</param>
+        /// <param name="lableKey">The label key.</param>
         /// <returns></returns>
         public async Task<LabelModel> GetLableByKey(string lableKey)
         {
@@ -226,9 +212,9 @@ namespace Fundoo.DataHandler
         }
 
         /// <summary>
-        /// Deletes the lable by key.
+        /// Deletes the label by key.
         /// </summary>
-        /// <param name="lableKey">The lable key.</param>
+        /// <param name="lableKey">The label key.</param>
         /// <returns></returns>
         public async Task<bool> DeleteLableByKey(string lableKey)
         {

@@ -17,31 +17,38 @@ using Xamarin.Forms.Xaml;
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NotesSlideUpMenu : PopupPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NotesSlideUpMenu : PopupPage
     {
-
-   
-
-        public NotesSlideUpMenu ()
-		{
-			InitializeComponent ();
-		}
-
-        private void Button_Clicked(object sender, EventArgs e)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotesSlideUpMenu"/> class.
+        /// </summary>
+        public NotesSlideUpMenu()
         {
-            
-            PopupNavigation.Instance.PopAsync(true);
-          
+            InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the Button control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync(true);
+        }
+
+        /// <summary>
+        /// When overridden, allows the application developer to customize behavior as the <see cref="T:Xamarin.Forms.Page" /> disappears.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnDisappearing()
         {
             EditNote editnew = new EditNote();
             editnew.changeColor();
             base.OnDisappearing();
-
         }
-
     }
 }

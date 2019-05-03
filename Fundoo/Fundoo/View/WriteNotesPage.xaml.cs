@@ -51,13 +51,9 @@ namespace Fundoo.View
             ToolbarItems.Clear();
             ToolbarItems.Add(this.UnPinnedIcon);        
         }
-
-
-      
-
+  
         protected override async void OnDisappearing()
-        {
-           
+        {       
             try
             {
                //// DataLogic dataLogic = new DataLogic();
@@ -84,7 +80,6 @@ namespace Fundoo.View
                         Message.ShowToastMessage("Notes Saved");
                     }
 
-                    
                     ////To Check If a Note belongs to a lable
                     if (isLabled)
                     {
@@ -121,10 +116,7 @@ namespace Fundoo.View
             {
                 Message.ShowToastMessage("Notes Saved");
             }
-          
-
         }
-
 
         private void Aqua_Clicked(object sender, EventArgs e)
         {

@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,60 +22,70 @@ namespace Fundoo.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Trash : ContentPage
 	{
-		public Trash ()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Trash"/> class.
+        /// </summary>
+        public Trash ()
 		{
 			InitializeComponent ();
 		}
 
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnAppearing()
         {
             GetNotes();
             base.OnAppearing();
         }
 
+        /// <summary>
+        /// Gets the notes.
+        /// </summary>
         public async void GetNotes()
         {
             DataLogic dataLogic = new DataLogic();
             var notesList = await dataLogic.GetAllNotes();
             List<Note> trashNotesList = new List<Note>();
 
-
             foreach (Note note in notesList)
             {
+                ////Adding only Notes that are trash.
                 if (note.IsTrash == true)
                 {
                     trashNotesList.Add(note);
                 }
-
             }
            
-            this.DynamicGridView(trashNotesList);
-        
+            this.DynamicGridView(trashNotesList);      
         }
 
-
+        /// <summary>
+        /// Dynamics the grid view.
+        /// </summary>
+        /// <param name="notesList">The notes list.</param>
         private void DynamicGridView(List<Model.Note> notesList)
         {
             if (notesList.Count == 0)
             {
                 return;
             }
-
+            ////initializing with 2 columns and 1 row.
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });         
             gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayout.Margin = new Thickness(2, 2, 2, 2);
-
 
             int column = 0;
             int row = 0;
 
-
             foreach (Note note in notesList)
             {
                 //// For after every 3rd Column adds a new row.
-                if (column == 3)
+                if (column == 2)
                 {
                     gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
                     column = 0;
@@ -85,11 +94,10 @@ namespace Fundoo.View
 
                 var stackLayout1 = new StackLayout();
 
+                ////Adding TapGesture to stackLayout1.
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
                 stackLayout1.GestureRecognizers.Add(tapGestureRecognizer);
-
-
 
                 var titleLable = new Label
                 {

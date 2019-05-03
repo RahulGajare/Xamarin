@@ -50,8 +50,7 @@ namespace Fundoo.View
             tapTickIcon.Tapped += this.TickImage_Tapped;
             ///// Associating tap events to the image buttons    
             TickIcon.GestureRecognizers.Add(tapTickIcon);
-
-          
+    
             this.GetTappedNotes(labelKey);
         }
 
@@ -76,18 +75,13 @@ namespace Fundoo.View
         private async void  DeleteIcon_Tapped(object sender, EventArgs e)
         {
            bool result = await DisplayAlert("Attention","Are you sure you want to delete this Label","Yes", "Cancel");
-            if (true)
-            {
-               
+            if (result)
+            {            
                 await dataLogic.DeleteLableByKey(this.labelKey);
-
                 Message.ShowToastMessage("Label Deleted");
                 await Navigation.PopAsync();
-            }
-
-          
+            }     
         }
-
 
         /// <summary>
         /// Handles the Tapped event of the TickImage control.

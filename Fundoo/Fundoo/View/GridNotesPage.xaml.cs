@@ -98,10 +98,13 @@ namespace Fundoo.View
             var notesList = await dataLogic.GetAllNotes();
             var labelsList = await dataLogic.GetAllLables();
 
+            ////List Of Pinned Notes.
             List<Note> pinnedList = new List<Note>();
+
+            ////List Of UnPinned Notes.
             List<Note> UnpinnedList = new List<Note>();
 
-
+            ////Showing Only The Notes That are not archive or Trash
             foreach (Note note in notesList)
             {
                 if (note.IsTrash == false && note.IsArchive == false)
@@ -122,6 +125,12 @@ namespace Fundoo.View
             this.DynamicGridViewUnpinned(UnpinnedList, labelsList);
         }
 
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected override void OnAppearing()
         {
             GetNotes();
@@ -140,16 +149,14 @@ namespace Fundoo.View
                 return;
             }
 
+            ////initializing with 2 columns and 1 row.
             gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            ///  gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });        
             gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
-
             int column = 0;
             int row = 0;
-
 
             foreach (Note note in notesList)
             {
@@ -199,7 +206,6 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
-                ////stackLayout2.Children.Add(boxview);
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
@@ -219,6 +225,8 @@ namespace Fundoo.View
                                 Text = label.LableName,
                                 TextColor = Color.Black
                             };
+
+                            ////Creating a new frame for Displaying label Name.
                             var labelFrame = new Frame();
                             labelFrame.BorderColor = Color.Black;
                             labelFrame.CornerRadius = 30;
@@ -254,6 +262,8 @@ namespace Fundoo.View
             {
                 return;
             }
+
+            ////initializing with 2 columns and 1 row.
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
@@ -335,8 +345,9 @@ namespace Fundoo.View
                                 TextColor = Color.Black,
 
                                 VerticalOptions = LayoutOptions.Center
-
                             };
+
+                            ////Creating a new frame for Displaying label Name.
                             var labelFrame = new Frame();
                             labelFrame.BorderColor = Color.Black;
                             labelFrame.CornerRadius = 30;

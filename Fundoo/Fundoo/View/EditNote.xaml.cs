@@ -89,6 +89,7 @@ namespace Fundoo.View
         /// </summary>
         public void InitializeToolBarItems()
         {
+            ////Adds ToolBar Items Based On Condition.
             if (this.isArchive)
             {
                 if (isPinned)
@@ -97,8 +98,7 @@ namespace Fundoo.View
                     ToolbarItems.Add(this.DeleteIcon);
                     ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.PinnedIcon);
-                    ToolbarItems.Add(this.UnarchiveIcon);
-                    //ToolbarItems.Remove(this.UnPinnedIcon);
+                    ToolbarItems.Add(this.UnarchiveIcon);              
                 }
                 else
                 {
@@ -106,8 +106,7 @@ namespace Fundoo.View
                     ToolbarItems.Add(this.DeleteIcon);
                     ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.UnPinnedIcon);
-                    ToolbarItems.Add(this.UnarchiveIcon);
-                    // ToolbarItems.Remove(this.PinnedIcon);
+                    ToolbarItems.Add(this.UnarchiveIcon);             
                 }
             }
             else
@@ -264,7 +263,6 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void UnarchiveIcon_Clicked(object sender, EventArgs e)
         {
-
             this.isArchive = false;
             Message.ShowToastMessage("Notes UnArchived");
             await Navigation.PopAsync();
@@ -283,7 +281,7 @@ namespace Fundoo.View
 
         public void VerticalMenuIcon_Tapped(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new NotesSlideUpMenu()); ;
+            PopupNavigation.Instance.PushAsync(new NotesSlideUpMenu());
         }
 
         private void Aqua_Clicked(object sender, EventArgs e)

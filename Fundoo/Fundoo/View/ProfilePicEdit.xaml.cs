@@ -34,18 +34,14 @@ namespace Fundoo.View
 
         public ProfilePicEdit()
         {
-            InitializeComponent();
-
-          
-            //var imgsource = new UriImageSource { Uri = new Uri("https://atlas-content-cdn.pixelsquid.com/stock-images/golden-soccer-ball-3yLR9z1-600.jpg") };
-            //imgsource.CachingEnabled = false;
-            //image.Source = imgsource;
-
-
-
-
-            
+            InitializeComponent();             
         }
+
+        /// <summary>
+        /// Handles the Clicked event of the Edit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Edit_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -71,11 +67,22 @@ namespace Fundoo.View
                 Debug.WriteLine(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Handles the Clicked event of the Save control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Save_Clicked(object sender, EventArgs e)
         {
             await StoreImages(file.GetStream());
         }
 
+        /// <summary>
+        /// Stores the images.
+        /// </summary>
+        /// <param name="imageStream">The image stream.</param>
+        /// <returns></returns>
         public async Task StoreImages(Stream imageStream)
         {
             var stroageImage = await new FirebaseStorage("fundoousers-a9d30.appspot.com")
@@ -85,27 +92,17 @@ namespace Fundoo.View
             string imgurl = stroageImage;
             this.imgurl = imgurl;
             this.SavePicURl(imgurl);
-
-          
-           
-
         }
 
-        //public void LoadPic(string url)
-        //{
-        //    var imgsource = new UriImageSource { Uri = new Uri(url) };
-        //    imgsource.CachingEnabled = false;
-        //    image.Source = imgsource;
-        //}
-
+        /// <summary>
+        /// Saves the pic url.
+        /// </summary>
+        /// <param name="url">The URL.</param>
         public async void SavePicURl(string url)
         {
             DataLogic dataLogic = new DataLogic();
             await dataLogic.SavePicUrl(url);
             Message.ShowToastMessage("Profile Saved");
-
         }
-
-
     }
 }

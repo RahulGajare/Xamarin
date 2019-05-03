@@ -5,32 +5,36 @@
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
-
-using Fundoo.DataHandler;
-using Fundoo.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SearchPage : ContentPage
-	{
-        DataLogic dataLogic = new DataLogic();
-        List<Note> notesList = new List<Note>();
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Fundoo.DataHandler;
+    using Fundoo.Model;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
 
-        public SearchPage ()
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SearchPage : ContentPage
+    {
+        DataLogic dataLogic = new DataLogic();
+        public List<Note> notesList = new List<Note>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchPage"/> class.
+        /// </summary>
+        public SearchPage()
+        {
+            InitializeComponent();
             this.GetNotes();
-           
         }
 
+        /// <summary>
+        /// Gets the notes.
+        /// </summary>
         public async void GetNotes()
         {
             var notes = await dataLogic.GetAllNotes();
@@ -38,14 +42,13 @@ namespace Fundoo.View
             this.notesList = notes;
         }
 
-        private  void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        /// <summary>
+        /// Handles the TextChanged event of the SearchBar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="TextChangedEventArgs"/> instance containing the event data.</param>
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //DataLogic dataLogic = new DataLogic();
-            //var notesList = await dataLogic.GetAllNotes();
-            //var keyWord = SearchBar.Text;
-            //var suggestion = this.notesList.Where(c => c.Title.ToLower().Contains(keyWord.ToLower()));
-            //list.ItemsSource = suggestion;
-
             if (string.IsNullOrEmpty(e.NewTextValue))
             {
                 list.ItemsSource = this.notesList;
@@ -55,7 +58,6 @@ namespace Fundoo.View
                 list.ItemsSource = this.notesList.Where(x => x.Title.ToLower().Contains(e.NewTextValue.ToLower())
                 || x.Info.ToLower().Contains(e.NewTextValue.ToLower()));
             }
-
         }
     }
 }

@@ -15,20 +15,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListNotePage : ContentPage
-	{
-		public ListNotePage ()
-		{
-			InitializeComponent ();
-		}
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ListNotePage : ContentPage
+    {
+        public ListNotePage()
+        {
+            InitializeComponent();
+        }
 
         /// <summary>
         /// Gets the notes.
@@ -39,12 +37,17 @@ namespace Fundoo.View
             var notesList = await dataLogic.GetAllNotes();
             var labelsList = await dataLogic.GetAllLables();
 
+
+            ////List Of Pinned Notes.
             List<Note> pinnedList = new List<Note>();
+
+            ////List Of UnPinned Notes.
             List<Note> UnpinnedList = new List<Note>();
 
+            ////Showing Only The Notes That are not archive or Trash
             foreach (Note note in notesList)
             {
-                if (note.IsTrash == false)
+                if (note.IsTrash == false && note.IsArchive == false)
                 {
                     if (note.IsPinned)
                     {
@@ -55,13 +58,10 @@ namespace Fundoo.View
                         UnpinnedList.Add(note);
                     }
                 }
-               
             }
-
 
             this.DynamicGridViewPinned(pinnedList, labelsList);
             this.DynamicGridViewUnpinned(UnpinnedList, labelsList);
-
         }
 
         protected override void OnAppearing()
@@ -70,6 +70,11 @@ namespace Fundoo.View
             base.OnAppearing();
         }
 
+        /// <summary>
+        /// Dynamics the grid view pinned.
+        /// </summary>
+        /// <param name="notesList">The notes list.</param>
+        /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewPinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
             if (notesList.Count == 0)
@@ -77,20 +82,15 @@ namespace Fundoo.View
                 return;
             }
 
-            //gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            //gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            //gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
-
 
             int column = 0;
             int row = 0;
 
-
             foreach (Note note in notesList)
             {
-                //// For after every 3rd Column adds a new row.
+                //// For every Column Index 1 Creates a new Row.
                 if (column == 1)
                 {
                     gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
@@ -103,8 +103,6 @@ namespace Fundoo.View
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
                 stackLayout1.GestureRecognizers.Add(tapGestureRecognizer);
-
-
 
                 var titleLable = new Label
                 {
@@ -137,7 +135,6 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
-                ////stackLayout2.Children.Add(boxview);
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
@@ -157,6 +154,8 @@ namespace Fundoo.View
                                 Text = label.LableName,
                                 TextColor = Color.Black
                             };
+
+                            ////Creating a new frame for Displaying label Name.
                             var labelFrame = new Frame();
                             labelFrame.BorderColor = Color.Black;
                             labelFrame.CornerRadius = 30;
@@ -170,19 +169,21 @@ namespace Fundoo.View
 
 
                 var frame = new Frame();
-                /// frame.BorderColor = Color.Black;
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
 
-
                 gridLayoutPinned.Children.Add(frame, column, row);
                 column++;
-
             }
         }
 
+        /// <summary>
+        /// Dynamics the grid view unpinned.
+        /// </summary>
+        /// <param name="notesList">The notes list.</param>
+        /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewUnpinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
             if (notesList.Count == 0)
@@ -190,20 +191,15 @@ namespace Fundoo.View
                 return;
             }
 
-            //gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            //gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            //gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
-
 
             int column = 0;
             int row = 0;
 
-
             foreach (Note note in notesList)
             {
-                //// For after every 3rd Column adds a new row.
+                //// For every Column Index 1 Creates a new Row.
                 if (column == 1)
                 {
                     gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
@@ -216,8 +212,6 @@ namespace Fundoo.View
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
                 stackLayout2.GestureRecognizers.Add(tapGestureRecognizer);
-
-
 
                 var titleLable = new Label
                 {
@@ -249,8 +243,7 @@ namespace Fundoo.View
                     Text = note.Color,
                     IsVisible = false
                 };
-
-                ////stackLayout2.Children.Add(boxview);
+             
                 stackLayout2.Children.Add(titleLable);
                 stackLayout2.Children.Add(infoLable);
                 stackLayout2.Children.Add(noteKey);
@@ -270,6 +263,8 @@ namespace Fundoo.View
                                 Text = label.LableName,
                                 TextColor = Color.Black
                             };
+
+                            ////Creating a new frame for Displaying label Name.
                             var labelFrame = new Frame();
                             labelFrame.BorderColor = Color.Black;
                             labelFrame.CornerRadius = 30;
@@ -281,10 +276,7 @@ namespace Fundoo.View
                     }
                 }
 
-
-
-                var frame = new Frame();
-                /// frame.BorderColor = Color.Black;
+                var frame = new Frame();              
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);
@@ -293,10 +285,14 @@ namespace Fundoo.View
 
                 gridLayoutUnpinned.Children.Add(frame, column, row);
                 column++;
-
             }
         }
 
+        /// <summary>
+        /// Handles the Tapped event of the stackLayoutTap control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void stackLayoutTap_Tapped(object sender, EventArgs e)
         {
             StackLayout gridNoteStack = (StackLayout)sender;
@@ -307,6 +303,11 @@ namespace Fundoo.View
             Navigation.PushAsync(new EditNote(notekey));
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the LogoutIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void LogoutIcon_Clicked(object sender, EventArgs e)
         {
             DependencyService.Get<IFirebaseAuthenticator>().Signout();
@@ -316,16 +317,25 @@ namespace Fundoo.View
             Navigation.PushAsync(new Greeting());
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the GridIcontem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void GridIcontem_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new GridNotesPage());
             Navigation.RemovePage(this);
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the TakeaNote control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TakeaNote_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new WriteNotesPage(false));
         }
-
     }
 }

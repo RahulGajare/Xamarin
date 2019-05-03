@@ -23,14 +23,20 @@ namespace Fundoo.View
     {
         DateTime _triggerTime;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemindersPage"/> class.
+        /// </summary>
         public RemindersPage()
         {
             InitializeComponent();
-
             Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
         }
 
-        bool OnTimerTick() 
+        /// <summary>
+        /// Called when [timer tick].
+        /// </summary>
+        /// <returns></returns>
+        public bool OnTimerTick()
         {
             if (_switch.IsToggled && DateTime.Now >= _triggerTime)
             {
@@ -40,7 +46,12 @@ namespace Fundoo.View
             return true;
         }
 
-        void OnTimePickerPropertyChanged(object sender, PropertyChangedEventArgs args)
+        /// <summary>
+        /// Called when [time picker property changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="PropertyChangedEventArgs"/> instance containing the event data.</param>
+        public void OnTimePickerPropertyChanged(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName == "Time")
             {
@@ -48,12 +59,20 @@ namespace Fundoo.View
             }
         }
 
-        void OnSwitchToggled(object sender, ToggledEventArgs args)
+        /// <summary>
+        /// Called when [switch toggled].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="ToggledEventArgs"/> instance containing the event data.</param>
+        public void OnSwitchToggled(object sender, ToggledEventArgs args)
         {
             SetTriggerTime();
         }
 
-        void SetTriggerTime()
+        /// <summary>
+        /// Sets the trigger time.
+        /// </summary>
+        public void SetTriggerTime()
         {
             if (_switch.IsToggled)
             {

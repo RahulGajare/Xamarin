@@ -21,13 +21,13 @@ using Xamarin.Forms.Xaml;
 
 namespace Fundoo.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TrashNoteTap : ContentPage
-	{
-        Note retrivedNote = null;
-        bool isArchive;
-        bool isPinned;
-        bool isTrash;
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TrashNoteTap : ContentPage
+    {
+        public Note retrivedNote = null;
+        public bool isArchive;
+        public bool isPinned;
+        public bool isTrash;
 
         string noteKey = string.Empty;
 
@@ -35,9 +35,9 @@ namespace Fundoo.View
         private string noteColor = "white";
 
         public TrashNoteTap()
-		{
-			InitializeComponent ();
-		}
+        {
+            InitializeComponent();
+        }
 
         public TrashNoteTap(string noteKey)
         {
@@ -47,26 +47,13 @@ namespace Fundoo.View
 
         }
 
+        /// <summary>
+        /// Gets the tapped notes.
+        /// </summary>
+        /// <param name="noteKey">The note key.</param>
         public async void GetTappedNotes(string noteKey)
         {
             DataLogic datalogic = new DataLogic();
-            //if (this.isArchive)
-            //{              
-            //    this.retrivedArchiveNote = await datalogic.GetArchiveNote(noteKey);
-            //    Entrytitle.Text = retrivedArchiveNote.Title;
-            //    Editorinfo.Text = retrivedArchiveNote.Info;
-            //    this.noteColor = retrivedArchiveNote.Color;
-            //    this.isPinned = retrivedArchiveNote.IsPinned;
-            //    this.isTrash = retrivedArchiveNote.IsTrash;
-            //    this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedArchiveNote));
-            //    this.InitializeToolBarItems();
-
-
-            //}
-            //else
-            //{   
-            // }
-
             this.retrivedNote = await datalogic.GetNote(noteKey);
             Entrytitle.Text = retrivedNote.Title;
             Editorinfo.Text = retrivedNote.Info;
@@ -75,9 +62,13 @@ namespace Fundoo.View
             this.isTrash = retrivedNote.IsTrash;
             this.isArchive = retrivedNote.IsArchive;
             this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
-            
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the RestoreIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void RestoreIcon_Clicked(object sender, EventArgs e)
         {
             this.isTrash = false;
@@ -93,15 +84,19 @@ namespace Fundoo.View
 
             };
 
-
             await dataLogic.SaveNote(editedNote);
             await dataLogic.DeleteNote(noteKey);
             Message.ShowToastMessage("Notes Restored");
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the DeleteIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void DeleteIcon_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Alert", "Note will be Deleted forever", "OK","Cancle");
+            await DisplayAlert("Alert", "Note will be Deleted forever", "OK", "Cancle");
             DataLogic dataLogic = new DataLogic();
             await dataLogic.DeleteNote(this.noteKey);
         }

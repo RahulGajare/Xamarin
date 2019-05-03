@@ -7,14 +7,10 @@
 
 namespace Fundoo.View
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Fundoo.DataHandler;
     using Fundoo.DependencyServices;
-    using Fundoo.Model;
+    using System;
+    using System.Collections.Generic;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -42,13 +38,13 @@ namespace Fundoo.View
         }
 
         /// <summary>
-        /// Calls the save lable.
+        /// Calls the save label.
         /// </summary>
-        /// <param name="lable">The lable.</param>
-        public async void CallSaveLable(Model.LabelModel lable)
+        /// <param name="lable">The label.</param>
+        public async void CallSaveLable(Model.LabelModel label)
         {
             DataLogic dataLogic = new DataLogic();
-            await dataLogic.SaveLable(lable);
+            await dataLogic.SaveLable(label);
 
             ////Calling OnAppearing beacuse to update the page with newly Created Lable.
             this.OnAppearing();
