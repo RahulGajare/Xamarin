@@ -9,7 +9,6 @@
         <ToolbarItem Icon="ListIcon.png" Text="list" Clicked="ListIcon_Clicked"/>
         <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="LogoutIcon_Clicked"/>
         <ToolbarItem Icon="SearchIcon.png" Text="SearchIcon" Clicked="SearchIcon_clicked"/>
-       
     </ContentPage.ToolbarItems>
 
 
@@ -20,31 +19,27 @@
     <ContentPage.Content>
         <StackLayout>
 
-            
-            <!--<SearchBar x:Name="NotesSearchBar" TextChanged="NotesSearchBar_TextChanged"/>
-            <ListView x:Name="foundList"/>-->
-
             <ScrollView>
                 <StackLayout>
-              
+
                     <StackLayout>
-                    
-                    <Label Text="PINNED" FontAttributes="Bold"/>
-                    <Grid x:Name="gridLayoutPinned" Margin="2,0,2,0">
 
-                    </Grid>
+                        <Label Text="PINNED" FontAttributes="Bold"/>
+                        <Grid x:Name="gridLayoutPinned" Margin="2,0,2,0">
 
-                </StackLayout>
+                        </Grid>
 
-                <StackLayout>
-                    <Label Text="OTHERS" FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="OTHERS" FontAttributes="Bold"/>
                         <Grid x:Name="gridLayoutUnpinned" Margin="2,0,2,0">
 
-                    </Grid>
+                        </Grid>
+
+                    </StackLayout>
 
                 </StackLayout>
-               
-            </StackLayout>
             </ScrollView>
 
 
@@ -60,9 +55,10 @@
                 </Button>
                 <Image x:Name="cameraIcon" Source="CameraIcon"  />
             </StackLayout>
-        </StackLayout> 
+        </StackLayout>
 
     </ContentPage.Content>
+
 
 
 </ContentPage>

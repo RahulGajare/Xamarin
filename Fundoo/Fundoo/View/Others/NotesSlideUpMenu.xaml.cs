@@ -50,5 +50,15 @@ namespace Fundoo.View
             editnew.changeColor();
             base.OnDisappearing();
         }
+
+        private void Delete1_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Delete2_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

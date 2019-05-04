@@ -41,28 +41,21 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton Source="delete.png" Grid.Row="0" Grid.Column="0"   BackgroundColor="White" />
-            <Button Text ="delete" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small"  BackgroundColor="White" />
+            <ImageButton Source="DeleteIcon.png" Grid.Row="0" Grid.Column="0"   BackgroundColor="White" />
+            <Button Text ="Delete" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small"  BackgroundColor="White" />
 
-            <ImageButton Source="copy.png" Grid.Row="1" Grid.Column="0"  BackgroundColor="White"/>
+            <ImageButton Source="CopyIcon.png" Grid.Row="1" Grid.Column="0"  BackgroundColor="White"/>
             <Button Text ="Make a copy" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8"  FontSize="Small" BackgroundColor="White" />
 
-            <ImageButton Source="shareit.png" Grid.Row="2" Grid.Column="0"  BackgroundColor="White"/>
+            <ImageButton Source="ShareIcon.png" Grid.Row="2" Grid.Column="0"  BackgroundColor="White"/>
             <Button Text ="Send" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White"  />
 
-            <ImageButton Source="user.png" Grid.Row="3" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="Collaborator" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White"/>
+            <ImageButton Source="user.png" Grid.Row="3" Grid.Column="0"  BackgroundColor="White" Clicked="Delete1_Clicked"/>
+            <Button Text ="Collaborator" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="Delete2_Clicked"/>
 
-            <ImageButton Source="labelicon.png" Grid.Row="4" Grid.Column="0"  BackgroundColor="White"/>
+            <ImageButton Source="LableIcon.png" Grid.Row="4" Grid.Column="0"  BackgroundColor="White"/>
             <Button Text ="Labels" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White" />
 
-
-            <ScrollView Orientation="Horizontal" VerticalOptions="End">
-                <StackLayout Orientation="Horizontal" Spacing="10" >
-                    <Button BackgroundColor="Aqua" CornerRadius="20"  WidthRequest="30" HeightRequest="30" Clicked="Button_Clicked"/>
-                   
-                </StackLayout>
-            </ScrollView>
         </Grid>
     </StackLayout>
 </pages:PopupPage>

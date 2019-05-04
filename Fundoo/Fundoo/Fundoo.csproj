@@ -57,14 +57,14 @@
       <ExcludeFromSourceAnalysis>False</ExcludeFromSourceAnalysis>
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Update="View\ForgotPassword.xaml.cs">
+    <Compile Update="View\Others\ForgotPassword.xaml.cs">
       <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Update="View\Greeting.xaml.cs">
+    <Compile Update="View\Others\Greeting.xaml.cs">
       <DependentUpon>Greeting.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\FundooNotes.xaml.cs">
+    <Compile Update="View\MasterPage\FundooNotes.xaml.cs">
       <DependentUpon>FundooNotes.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\Labels\CreateLablePage.xaml.cs">
@@ -82,31 +82,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View\ForgotPassword.xaml">
+    <EmbeddedResource Update="View\Others\ForgotPassword.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Greeting.xaml">
+    <EmbeddedResource Update="View\Others\Greeting.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\FundooNotes.xaml">
+    <EmbeddedResource Update="View\MasterPage\FundooNotes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\NotesSlideUpMenu.xaml">
+    <EmbeddedResource Update="View\Others\NotesSlideUpMenu.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\ProfilePicEdit.xaml">
+    <EmbeddedResource Update="View\Others\ProfilePicEdit.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\RegisterPage.xaml">
+    <EmbeddedResource Update="View\Others\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\RemindersPage.xaml">
+    <EmbeddedResource Update="View\Others\RemindersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\SearchPage.xaml">
+    <EmbeddedResource Update="View\Others\SearchPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Setting.xaml">
+    <EmbeddedResource Update="View\Others\Setting.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
