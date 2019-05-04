@@ -59,6 +59,7 @@ namespace Fundoo.View
             ProfilePic.HeightRequest = 100;
             ProfilePic.WidthRequest = 100;
         }
+
         /// <summary>
         /// Invokes when Current Page appears.
         /// </summary>

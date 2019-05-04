@@ -14,7 +14,7 @@ namespace Fundoo.DependencyServices
     using Firebase.Database;
     using Firebase.Database.Query;
     using Fundoo.Interfaces;
-    using Fundoo.Model;  
+    using Fundoo.Model;
     using Xamarin.Forms;
 
     /// <summary>
@@ -56,7 +56,7 @@ namespace Fundoo.DependencyServices
         /// <returns>returns true or false</returns>
         public async Task<bool> LoginUser(string email, string password)
         {
-           bool isLoggedIn = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(email, password);
+            bool isLoggedIn = await DependencyService.Get<IFirebaseAuthenticator>().LoginWithEmailPassword(email, password);
             return isLoggedIn;
         }
 
@@ -76,7 +76,7 @@ namespace Fundoo.DependencyServices
         /// <returns>returns true or false</returns>
         public bool CheckStatus()
         {
-           var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().IsLoggedin();
+            var isLoggedIn = DependencyService.Get<IFirebaseAuthenticator>().IsLoggedin();
             return isLoggedIn;
         }
 

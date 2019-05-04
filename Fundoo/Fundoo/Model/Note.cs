@@ -10,6 +10,9 @@ namespace Fundoo.Model
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class Note
     {
         /// <summary>

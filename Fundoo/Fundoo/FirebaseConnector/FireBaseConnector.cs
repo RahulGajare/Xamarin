@@ -8,13 +8,12 @@
 namespace Fundoo.FirebaseConnector
 {
     using System.Collections.Generic;
-     using System.Linq;
+    using System.Linq;
     using System.Threading.Tasks;
     using Firebase.Database;
-    using Firebase.Database.Query;    
-    using Fundoo.Model;  
-    using Newtonsoft.Json;
- 
+    using Firebase.Database.Query;
+    using Fundoo.Model;
+
     /// <summary>
     /// FireBaseConnector class
     /// </summary>
@@ -69,7 +68,7 @@ namespace Fundoo.FirebaseConnector
         {
             var registeredDetails = await this.GetAllUserDetails();
             await this.firebaseClient
-              .Child("RegisterDetails")             
+              .Child("RegisterDetails")
               .OnceAsync<UserDetails>();
             return registeredDetails.Where(a => a.Email.Equals(email)).FirstOrDefault();
         }

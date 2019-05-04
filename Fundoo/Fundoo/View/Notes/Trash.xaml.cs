@@ -1,69 +1,33 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LabledNotePage.xaml.cs" company="Bridgelabz">
+// <copyright file="Trash.xaml.cs" company="Bridgelabz">
 //   Copyright © 2018 Company
 // </copyright>
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
+
+using Fundoo.DataHandler;
+using Fundoo.Model;
+using Fundoo.ModelView;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
 namespace Fundoo.View
 {
-    using Fundoo.DataHandler;
-    using Fundoo.DependencyServices;
-    using Fundoo.Model;
-    using Fundoo.ModelView;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LabeledNotePage : ContentPage
+    public partial class Trash : ContentPage
     {
         /// <summary>
-        /// The lable name
+        /// Initializes a new instance of the <see cref="Trash"/> class.
         /// </summary>
-        public string labelName;
-
-        /// <summary>
-        /// The current label key
-        /// </summary>
-        public string currentLabelKey;
-
-        /// <summary>
-        /// The datalogic
-        /// </summary>
-       public DataLogic datalogic = new DataLogic();
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LabeldNotePage"/> class.
-        /// </summary>
-        /// <param name="labelName">Name of the label.</param>
-        /// <param name="labelKey">The lable key.</param>
-        public LabeledNotePage(string labelName, string labelKey)
+        public Trash()
         {
-            this.labelName = labelName;
-            this.currentLabelKey = labelKey;
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LabledNotePage"/> class.
-        /// </summary>
-        public LabeledNotePage()
-        {
-        }
-
-        /// <summary>
-        /// Handles the Clicked event of the Take a Note control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void TakeaNote_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new WriteNotesPage(true, currentLabelKey));
         }
 
         /// <summary>
@@ -74,34 +38,29 @@ namespace Fundoo.View
         /// </remarks>
         protected override void OnAppearing()
         {
-            this.Call();
+            GetNotes();
+            base.OnAppearing();
         }
 
         /// <summary>
-        /// Calls this instance.
+        /// Gets the notes.
         /// </summary>
-        public async void Call()
+        public async void GetNotes()
         {
-            List<Note> notesList = new List<Note>();
+            NotesHandler notesHandler = new NotesHandler();
+             var notesList = await notesHandler.GetAllNotes();
+            List<Note> trashNotesList = new List<Note>();
 
-            ////Getting the Current Label.
-            Model.LabelModel lable = await this.datalogic.GetLabelByKey(currentLabelKey);
-
-            //// Retrieving notes Under this Current Label.
-            foreach (string notekey in lable.NoteKeysList)
+            foreach (Note note in notesList)
             {
-                Note retrievedNote = await datalogic.GetNote(notekey);
-
-                if (retrievedNote != null)
+                ////Adding only Notes that are trash.
+                if (note.IsTrash == true)
                 {
-                    retrievedNote.Key = notekey;
-                    notesList.Add(retrievedNote);
+                    trashNotesList.Add(note);
                 }
             }
 
-            this.DynamicGridView(notesList);
-
-            base.OnAppearing();
+            this.DynamicGridView(trashNotesList);
         }
 
         /// <summary>
@@ -135,11 +94,12 @@ namespace Fundoo.View
 
                 var stackLayout1 = new StackLayout();
 
+                ////Adding TapGesture to stackLayout1.
                 var tapGestureRecognizer = new TapGestureRecognizer();
-                tapGestureRecognizer.Tapped += this.stackLayoutTap_Tapped;
+                tapGestureRecognizer.Tapped += this.StackLayoutTap_Tapped;
                 stackLayout1.GestureRecognizers.Add(tapGestureRecognizer);
 
-                var titleLable = new Xamarin.Forms.Label
+                var titleLable = new Label
                 {
                     Text = note.Title,
                     TextColor = Color.Black,
@@ -148,7 +108,7 @@ namespace Fundoo.View
                     HorizontalOptions = LayoutOptions.Start,
                 };
 
-                var infoLable = new Xamarin.Forms.Label
+                var infoLable = new Label
                 {
                     Margin = new Thickness(10, 10, 0, 0),
                     Text = note.Info,
@@ -158,13 +118,13 @@ namespace Fundoo.View
                     HorizontalOptions = LayoutOptions.Start,
                 };
 
-                var noteKey = new Xamarin.Forms.Label
+                var noteKey = new Label
                 {
                     Text = note.Key,
                     IsVisible = false
                 };
 
-                var noteColor = new Xamarin.Forms.Label
+                var noteColor = new Label
                 {
                     Text = note.Color,
                     IsVisible = false
@@ -178,57 +138,32 @@ namespace Fundoo.View
                 stackLayout1.Margin = 2;
 
                 var frame = new Frame();
+                /// frame.BorderColor = Color.Black;
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
+
+
                 gridLayout.Children.Add(frame, column, row);
                 column++;
+
             }
         }
 
         /// <summary>
-        /// Handles the Tapped event of the stackLayoutTap control.
+        /// Handles the Tapped event of the StackLayoutTap control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void stackLayoutTap_Tapped(object sender, EventArgs e)
+        private void StackLayoutTap_Tapped(object sender, EventArgs e)
         {
             StackLayout gridNoteStack = (StackLayout)sender;
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;
-            Xamarin.Forms.Label key = (Xamarin.Forms.Label)item[2];
+            Label key = (Label)item[2];
             ///  Label noteColor = (Label)item[3];
             var notekey = key.Text;
-            Navigation.PushAsync(new EditNote(notekey));
-        }
-
-        /// <summary>
-        /// Handles the Clicked event of the DeleteLable control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void DeleteLable_Clicked(object sender, EventArgs e)
-        {
-            this.CallDeleteLable(this.currentLabelKey);
-        }
-
-        /// <summary>
-        /// Calls the delete lable.
-        /// </summary>
-        /// <param name="labelKey">The label key.</param>
-        public async void CallDeleteLable(string labelKey)
-        {
-            ////Deletes The Current Label.(Notes are Note Deleted)
-            bool result = await this.datalogic.DeleteLableByKey(currentLabelKey);
-            if (result)
-            {
-                Message.ShowToastMessage("Label Deleted");
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                Message.ShowToastMessage("Label Not Deleted");
-            }
+            Navigation.PushAsync(new TrashNoteTap(notekey));
         }
     }
 }

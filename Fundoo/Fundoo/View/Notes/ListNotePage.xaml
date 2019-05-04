@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundoo.View.ListNotePage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="GridIcon.png" Text="GridIcon"  Clicked="GridIcontem_Clicked"/>
+        <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="LogoutIcon_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+            <StackLayout>
+                
+                    <StackLayout>
+                        <Label Text="PINNED" FontAttributes="Bold"/>
+                        <Grid x:Name="gridLayoutPinned">
+
+                        </Grid>
+
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="OTHERS" FontAttributes="Bold"/>
+                        <Grid x:Name="gridLayoutUnpinned">
+
+                        </Grid>
+
+                    </StackLayout>
+               
+            </StackLayout>
+            </ScrollView>
+
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Button x:Name="TakeaNote" 
+                        HeightRequest="35"
+                    Text="Take a note ..."
+                    VerticalOptions="End" 
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Transparent" 
+                    Margin="10,0,175,20"
+                    Clicked="TakeaNote_Clicked">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

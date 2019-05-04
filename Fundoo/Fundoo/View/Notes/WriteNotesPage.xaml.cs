@@ -97,9 +97,9 @@ namespace Fundoo.View
 
         public async Task CallCreatenotes()
         {
-             DataLogic dataLogic = new DataLogic();
-              await dataLogic.CreateNotes(title.Text, info.Text, this.noteColor ,this.isPinned);
-            this.noteKey = dataLogic.responseKey;
+             NotesHandler notesHandler = new NotesHandler();
+              await notesHandler.CreateNotes(title.Text, info.Text, this.noteColor ,this.isPinned);
+            this.noteKey = notesHandler.responseKey;
             return;
         }
 

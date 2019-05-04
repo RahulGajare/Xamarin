@@ -35,7 +35,12 @@ namespace Fundoo.View
         /// <summary>
         /// The datalogic
         /// </summary>
-       public DataLogic datalogic = new DataLogic();
+        public LabelHandler labelHandler = new LabelHandler();
+
+        /// <summary>
+        /// The notelabel handler
+        /// </summary>
+        public NotesHandler noteHandler = new NotesHandler();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LabeldNotePage"/> class.
@@ -85,12 +90,12 @@ namespace Fundoo.View
             List<Note> notesList = new List<Note>();
 
             ////Getting the Current Label.
-            Model.LabelModel lable = await this.datalogic.GetLabelByKey(currentLabelKey);
+            Model.LabelModel lable = await this.labelHandler.GetLabelByKey(currentLabelKey);
 
             //// Retrieving notes Under this Current Label.
             foreach (string notekey in lable.NoteKeysList)
             {
-                Note retrievedNote = await datalogic.GetNote(notekey);
+                Note retrievedNote = await noteHandler.GetNote(notekey);
 
                 if (retrievedNote != null)
                 {
@@ -219,7 +224,7 @@ namespace Fundoo.View
         public async void CallDeleteLable(string labelKey)
         {
             ////Deletes The Current Label.(Notes are Note Deleted)
-            bool result = await this.datalogic.DeleteLableByKey(currentLabelKey);
+            bool result = await this.labelHandler.DeleteLableByKey(currentLabelKey);
             if (result)
             {
                 Message.ShowToastMessage("Label Deleted");

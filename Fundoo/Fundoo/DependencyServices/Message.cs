@@ -11,7 +11,7 @@ namespace Fundoo.DependencyServices
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
-    using Fundoo.Interfaces;  
+    using Fundoo.Interfaces;
     using Xamarin.Forms;
 
     /// <summary>
@@ -25,7 +25,7 @@ namespace Fundoo.DependencyServices
         /// <param name="message">The message.</param>
         public static void ShowToastMessage(string message)
         {
-             DependencyService.Get<IMessage>().ShowToast(message);
+            DependencyService.Get<IMessage>().ShowToast(message);
         }
     }
 }

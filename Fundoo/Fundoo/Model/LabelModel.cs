@@ -12,9 +12,9 @@ using Xamarin.Forms;
 
 namespace Fundoo.Model
 {
-     public class LabelModel
+    public class LabelModel
     {
-       private List<string> noteKeys = new List<string>();
+        private List<string> noteKeys = new List<string>();
         private string lableName;
         private string key;
 
@@ -32,7 +32,7 @@ namespace Fundoo.Model
         /// <value>
         /// The label key.
         /// </value>
-       public string lableKey { get => key; set => key = value; }
+        public string lableKey { get => key; set => key = value; }
 
         /// <summary>
         /// Gets or sets the name of the lable.

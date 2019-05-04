@@ -11,11 +11,31 @@
 
   <ItemGroup>
     <Compile Remove="Validations\ConfirmPasswordValidator.cs" />
+    <Compile Remove="View\ArchivePage.xaml.cs" />
+    <Compile Remove="View\CreateLablePage.xaml.cs" />
+    <Compile Remove="View\EditLabel.xaml.cs" />
+    <Compile Remove="View\EditNote.xaml.cs" />
+    <Compile Remove="View\GridNotesPage.xaml.cs" />
+    <Compile Remove="View\LabeledNotePage.xaml.cs" />
+    <Compile Remove="View\ListNotePage.xaml.cs" />
     <Compile Remove="View\LoginPage.xaml.cs" />
+    <Compile Remove="View\Trash.xaml.cs" />
+    <Compile Remove="View\TrashNoteTap.xaml.cs" />
+    <Compile Remove="View\WriteNotesPage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="View\ArchivePage.xaml" />
+    <EmbeddedResource Remove="View\CreateLablePage.xaml" />
+    <EmbeddedResource Remove="View\EditLabel.xaml" />
+    <EmbeddedResource Remove="View\EditNote.xaml" />
+    <EmbeddedResource Remove="View\GridNotesPage.xaml" />
+    <EmbeddedResource Remove="View\LabeledNotePage.xaml" />
+    <EmbeddedResource Remove="View\ListNotePage.xaml" />
     <EmbeddedResource Remove="View\LoginPage.xaml" />
+    <EmbeddedResource Remove="View\Trash.xaml" />
+    <EmbeddedResource Remove="View\TrashNoteTap.xaml" />
+    <EmbeddedResource Remove="View\WriteNotesPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,29 +67,21 @@
     <Compile Update="View\FundooNotes.xaml.cs">
       <DependentUpon>FundooNotes.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\GridNotesPage.xaml.cs">
-      <DependentUpon>GridNotesPage.xaml</DependentUpon>
-      <ExcludeFromSourceAnalysis>False</ExcludeFromSourceAnalysis>
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    <Compile Update="View\Labels\CreateLablePage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="View\CreateLablePage.xaml.cs">
-      <DependentUpon>CreateLablePage.xaml</DependentUpon>
+    <Compile Update="View\Labels\EditLabel.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="View\LabeledNotePage.xaml.cs">
-      <DependentUpon>LabeledNotePage.xaml</DependentUpon>
+    <Compile Update="View\Labels\LabeledNotePage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="View\Notes\ArchivePage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View\ArchivePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\EditLabel.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\EditNote.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="View\ForgotPassword.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -77,18 +89,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\FundooNotes.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\GridNotesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\LabeledNotePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\CreateLablePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\ListNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\NotesSlideUpMenu.xaml">
@@ -107,18 +107,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Setting.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\Test.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\Trash.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\TrashNoteTap.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\WriteNotesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

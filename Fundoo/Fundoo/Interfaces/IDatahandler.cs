@@ -12,6 +12,9 @@ using System.Text;
 
 namespace Fundoo.Interfaces
 {
+    /// <summary>
+    /// Interface for Data handler
+    /// </summary>
     public interface IDatahandler
     {
         bool CreateNotes();     

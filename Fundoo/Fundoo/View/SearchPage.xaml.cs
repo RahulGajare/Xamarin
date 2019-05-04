@@ -20,7 +20,7 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
-        DataLogic dataLogic = new DataLogic();
+        NotesHandler notesHandler = new NotesHandler();
         public List<Note> notesList = new List<Note>();
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Fundoo.View
         /// </summary>
         public async void GetNotes()
         {
-            var notes = await dataLogic.GetAllNotes();
+            var notes = await notesHandler.GetAllNotes();
             notes = notes.Where(a => a.IsTrash == false && a.IsArchive == false).ToList();
             this.notesList = notes;
         }

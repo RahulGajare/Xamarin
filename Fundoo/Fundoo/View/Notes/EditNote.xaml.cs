@@ -79,9 +79,9 @@ namespace Fundoo.View
         /// <param name="noteKey">The note key.</param>
         public async void GetTappedNotes(string noteKey)
         {
-            DataLogic datalogic = new DataLogic();
-           
-            this.retrivedNote = await datalogic.GetNote(noteKey);
+            NotesHandler notesHandler = new NotesHandler();
+
+            this.retrivedNote = await notesHandler.GetNote(noteKey);
             Entrytitle.Text = this.retrivedNote.Title;
             Editorinfo.Text = this.retrivedNote.Info;
             this.noteColor = this.retrivedNote.Color;
@@ -205,8 +205,8 @@ namespace Fundoo.View
                 IsArchive = this.isArchive
             };
 
-            DataLogic datalogic = new DataLogic();
-            await datalogic.SaveEditedNote(this.noteKey, editedNote);
+            NotesHandler notesHandler = new NotesHandler();
+            await notesHandler.SaveEditedNote(this.noteKey, editedNote);
 
             if (this.DeleteButtonClicked)
             {
@@ -240,8 +240,8 @@ namespace Fundoo.View
         public async void CallDeleteNote(string noteKey)
         {
 
-            DataLogic datalogic = new DataLogic();
-            bool isDeleted = await datalogic.DeleteNote(noteKey);
+            NotesHandler notesHandler = new NotesHandler();
+            bool isDeleted = await notesHandler.DeleteNote(noteKey);
             if (isDeleted)
             {
                 Message.ShowToastMessage("Deleted");
