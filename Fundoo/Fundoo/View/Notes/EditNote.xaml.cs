@@ -291,7 +291,7 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void VerticalMenuIcon_Tapped(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new NotesSlideUpMenu());
+            PopupNavigation.Instance.PushAsync(new NotesSlideUpMenu(noteKey));
         }
 
         private void Aqua_Clicked(object sender, EventArgs e)

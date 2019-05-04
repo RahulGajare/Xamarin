@@ -5,6 +5,8 @@
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Fundoo.DataHandler;
+using Fundoo.Model;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -12,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,12 +23,22 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NotesSlideUpMenu : PopupPage
     {
+        private string noteKey;
         /// <summary>
         /// Initializes a new instance of the <see cref="NotesSlideUpMenu"/> class.
         /// </summary>
         public NotesSlideUpMenu()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotesSlideUpMenu"/> class.
+        /// </summary>
+        public NotesSlideUpMenu(string noteKey)
+        {
+            InitializeComponent();
+            this.noteKey = noteKey;
         }
 
         /// <summary>
@@ -51,14 +64,25 @@ namespace Fundoo.View
             base.OnDisappearing();
         }
 
-        private void Delete1_Clicked(object sender, EventArgs e)
+        private async void Delete_Clicked(object sender, EventArgs e)
         {
+            await PopupNavigation.Instance.RemovePageAsync(this);
+            EditNote editNote = new EditNote();
 
         }
 
-        private void Delete2_Clicked(object sender, EventArgs e)
-        {
 
+
+        private async void Share_Clicked(object sender, EventArgs e)
+        {
+            NotesHandler notesHandler = new NotesHandler();
+            Note note = await notesHandler.GetNote(this.noteKey);
+
+            await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest
+            {
+                Text = note.Info,
+                Title = "Share!"
+            });
         }
     }
 }

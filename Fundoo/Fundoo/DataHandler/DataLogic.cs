@@ -237,8 +237,16 @@ namespace Fundoo.DataHandler
         /// <returns></returns>
         public async Task<string> GetPicUrl()
         {
-            var obj = await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("ProfilePic").OnceSingleAsync<ProfilePic>();
-            return obj.ProfilePicUrl;
+            try
+            {
+                var obj = await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("ProfilePic").OnceSingleAsync<ProfilePic>();
+                return obj.ProfilePicUrl;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+           
         }
     }
 }

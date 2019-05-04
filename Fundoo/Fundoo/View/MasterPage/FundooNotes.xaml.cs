@@ -35,6 +35,7 @@ namespace Fundoo.View
         {         
             this.InitializeComponent();
             this.LoadProfilePic();
+            
           
           
 
@@ -53,11 +54,15 @@ namespace Fundoo.View
             DataLogic dataLogic = new DataLogic();
             ////Gets The Image Url from FireBase Storage.
             string url = await dataLogic.GetPicUrl();
-            var imgsource = new UriImageSource { Uri = new Uri(url)};
-            imgsource.CachingEnabled = false;
-            ProfilePic.Source = imgsource;
-            ProfilePic.HeightRequest = 100;
-            ProfilePic.WidthRequest = 100;
+            if (url != null)
+            {
+                var imgsource = new UriImageSource { Uri = new Uri(url) };
+                imgsource.CachingEnabled = false;
+                ProfilePic.Source = imgsource;
+                ProfilePic.HeightRequest = 100;
+                ProfilePic.WidthRequest = 100;
+            }
+           
         }
 
         /// <summary>

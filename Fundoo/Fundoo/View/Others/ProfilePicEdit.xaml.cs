@@ -88,7 +88,7 @@ namespace Fundoo.View
         public async Task StoreImages(Stream imageStream)
         {
             var stroageImage = await new FirebaseStorage("fundoousers-a9d30.appspot.com")
-                .Child("XamarinMonkeys")
+                .Child("FundooUserPics")
                 .Child("image.jpg")
                 .PutAsync(imageStream);
             string imgurl = stroageImage;
