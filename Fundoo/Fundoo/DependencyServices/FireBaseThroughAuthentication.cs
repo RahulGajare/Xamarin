@@ -22,6 +22,11 @@ namespace Fundoo.DependencyServices
     /// </summary>
     public class FireBaseThroughAuthentication : ContentPage
     {
+
+       private  UsersUID usersUID;
+        private string UserListKey = "-LeHGFGRRmhcnWQddRWC";
+
+
         /// <summary>
         /// The firebase client
         /// </summary>
@@ -41,9 +46,34 @@ namespace Fundoo.DependencyServices
             var uid = await DependencyService.Get<IFirebaseAuthenticator>().RegisterUserWithEmailPassword(email, password);
             if (uid != null)
             {
-                await this.firebaseClient.Child("FundooUsers").Child(uid).Child("Userinfo").PostAsync<UserDetails>(new UserDetails() { FirstName = firstName, LastName = lastName, Email = email, PassWord = password, PhoneNumber = phoneNumber });
+                await this.firebaseClient.Child("FundooUsers").Child("UserList").Child(uid).Child("Userinfo").PostAsync<UserDetails>(new UserDetails()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    PassWord = password,
+                    PhoneNumber = phoneNumber
+                });
+
+
+              var result =  await this.firebaseClient.Child("FundooUsers").Child("UserList").Child(UserListKey).OnceSingleAsync<UsersUID>();
+
+                if (result == null)
+                {
+                     usersUID = new UsersUID();
+                    usersUID.UidList.Add(uid, email);
+                }
+                else
+                {
+                    result.UidList.Add(uid, email);
+                }
+
+                await this.firebaseClient.Child("FundooUsers").Child("UserList").Child(UserListKey).PutAsync(result);
+
                 return true;
             }
+
+
 
             return false;
         }

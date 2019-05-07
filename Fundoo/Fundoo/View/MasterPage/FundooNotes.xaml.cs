@@ -37,8 +37,6 @@ namespace Fundoo.View
             this.LoadProfilePic();
             
           
-          
-
             var userImage = new TapGestureRecognizer();
             //// Binding events 
             userImage.Tapped += this.userImage_Tapped;
@@ -61,6 +59,10 @@ namespace Fundoo.View
                 ProfilePic.Source = imgsource;
                 ProfilePic.HeightRequest = 100;
                 ProfilePic.WidthRequest = 100;
+            }
+            else
+            {
+                ProfilePic.Source = "pf.png";
             }
            
         }

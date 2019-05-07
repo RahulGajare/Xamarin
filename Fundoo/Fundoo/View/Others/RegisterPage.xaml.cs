@@ -60,7 +60,7 @@ namespace Fundoo.View
             {
                 await this.DisplayAlert("Alert", "Registerd Successfully", "Ok");
                 await Navigation.PopAsync();
-                await Navigation.PushAsync(new Greeting());
+              ////  await Navigation.PushAsync(new Greeting());
             }
             else
             {

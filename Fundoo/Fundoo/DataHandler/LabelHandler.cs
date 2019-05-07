@@ -23,7 +23,7 @@ namespace Fundoo.DataHandler
         /// <returns></returns>
         public async Task SaveLable(LabelModel label)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").PostAsync<LabelModel>(new LabelModel() { LableName = label.LableName, NoteKeysList = label.NoteKeysList });
+            await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").PostAsync<LabelModel>(new LabelModel() { LableName = label.LableName, NoteKeysList = label.NoteKeysList });
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Fundoo.DataHandler
             try
             {
                 return (await this.firebaseClient
-          .Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables")
+          .Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Lables")
           .OnceAsync<LabelModel>()).Select(item => new LabelModel
           {
               LableName = item.Object.LableName,
@@ -60,7 +60,7 @@ namespace Fundoo.DataHandler
         {
             try
             {
-                await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(labelkey).PutAsync<LabelModel>(label);
+                await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(labelkey).PutAsync<LabelModel>(label);
                 return true;
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace Fundoo.DataHandler
         /// <returns></returns>
         public async Task<LabelModel> GetLabelByKey(string labelKey)
         {
-            LabelModel lable = await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(labelKey).OnceSingleAsync<LabelModel>();
+            LabelModel lable = await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(labelKey).OnceSingleAsync<LabelModel>();
             return lable;
         }
 
@@ -90,7 +90,7 @@ namespace Fundoo.DataHandler
         {
             try
             {
-                await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(labelKey).DeleteAsync();
+                await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Lables").Child(labelKey).DeleteAsync();
                 return true;
             }
             catch (Exception)

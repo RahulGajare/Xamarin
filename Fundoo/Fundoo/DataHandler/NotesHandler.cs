@@ -28,7 +28,7 @@ namespace Fundoo.DataHandler
         {
             try
             {
-                var note = await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync(new Note()
+                var note = await this.firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync(new Note()
                 {
                     Title = title,
                     Info = info,
@@ -56,7 +56,7 @@ namespace Fundoo.DataHandler
         {
             try
             {
-                await this.firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync<Note>(note);
+                await this.firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").PostAsync<Note>(note);
 
                 return true;
             }
@@ -73,7 +73,7 @@ namespace Fundoo.DataHandler
         public async Task<List<Note>> GetAllNotes()
         {
             return (await this.firebaseClient
-              .Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes")
+              .Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Notes")
               .OnceAsync<Note>()).Select(item => new Note
               {
                   Title = item.Object.Title,
@@ -93,7 +93,7 @@ namespace Fundoo.DataHandler
         /// <returns></returns>
         public async Task<Note> GetNote(string noteKey)
         {
-            Note note = await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).OnceSingleAsync<Note>();
+            Note note = await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).OnceSingleAsync<Note>();
             return note;
         }
 
@@ -105,7 +105,7 @@ namespace Fundoo.DataHandler
         /// <returns></returns>
         public async Task SaveEditedNote(string noteKey, Note note)
         {
-            await firebaseClient.Child("FundooUsers").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(note);
+            await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(note);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Fundoo.DataHandler
             try
             {
                 string uid = FireBaseThroughAuthentication.GetUid();
-                await firebaseClient.Child("FundooUsers").Child(uid).Child("Notes").Child(noteKey).DeleteAsync();
+                await firebaseClient.Child("FundooUsers").Child("UserList").Child(uid).Child("Notes").Child(noteKey).DeleteAsync();
                 return true;
             }
             catch (Exception)
