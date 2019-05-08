@@ -34,7 +34,7 @@ namespace Fundoo.DataHandler
                 .OnceAsync<CollaboratorModel>()).Select(item => new CollaboratorModel
                 {
                     SenderUid = item.Object.SenderUid,
-                    NoteKey = item.Object.NoteKey
+                    NoteKey = item.Object.NoteKey,
 
               }).ToList();
 

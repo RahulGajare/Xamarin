@@ -96,8 +96,12 @@ namespace Fundoo.View
         {
             NotesHandler notesHandler = new NotesHandler();
             LabelHandler labelHandler = new LabelHandler();
+            Collaboratorshandler collaboratorshandler = new Collaboratorshandler();
             var notesList = await notesHandler.GetAllNotes();
             var labelsList = await labelHandler.GetAllLables();
+            var collaboratedNotes = await collaboratorshandler.GetCollaboratorNotes();
+
+           var  newList = collaboratedNotes.Concat(notesList);
 
             ////List Of Pinned Notes.
             List<Note> pinnedList = new List<Note>();
@@ -106,7 +110,7 @@ namespace Fundoo.View
             List<Note> UnpinnedList = new List<Note>();
 
             ////Showing Only The Notes That are not archive or Trash
-            foreach (Note note in notesList)
+            foreach (Note note in newList)
             {
                 if (note.IsTrash == false && note.IsArchive == false)
                 {
