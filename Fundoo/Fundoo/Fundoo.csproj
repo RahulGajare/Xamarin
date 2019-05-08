@@ -83,6 +83,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="View\Collabrators\EmailList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\Others\ForgotPassword.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

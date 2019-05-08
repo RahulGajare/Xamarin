@@ -50,8 +50,8 @@
             <ImageButton Source="ShareIcon.png" Grid.Row="2" Grid.Column="0"  BackgroundColor="Transparent" Clicked="Share_Clicked"/>
             <Button Text ="Send" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="Transparent" Clicked="Share_Clicked"/>
 
-            <ImageButton Source="user.png" Grid.Row="3" Grid.Column="0"  BackgroundColor="Transparent" />
-            <Button Text ="Collaborator" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="Transparent" />
+            <ImageButton Source="collabratorIcon.png" Grid.Row="3" Grid.Column="0"  BackgroundColor="Transparent" Clicked="collabratorIcon_Clicked"/>
+            <Button Text ="Collaborator" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="Transparent" Clicked="collabratorIcon_Clicked"/>
 
             <ImageButton Source="LableIcon.png" Grid.Row="4" Grid.Column="0"  BackgroundColor="Transparent"/>
             <Button Text ="Labels" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="Transparent"/>

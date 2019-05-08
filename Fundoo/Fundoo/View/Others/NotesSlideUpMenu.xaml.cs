@@ -7,6 +7,7 @@
 
 using Fundoo.DataHandler;
 using Fundoo.Model;
+using Fundoo.View.Collabrators;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -46,9 +47,9 @@ namespace Fundoo.View
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync(true);
+            await PopupNavigation.Instance.PopAsync(true);
         }
 
         /// <summary>
@@ -83,6 +84,14 @@ namespace Fundoo.View
                 Text = note.Info,
                 Title = "Share!"
             });
+        }
+
+      
+
+        private async void collabratorIcon_Clicked(object sender, EventArgs e)
+        {      
+            Navigation.PushAsync(new EmailList(this.noteKey));
+            await PopupNavigation.Instance.PopAsync(true);
         }
     }
 }

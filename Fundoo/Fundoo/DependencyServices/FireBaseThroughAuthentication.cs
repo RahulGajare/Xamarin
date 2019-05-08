@@ -91,7 +91,7 @@ namespace Fundoo.DependencyServices
         }
 
         /// <summary>
-        /// Gets the uid.
+        /// Gets the Current User uid.
         /// </summary>
         /// <returns></returns>
         public static string GetUid()
