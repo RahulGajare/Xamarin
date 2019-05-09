@@ -3,9 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fundoo.View.Setting">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="10">
-            <Button x:Name="changePassword" Text="change Passwword" WidthRequest="100" HeightRequest="100" BackgroundColor="Transparent" FontAttributes="20"/>
-            <Button x:Name="ProfilePic" Text="Change ProfilePic"  WidthRequest="100" HeightRequest="100" BackgroundColor="Transparent" FontAttributes="20"/>
+        <StackLayout Spacing="10">
+            <!--<ListView x:Name="settingItems" ItemSelected="SettingItems_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="Device Information"/>
+                                <Label Text="Device Information"/>
+                                <Label Text="Device Information"/>
+                                <Label Text="Device Information"/>
+                                
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+            </ListView>-->
+
+
+            <Button Text="Device Information" FontSize="Large" BackgroundColor="Transparent"/>
+            <Button x:Name="AppInformation" Text="App Information" FontSize="Large" BackgroundColor="Transparent" Clicked="AppInformation_Clicked"/>
+            <Button Text="Email" FontSize="Large" BackgroundColor="Transparent"/>
+            <Button Text="Open Browser" FontSize="Large" BackgroundColor="Transparent" Clicked="Button_Clicked_1"/>
+            <Button Text="Internet Connectivity" FontSize="Large" BackgroundColor="Transparent"
+                    Clicked="Button_Clicked"/>
 
         </StackLayout>
     </ContentPage.Content>

@@ -101,6 +101,7 @@ namespace Fundoo.View
             var labelsList = await labelHandler.GetAllLables();
             var collaboratedNotes = await collaboratorshandler.GetCollaboratorNotes();
 
+            ////Concating Collaborated notes with user notes.
            var  newList = collaboratedNotes.Concat(notesList);
 
             ////List Of Pinned Notes.
@@ -268,7 +269,7 @@ namespace Fundoo.View
                 return;
             }
 
-            ////initializing with 2 columns and 1 row.
+            //// initializing with 2 columns and 1 row.
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
@@ -370,7 +371,7 @@ namespace Fundoo.View
 
 
                 var frame = new Frame();
-                /// frame.BorderColor = Color.Black;
+                //// frame.BorderColor = Color.Black;
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);

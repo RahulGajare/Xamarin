@@ -50,6 +50,16 @@ namespace Fundoo.Model
         /// </summary>
         private bool isArchive;
 
+       /// <summary>
+       /// collaborators Uid
+       /// </summary>
+        private string collaboratorsUid;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private bool isCollaborated;
+
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
@@ -105,6 +115,16 @@ namespace Fundoo.Model
         ///   <c>true</c> if this instance is archive; otherwise, <c>false</c>.
         /// </value>
         public bool IsArchive { get => isArchive; set => isArchive = value; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SenderUid { get => collaboratorsUid; set => collaboratorsUid = value; }
+
+       /// <summary>
+       /// 
+       /// </summary>
+        public bool IsCollaborated { get => isCollaborated; set => isCollaborated = value; }
     }
 
 }

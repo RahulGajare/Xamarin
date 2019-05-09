@@ -338,5 +338,15 @@ namespace Fundoo.View
         {
             Navigation.PushAsync(new WriteNotesPage(false));
         }
+
+        /// <summary>
+        /// Handles the clicked event of the SearchIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void SearchIcon_clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SearchPage());
+        }
     }
 }

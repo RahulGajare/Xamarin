@@ -22,5 +22,33 @@ namespace Fundoo.View
         {
             this.InitializeComponent();
         }
+
+        private void SettingItems_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            if(Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                DisplayAlert("alert", "Check your internet connection", "ok");
+            }
+            else
+            {
+                DisplayAlert("alert", " internet connection", "ok");
+            }
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            Xamarin.Essentials.Browser.OpenAsync("https://firebase.google.com/", Xamarin.Essentials.BrowserLaunchMode.SystemPreferred);
+        }
+
+        private void AppInformation_Clicked(object sender, EventArgs e)
+        {
+            AppInformation.Text = $"{Xamarin.Essentials.AppInfo.Name}";
+
+        }
     }
 }

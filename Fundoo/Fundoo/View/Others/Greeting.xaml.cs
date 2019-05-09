@@ -37,7 +37,13 @@ namespace Fundoo.View
                 //// Binding events 
                 tapImage.Tapped += this.TapImage_Tapped;
                 ///// Associating tap events to the image buttons    
-                googleIcon.GestureRecognizers.Add(tapImage);   
+                googleIcon.GestureRecognizers.Add(tapImage);
+
+            var tapImage2 = new TapGestureRecognizer();
+            //// Binding events 
+            tapImage2.Tapped += this.TapImage_Tapped;
+            ///// Associating tap events to the image buttons    
+            facebookIcon.GestureRecognizers.Add(tapImage);
         }
 
         /// <summary>
@@ -47,8 +53,7 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
        public void TapImage_Tapped(object sender, EventArgs e)
         {
-            //// handles the tap over google icon   
-            this.DisplayAlert("Alert", "This is an facebook button", "OK");
+            Xamarin.Essentials.Browser.OpenAsync("https://www.facebook.com/", Xamarin.Essentials.BrowserLaunchMode.SystemPreferred);
         }
         
         /// <summary>

@@ -41,7 +41,9 @@ namespace Fundoo.DataHandler
             List<Note> noteList = new List<Note>();
             foreach(CollaboratorModel collaborator in list)
             {
-                noteList.Add(await firebaseClient.Child("FundooUsers").Child("UserList").Child(collaborator.SenderUid).Child("Notes").Child(collaborator.NoteKey).OnceSingleAsync<Note>());
+                var note = await firebaseClient.Child("FundooUsers").Child("UserList").Child(collaborator.SenderUid).Child("Notes").Child(collaborator.NoteKey).OnceSingleAsync<Note>();
+                note.Key = collaborator.NoteKey;
+                noteList.Add(note);
             }
 
             return noteList;

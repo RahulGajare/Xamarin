@@ -73,8 +73,6 @@ namespace Fundoo.DependencyServices
                 return true;
             }
 
-
-
             return false;
         }
 

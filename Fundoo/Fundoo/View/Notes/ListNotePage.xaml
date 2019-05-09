@@ -6,6 +6,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="GridIcon.png" Text="GridIcon"  Clicked="GridIcontem_Clicked"/>
         <ToolbarItem Icon="logoutIcon.png" Text="Log Out" Clicked="LogoutIcon_Clicked"/>
+        <ToolbarItem Icon="SearchIcon.png" Text="SearchIcon" Clicked="SearchIcon_clicked"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
