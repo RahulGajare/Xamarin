@@ -77,6 +77,7 @@ namespace Fundoo.View
             ToolbarItems.Clear();
             this.noteKey = noteKey;
             this.isCollaborated = isCollaborated;
+            this.senderUid = senderUid;
             this.GetTappedNotes(noteKey);
             this.InitializeComponent();
 
@@ -92,14 +93,43 @@ namespace Fundoo.View
             ///// Associating tap events to the image buttons    
             VerticalMenuIcon.GestureRecognizers.Add(VerticalMenuIconTap);
         }
-        /// <summary>
-        /// Changes the color.
-        /// </summary>
-        public void changeColor()
+
+        protected async override void OnAppearing()
         {
-            this.BackgroundColor = Color.MintCream;
-            this.noteColor = "MintCream";
+            NotesHandler notesHandler = new NotesHandler();
+
+            if (this.isCollaborated)
+            {
+                this.retrivedNote = await notesHandler.GetNote(noteKey, this.senderUid);
+            }
+            else
+            {
+                this.retrivedNote = await notesHandler.GetNote(noteKey);
+            }
+
+            this.retrivedNote = await notesHandler.GetNote(noteKey);
+
+            Entrytitle.Text = this.retrivedNote.Title;
+            Editorinfo.Text = this.retrivedNote.Info;
+            this.senderUid = this.retrivedNote.SenderUid;
+            this.isCollaborated = this.retrivedNote.IsCollaborated;
+            this.noteColor = this.retrivedNote.Color;
+            this.isPinned = this.retrivedNote.IsPinned;
+            this.isTrash = this.retrivedNote.IsTrash;
+            this.isArchive = this.retrivedNote.IsArchive;
+            this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(retrivedNote));
+            this.InitializeToolBarItems();
+            base.OnAppearing();
         }
+
+        ///// <summary>
+        ///// Changes the color.
+        ///// </summary>
+        //public void changeColor()
+        //{
+        //    this.BackgroundColor = Color.MintCream;
+        //    this.noteColor = "MintCream";
+        //}
 
         /// <summary>
         /// Gets the tapped notes.
@@ -117,9 +147,11 @@ namespace Fundoo.View
             {
                 this.retrivedNote = await notesHandler.GetNote(noteKey);
             }
-            this.retrivedNote = await notesHandler.GetNote(noteKey);
+           
             Entrytitle.Text = this.retrivedNote.Title;
             Editorinfo.Text = this.retrivedNote.Info;
+            this.senderUid = this.retrivedNote.SenderUid;
+            this.isCollaborated = this.retrivedNote.IsCollaborated;
             this.noteColor = this.retrivedNote.Color;
             this.isPinned = this.retrivedNote.IsPinned;
             this.isTrash = this.retrivedNote.IsTrash;
@@ -231,6 +263,7 @@ namespace Fundoo.View
         /// </summary>
         private async void CallSaveEditedNote()
         {
+
             Note editedNote = new Note()
             {
                 Title = Entrytitle.Text,
@@ -238,11 +271,22 @@ namespace Fundoo.View
                 Color = this.noteColor,
                 IsPinned = this.isPinned,
                 IsTrash = this.isTrash,
-                IsArchive = this.isArchive
+                IsArchive = this.isArchive,
+                SenderUid = this.senderUid,
+                IsCollaborated = this.isCollaborated              
             };
 
             NotesHandler notesHandler = new NotesHandler();
-            await notesHandler.SaveEditedNote(this.noteKey, editedNote);
+
+            if (this.isCollaborated)
+            {
+                await notesHandler.SaveEditedNote(this.noteKey, editedNote,this.senderUid);
+            }
+            else
+            {
+                await notesHandler.SaveEditedNote(this.noteKey, editedNote);
+            }
+           
 
             if (this.DeleteButtonClicked)
             {

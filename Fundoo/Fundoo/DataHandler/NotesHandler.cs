@@ -121,6 +121,18 @@ namespace Fundoo.DataHandler
         }
 
         /// <summary>
+        /// Saves the edited note.
+        /// </summary>
+        /// <param name="noteKey">The note key.</param>
+        /// <param name="note">The note.</param>
+        /// <param name="senderUid">The sender uid.</param>
+        /// <returns></returns>
+        public async Task SaveEditedNote(string noteKey, Note note,string senderUid)
+        {
+            await firebaseClient.Child("FundooUsers").Child("UserList").Child(senderUid).Child("Notes").Child(noteKey).PutAsync<Note>(note);
+        }
+
+        /// <summary>
         /// Deletes the note.
         /// </summary>
         /// <param name="noteKey">The note key.</param>

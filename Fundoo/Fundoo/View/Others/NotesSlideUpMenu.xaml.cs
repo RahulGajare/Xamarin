@@ -61,7 +61,7 @@ namespace Fundoo.View
         protected override void OnDisappearing()
         {
             EditNote editnew = new EditNote();
-            editnew.changeColor();
+            //editnew.changeColor();
             base.OnDisappearing();
         }
 

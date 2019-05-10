@@ -81,7 +81,9 @@ namespace Fundoo.View.Collabrators
                     collaboratorModel.ReceiverEmail = collabratorsEmail.Text;
 
                     collabratorsHandler.AddCollaborator(collaboratorModel,entry.Key);
-                    return;
+                   
+
+                    await DisplayAlert("Alert", "Notes will be shared With the Collabaorator", "OK");
 
                 }                         
             }
