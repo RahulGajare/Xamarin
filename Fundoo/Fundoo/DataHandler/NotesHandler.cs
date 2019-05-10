@@ -33,7 +33,8 @@ namespace Fundoo.DataHandler
                     Title = title,
                     Info = info,
                     Color = noteColor,
-                    IsPinned = isPinned
+                    IsPinned = isPinned,
+                    SenderUid = FireBaseThroughAuthentication.GetUid()
                 });
 
                 string key = note.Key;
@@ -94,6 +95,17 @@ namespace Fundoo.DataHandler
         public async Task<Note> GetNote(string noteKey)
         {
             Note note = await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).OnceSingleAsync<Note>();
+            return note;
+        }
+
+        /// <summary>
+        /// Gets the note.
+        /// </summary>
+        /// <param name="noteKey">The note key.</param>
+        /// <returns></returns>
+        public async Task<Note> GetNote(string noteKey, string senderUid)
+        {
+            Note note = await firebaseClient.Child("FundooUsers").Child("UserList").Child(senderUid).Child("Notes").Child(noteKey).OnceSingleAsync<Note>();
             return note;
         }
 

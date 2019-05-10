@@ -15,7 +15,7 @@ namespace Fundoo.DataHandler
         private string UserListKey = "-LeHGFGRRmhcnWQddRWC";
         private FirebaseClient firebaseClient = new FirebaseClient("https://fundoousers-a9d30.firebaseio.com/");
 
-        public async Task<UsersUID> GetUserUid()
+        public async Task<UsersUID> GetUsersUid()
         {
             var result = await this.firebaseClient.Child("FundooUsers").Child("UserList").Child(UserListKey).OnceSingleAsync<UsersUID>();
             return result;

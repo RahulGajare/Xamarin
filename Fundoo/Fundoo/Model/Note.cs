@@ -53,12 +53,17 @@ namespace Fundoo.Model
        /// <summary>
        /// collaborators Uid
        /// </summary>
-        private string collaboratorsUid;
+        private string senderUid;
 
         /// <summary>
-        /// 
+        /// The is collaborated
         /// </summary>
         private bool isCollaborated;
+
+        /// <summary>
+        /// The collabrators email list
+        /// </summary>
+        private List<string> collabratorsEmailList = new List<string>();
 
         /// <summary>
         /// Gets or sets the title.
@@ -116,15 +121,31 @@ namespace Fundoo.Model
         /// </value>
         public bool IsArchive { get => isArchive; set => isArchive = value; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string SenderUid { get => collaboratorsUid; set => collaboratorsUid = value; }
+     
 
-       /// <summary>
-       /// 
-       /// </summary>
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is collaborated.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is collaborated; otherwise, <c>false</c>.
+        /// </value>
         public bool IsCollaborated { get => isCollaborated; set => isCollaborated = value; }
+
+        /// <summary>
+        /// Gets or sets the collabrators email list.
+        /// </summary>
+        /// <value>
+        /// The collabrators email list.
+        /// </value>
+        public List<string> CollabratorsEmailList { get => collabratorsEmailList; set => collabratorsEmailList = value; }
+
+        /// <summary>
+        /// Gets or sets the sender uid.
+        /// </summary>
+        /// <value>
+        /// The sender uid.
+        /// </value>
+        public string SenderUid { get => senderUid; set => senderUid = value; }
     }
 
 }

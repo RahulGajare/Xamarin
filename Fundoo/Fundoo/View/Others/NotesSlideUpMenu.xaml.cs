@@ -89,8 +89,10 @@ namespace Fundoo.View
       
 
         private async void collabratorIcon_Clicked(object sender, EventArgs e)
-        {      
-            Navigation.PushAsync(new EmailList(this.noteKey));
+        {
+
+            
+          await  Navigation.PushAsync(new EmailList(this.noteKey));
             await PopupNavigation.Instance.PopAsync(true);
         }
     }

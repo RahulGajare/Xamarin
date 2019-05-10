@@ -26,11 +26,13 @@ namespace Fundoo.View
 
         Note retrivedNote = null;
 
-        bool DeleteButtonClicked = false;
-        bool isArchive;
-        bool isPinned;
-        bool isTrash;
-        string noteKey = string.Empty;
+        private bool DeleteButtonClicked = false;
+        private bool isArchive;
+        private bool isPinned;
+        private bool isTrash;
+        private string noteKey = string.Empty;
+        private bool isCollaborated;
+        private string senderUid;
         private string noteColor = "white";
 
         /// <summary>
@@ -65,6 +67,32 @@ namespace Fundoo.View
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="EditNote"/> class.
+        /// </summary>
+        /// <param name="noteKey">The note key.</param>
+        /// <param name="isCollaborated">if set to <c>true</c> [is collaborated].</param>
+        /// <param name="senderUid">The sender uid.</param>
+        public EditNote(string noteKey, bool isCollaborated, string senderUid)
+        {
+            ToolbarItems.Clear();
+            this.noteKey = noteKey;
+            this.isCollaborated = isCollaborated;
+            this.GetTappedNotes(noteKey);
+            this.InitializeComponent();
+
+            var AddBoxIconTap = new TapGestureRecognizer();
+            //// Binding events 
+            AddBoxIconTap.Tapped += this.AddBoxIcon_Tapped;
+            ///// Associating tap events to the image buttons    
+            AddBoxIcon.GestureRecognizers.Add(AddBoxIconTap);
+
+            var VerticalMenuIconTap = new TapGestureRecognizer();
+            //// Binding events 
+            VerticalMenuIconTap.Tapped += this.VerticalMenuIcon_Tapped;
+            ///// Associating tap events to the image buttons    
+            VerticalMenuIcon.GestureRecognizers.Add(VerticalMenuIconTap);
+        }
+        /// <summary>
         /// Changes the color.
         /// </summary>
         public void changeColor()
@@ -81,6 +109,14 @@ namespace Fundoo.View
         {
             NotesHandler notesHandler = new NotesHandler();
 
+            if (this.isCollaborated)
+            {
+                this.retrivedNote = await notesHandler.GetNote(noteKey,this.senderUid);
+            }
+            else
+            {
+                this.retrivedNote = await notesHandler.GetNote(noteKey);
+            }
             this.retrivedNote = await notesHandler.GetNote(noteKey);
             Entrytitle.Text = this.retrivedNote.Title;
             Editorinfo.Text = this.retrivedNote.Info;
@@ -106,7 +142,7 @@ namespace Fundoo.View
                     ToolbarItems.Add(this.DeleteIcon);
                     ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.PinnedIcon);
-                    ToolbarItems.Add(this.UnarchiveIcon);              
+                    ToolbarItems.Add(this.UnarchiveIcon);
                 }
                 else
                 {
@@ -114,7 +150,7 @@ namespace Fundoo.View
                     ToolbarItems.Add(this.DeleteIcon);
                     ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.UnPinnedIcon);
-                    ToolbarItems.Add(this.UnarchiveIcon);             
+                    ToolbarItems.Add(this.UnarchiveIcon);
                 }
             }
             else
@@ -126,7 +162,7 @@ namespace Fundoo.View
                     ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.PinnedIcon);
                     ToolbarItems.Add(this.ArchiveIcon);
-                   
+
                 }
                 else
                 {
@@ -135,7 +171,7 @@ namespace Fundoo.View
                     ToolbarItems.Add(this.ReminderAddIcon);
                     ToolbarItems.Add(this.UnPinnedIcon);
                     ToolbarItems.Add(this.ArchiveIcon);
-                    
+
                 }
             }
         }
@@ -153,7 +189,7 @@ namespace Fundoo.View
             ToolbarItems.Add(this.ReminderAddIcon);
             ToolbarItems.Add(this.PinnedIcon);
             ToolbarItems.Add(this.ArchiveIcon);
-            ToolbarItems.Remove(this.UnPinnedIcon);     
+            ToolbarItems.Remove(this.UnPinnedIcon);
         }
 
         /// <summary>
@@ -195,7 +231,7 @@ namespace Fundoo.View
         /// </summary>
         private async void CallSaveEditedNote()
         {
-           Note editedNote = new Note()
+            Note editedNote = new Note()
             {
                 Title = Entrytitle.Text,
                 Info = Editorinfo.Text,

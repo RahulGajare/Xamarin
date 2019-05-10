@@ -212,10 +212,24 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
+                var isCollaborated = new Label
+                {
+                    Text = note.IsCollaborated.ToString(),
+                    IsVisible = false
+                };
+
+                var senderUId = new Label
+                {
+                    Text = note.SenderUid,
+                    IsVisible = false
+                };
+
                 stackLayout1.Children.Add(titleLable);
                 stackLayout1.Children.Add(infoLable);
                 stackLayout1.Children.Add(noteKey);
                 stackLayout1.Children.Add(noteColor);
+                stackLayout1.Children.Add(isCollaborated);
+                stackLayout1.Children.Add(senderUId);
                 stackLayout1.Spacing = 2;
                 stackLayout1.Margin = 2;
 
@@ -330,11 +344,25 @@ namespace Fundoo.View
                     IsVisible = false
                 };
 
+                var isCollaborated = new Label
+                {
+                    Text = note.IsCollaborated.ToString(),
+                    IsVisible = false
+                };
+
+                var senderUId = new Label
+                {
+                    Text = note.SenderUid,
+                    IsVisible = false
+                };
+
               
                 stackLayout2.Children.Add(titleLable);
                 stackLayout2.Children.Add(infoLable);
                 stackLayout2.Children.Add(noteKey);
                 stackLayout2.Children.Add(noteColor);
+                stackLayout2.Children.Add(isCollaborated);
+                stackLayout2.Children.Add(senderUId);
                 stackLayout2.Spacing = 2;
                 stackLayout2.Margin = 2;
 
@@ -393,9 +421,25 @@ namespace Fundoo.View
             StackLayout gridNoteStack = (StackLayout)sender;
             IList<Xamarin.Forms.View> item = gridNoteStack.Children;
             Label key = (Label)item[2];
-            ///  Label noteColor = (Label)item[3];
             var notekey = key.Text;
-            Navigation.PushAsync(new EditNote(notekey));
+            Label Collaborated = (Label)item[4];
+            var isCollaboratedText = Collaborated.Text;
+            Label Uid = (Label)item[5];
+            var senderUID = Uid.Text;
+
+            bool isCollaborated;
+
+            ////To Convert string to Boolean from Label
+            if (isCollaboratedText.Equals("True"))
+            {
+                isCollaborated = true;
+            }
+            else
+            {
+                isCollaborated = false;
+            }
+
+            Navigation.PushAsync(new EditNote(notekey, isCollaborated, senderUID));
         }
 
         /// <summary>

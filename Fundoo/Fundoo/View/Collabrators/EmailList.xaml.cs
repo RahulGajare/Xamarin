@@ -58,8 +58,9 @@ namespace Fundoo.View.Collabrators
 
         private async void TickImage_Tapped(object sender, EventArgs e)
         {
+           
             Collaboratorshandler collabratorsHandler = new Collaboratorshandler();
-            var UidList = await collabratorsHandler.GetUserUid();
+            var UidList = await collabratorsHandler.GetUsersUid();
 
             Dictionary<string, string> uidList = UidList.UidList;
 
@@ -67,6 +68,12 @@ namespace Fundoo.View.Collabrators
             {
                 if (entry.Value.Equals(collabratorsEmail.Text))
                 {
+                    NotesHandler notesHandler = new NotesHandler();
+                    var note = await notesHandler.GetNote(this.noteKey);
+                    note.IsCollaborated = true;
+                    note.CollabratorsEmailList.Add(entry.Value);
+                  await  notesHandler.SaveEditedNote(this.noteKey, note);
+                     
                     CollaboratorModel collaboratorModel = new CollaboratorModel();
                     collaboratorModel.SenderUid = FireBaseThroughAuthentication.GetUid();
                     collaboratorModel.NoteKey = this.noteKey;
@@ -78,7 +85,7 @@ namespace Fundoo.View.Collabrators
 
                 }                         
             }
-            await DisplayAlert("Alert", "The Provided email Doesnot Exist", "Try Again");
+            await DisplayAlert("Alert", "The User with provided email Doesnot Exist", "Try Again");
             return;
 
 
