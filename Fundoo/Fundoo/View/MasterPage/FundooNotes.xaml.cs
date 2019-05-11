@@ -18,6 +18,7 @@ namespace Fundoo.View
     using Fundoo.Interfaces;
     using Fundoo.Model;
     using Fundoo.ModelView;
+    using Plugin.Connectivity;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -34,6 +35,8 @@ namespace Fundoo.View
         public FundooNotes()
         {         
             this.InitializeComponent();
+
+            
             this.LoadProfilePic();
             
           
@@ -46,6 +49,8 @@ namespace Fundoo.View
             var gridNotesPage = typeof(GridNotesPage);
             this.Detail = new NavigationPage((Page)Activator.CreateInstance(gridNotesPage));
         }
+
+      
 
         public async void LoadProfilePic()
         {

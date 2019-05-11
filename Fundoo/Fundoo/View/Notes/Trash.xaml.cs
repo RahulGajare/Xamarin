@@ -109,7 +109,7 @@ namespace Fundoo.View
                 };
 
                 var infoLable = new Label
-                {
+                 {
                     Margin = new Thickness(10, 10, 0, 0),
                     Text = note.Info,
                     TextColor = Color.Black,

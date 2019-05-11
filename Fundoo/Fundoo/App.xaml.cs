@@ -14,12 +14,13 @@ namespace Fundoo
     using Xamarin.Forms.Xaml;
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Push;
-   
+    using Plugin.Connectivity;
+
     /// <summary>
     /// partial App Class
     /// </summary>
     /// <seealso cref="Xamarin.Forms.Application" />
-    public partial class App : Application 
+    public partial class App : Application
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="App"/> class.
@@ -27,9 +28,18 @@ namespace Fundoo
         public App()
         {
             this.InitializeComponent();
+
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                Message.ShowToastMessage("No Internet Connection");
+                return;
+            }
+
             FireBaseThroughAuthentication fireBaseThoroughAuthentication = new FireBaseThroughAuthentication();
 
-            //// If user is already Logged in , then navigating to fundooNotes page.
+           
+
+            //// If user is already Logged in , then navigating to fundooNotes page(Master Page).
             var isLoggedin = fireBaseThoroughAuthentication.CheckStatus();
             if (isLoggedin)
             {
@@ -40,6 +50,8 @@ namespace Fundoo
                 this.MainPage = new NavigationPage(new Greeting());              
             }        
         }
+
+     
 
         /// <summary>
         /// Application developers override this method to perform actions when the application starts.

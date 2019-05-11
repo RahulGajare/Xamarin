@@ -20,24 +20,25 @@ namespace Fundoo.View
     /// Greeting class
     /// </summary>
     /// <seealso cref="Xamarin.Forms.ContentPage" />
-    [XamlCompilation(XamlCompilationOptions.Compile)] 
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Greeting : ContentPage
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Greeting"/> class.
         /// </summary>
         public Greeting()
-        {     
-                this.InitializeComponent();
+        {
+            this.InitializeComponent();
+
 
             this.BindingContext = this;
             this.IsBusy = false;
-          
-                var tapImage = new TapGestureRecognizer();
-                //// Binding events 
-                tapImage.Tapped += this.TapImage_Tapped;
-                ///// Associating tap events to the image buttons    
-                googleIcon.GestureRecognizers.Add(tapImage);
+
+            var tapImage = new TapGestureRecognizer();
+            //// Binding events 
+            tapImage.Tapped += this.TapImage_Tapped;
+            ///// Associating tap events to the image buttons    
+            googleIcon.GestureRecognizers.Add(tapImage);
 
             var tapImage2 = new TapGestureRecognizer();
             //// Binding events 
@@ -51,11 +52,11 @@ namespace Fundoo.View
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-       public void TapImage_Tapped(object sender, EventArgs e)
+        public void TapImage_Tapped(object sender, EventArgs e)
         {
             Xamarin.Essentials.Browser.OpenAsync("https://www.facebook.com/", Xamarin.Essentials.BrowserLaunchMode.SystemPreferred);
         }
-        
+
         /// <summary>
         /// Handles the Clicked event of the LoginUser control.
         /// </summary>
@@ -65,11 +66,11 @@ namespace Fundoo.View
         {
             this.IsBusy = true;
 
-                if (txtEmail.Text == null || txtEmail.Text.Trim().Equals(string.Empty))
-                {
-                    await this.DisplayAlert("Alert", "Email should be specified", "Ok");
-                    return;
-                }
+            if (txtEmail.Text == null || txtEmail.Text.Trim().Equals(string.Empty))
+            {
+                await this.DisplayAlert("Alert", "Email should be specified", "Ok");
+                return;
+            }
 
             if (txtPassWord.Text == null || txtPassWord.Text.Trim().Equals(string.Empty))
             {

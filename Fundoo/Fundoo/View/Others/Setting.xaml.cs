@@ -5,6 +5,7 @@
 // <creator name="Rahul Gajare"/>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Fundoo.View.Others;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,9 @@ namespace Fundoo.View
             this.InitializeComponent();
         }
 
-        private void SettingItems_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
+       
 
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
+        private void Internet_Clicked(object sender, EventArgs e)
         {
             if(Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
@@ -36,19 +34,25 @@ namespace Fundoo.View
             }
             else
             {
-                DisplayAlert("alert", " internet connection", "ok");
+                DisplayAlert("alert", " Internet connection", "ok");
             }
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private void Browser_Clicked(object sender, EventArgs e)
         {
             Xamarin.Essentials.Browser.OpenAsync("https://firebase.google.com/", Xamarin.Essentials.BrowserLaunchMode.SystemPreferred);
         }
 
         private void AppInformation_Clicked(object sender, EventArgs e)
         {
-            AppInformation.Text = $"{Xamarin.Essentials.AppInfo.Name}";
+            Navigation.PushAsync(new AppInformation());
+        }
 
+       
+
+        private void DeviceInformation_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DeviceInformation());
         }
     }
 }

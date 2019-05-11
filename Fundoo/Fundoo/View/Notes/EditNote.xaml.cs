@@ -107,7 +107,7 @@ namespace Fundoo.View
                 this.retrivedNote = await notesHandler.GetNote(noteKey);
             }
 
-            this.retrivedNote = await notesHandler.GetNote(noteKey);
+          
 
             Entrytitle.Text = this.retrivedNote.Title;
             Editorinfo.Text = this.retrivedNote.Info;

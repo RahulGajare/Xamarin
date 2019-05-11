@@ -23,12 +23,12 @@
             </ListView>-->
 
 
-            <Button Text="Device Information" FontSize="Large" BackgroundColor="Transparent"/>
+            <Button Text="DeviceInformation" FontSize="Large" BackgroundColor="Transparent" Clicked="DeviceInformation_Clicked"/>
             <Button x:Name="AppInformation" Text="App Information" FontSize="Large" BackgroundColor="Transparent" Clicked="AppInformation_Clicked"/>
             <Button Text="Email" FontSize="Large" BackgroundColor="Transparent"/>
-            <Button Text="Open Browser" FontSize="Large" BackgroundColor="Transparent" Clicked="Button_Clicked_1"/>
+            <Button Text="Open Browser" FontSize="Large" BackgroundColor="Transparent" Clicked="Browser_Clicked"/>
             <Button Text="Internet Connectivity" FontSize="Large" BackgroundColor="Transparent"
-                    Clicked="Button_Clicked"/>
+                    Clicked="Internet_Clicked"/>
 
         </StackLayout>
     </ContentPage.Content>

@@ -74,6 +74,8 @@ namespace Fundoo.View.Collabrators
                     note.CollabratorsEmailList.Add(entry.Value);
                   await  notesHandler.SaveEditedNote(this.noteKey, note);
                      
+
+                    ////Creating a Collaborator Object that will be saved under receiver UId.
                     CollaboratorModel collaboratorModel = new CollaboratorModel();
                     collaboratorModel.SenderUid = FireBaseThroughAuthentication.GetUid();
                     collaboratorModel.NoteKey = this.noteKey;
