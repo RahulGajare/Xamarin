@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundoo.View.Settings.ClipboardPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Margin="20,20,20,0">
+            <Label Text="Enter text to Copy" FontSize="Medium" TextColor="Chocolate"></Label>
+            <Entry x:Name="userText" />
+            <Button Text="Copy Text" Clicked="CopyText_clicked"/>
+
+            <Button Text="Paste Text" Clicked="PasteText_Clicked_"/>
+            <Entry x:Name="copiedText" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

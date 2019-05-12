@@ -25,10 +25,15 @@
 
             <Button Text="DeviceInformation" FontSize="Large" BackgroundColor="Transparent" Clicked="DeviceInformation_Clicked"/>
             <Button x:Name="AppInformation" Text="App Information" FontSize="Large" BackgroundColor="Transparent" Clicked="AppInformation_Clicked"/>
-            <Button Text="Email" FontSize="Large" BackgroundColor="Transparent"/>
             <Button Text="Open Browser" FontSize="Large" BackgroundColor="Transparent" Clicked="Browser_Clicked"/>
             <Button Text="Internet Connectivity" FontSize="Large" BackgroundColor="Transparent"
                     Clicked="Internet_Clicked"/>
+            <Button Text="PhoneDialer" FontSize="Large" BackgroundColor="Transparent"
+                    Clicked="PhoneDialer_clicked"/>
+            <Button Text="SendEmail" FontSize="Large" BackgroundColor="Transparent" Clicked="Button_Clicked"/>
+            <Button Text="VersionTracking" FontSize="Large" BackgroundColor="Transparent" Clicked="Version_Clicked"/>
+            <Button Text="Clipboard" FontSize="Large" BackgroundColor="Transparent" Clicked="Clipboard_clicked"/>
+
 
         </StackLayout>
     </ContentPage.Content>

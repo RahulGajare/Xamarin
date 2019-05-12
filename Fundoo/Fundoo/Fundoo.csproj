@@ -59,7 +59,7 @@
       <ExcludeFromSourceAnalysis>False</ExcludeFromSourceAnalysis>
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Update="View\Others\AppInformation.xaml.cs">
+    <Compile Update="View\Settings\AppInformation.xaml.cs">
       <DependentUpon>AppInformation.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\Others\ForgotPassword.xaml.cs">
@@ -84,16 +84,25 @@
     <Compile Update="View\Notes\ArchivePage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+    <Compile Update="View\Settings\PhoneDialer.xaml.cs">
+      <DependentUpon>Phonedialer.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Settings\VersionTracking.xaml.cs">
+      <DependentUpon>Versiontracking.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="View\Collabrators\EmailList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Others\AppInformation.xaml">
+    <EmbeddedResource Update="View\Settings\AppInformation.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Others\DeviceInformation.xaml">
+    <EmbeddedResource Update="View\Settings\ClipboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Settings\DeviceInformation.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Others\ForgotPassword.xaml">
@@ -120,7 +129,16 @@
     <EmbeddedResource Update="View\Others\SearchPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Others\Setting.xaml">
+    <EmbeddedResource Update="View\Settings\EmailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Settings\Phonedialer.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Settings\Setting.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Settings\Versiontracking.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
