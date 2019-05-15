@@ -43,8 +43,8 @@ namespace Fundoo.View
         /// <param name="lable">The label.</param>
         public async void CallSaveLable(Model.LabelModel label)
         {
-            DataLogic dataLogic = new DataLogic();
-            await dataLogic.SaveLable(label);
+            LabelHandler labelHandler = new LabelHandler();
+            await labelHandler.SaveLable(label);
 
             ////Calling OnAppearing beacuse to update the page with newly Created Lable.
             this.OnAppearing();
@@ -96,8 +96,8 @@ namespace Fundoo.View
         /// </summary>
         public async void GetAllLables()
         {
-            DataLogic dataLogic = new DataLogic();
-            var allLables = await dataLogic.GetAllLables();
+            LabelHandler labelHandler = new LabelHandler();
+            var allLables = await labelHandler.GetAllLables();
             this.DynamicGridView(allLables);
         }
 

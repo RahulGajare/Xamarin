@@ -17,23 +17,25 @@
 
 
     <ContentPage.Content>
-        <StackLayout>
+        <RelativeLayout>
+            <StackLayout>
 
-            <ScrollView>
+                <ScrollView  HeightRequest="700
+                             ">
                 <StackLayout>
 
-                    <StackLayout>
+                    <StackLayout x:Name="pinnedStack" Margin="7,0,7,0">
 
-                        <Label Text="PINNED" FontAttributes="Bold"/>
-                        <Grid x:Name="gridLayoutPinned" Margin="2,0,2,0">
+                        <Label x:Name="pinnedLabel" FontAttributes="Bold"/>
+                        <Grid x:Name="gridLayoutPinned" >
 
                         </Grid>
 
                     </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="OTHERS" FontAttributes="Bold"/>
-                        <Grid x:Name="gridLayoutUnpinned" Margin="2,0,2,0">
+                    <StackLayout x:Name="UnpinnedStack" Margin="7,0,7,0">
+                        <Label x:Name="UnpinnedLabel" FontAttributes="Bold"/>
+                        <Grid x:Name="gridLayoutUnpinned" >
 
                         </Grid>
 
@@ -43,8 +45,12 @@
             </ScrollView>
 
 
-            <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal">
-                <Button x:Name="TakeaNote" 
+                <StackLayout VerticalOptions="End" Orientation="Horizontal"
+                             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
+                    <StackLayout  Orientation="Horizontal">
+                        <Button x:Name="TakeaNote" 
                         HeightRequest="35"
                     Text="Take a note ..."
                     VerticalOptions="End" 
@@ -52,11 +58,12 @@
                     BackgroundColor="Transparent" 
                     Margin="10,0,175,20"
                     Clicked="TakeaNote_Clicked">
-                </Button>
-                <Image x:Name="cameraIcon" Source="CameraIcon"  />
-            </StackLayout>
+                        </Button>
+                        <Image x:Name="cameraIcon" Source="CameraIcon"  />
+                    </StackLayout>
+                </StackLayout>
         </StackLayout>
-
+            </RelativeLayout>
     </ContentPage.Content>
 
 

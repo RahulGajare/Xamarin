@@ -185,7 +185,7 @@ namespace Fundoo.View
 
                 var frame = new Frame();
                 frame.CornerRadius = 20;
-
+                frame.BorderColor = Color.Black;
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
 
@@ -307,7 +307,7 @@ namespace Fundoo.View
 
                 var frame = new Frame();              
                 frame.CornerRadius = 20;
-
+                frame.BorderColor = Color.Black;
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout2;
 

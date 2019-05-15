@@ -59,6 +59,7 @@ namespace Fundoo.View
         /// </summary>
         public LabeledNotePage()
         {
+
         }
 
         /// <summary>
@@ -92,6 +93,10 @@ namespace Fundoo.View
             ////Getting the Current Label.
             Model.LabelModel lable = await this.labelHandler.GetLabelByKey(currentLabelKey);
 
+            if(lable != null)
+            {
+
+            }
             //// Retrieving notes Under this Current Label.
             foreach (string notekey in lable.NoteKeysList)
             {
@@ -120,8 +125,8 @@ namespace Fundoo.View
                 return;
             }
             ////initializing with 2 columns and 1 row.
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayout.Margin = new Thickness(2, 2, 2, 2);
 
@@ -184,6 +189,7 @@ namespace Fundoo.View
 
                 var frame = new Frame();
                 frame.CornerRadius = 20;
+                frame.BorderColor = Color.Black;
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;

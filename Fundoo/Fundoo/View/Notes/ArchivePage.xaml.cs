@@ -87,8 +87,8 @@ namespace Fundoo.View
                 return;
             }
 
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });     
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });     
             gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
@@ -152,7 +152,7 @@ namespace Fundoo.View
 
                 var frame = new Frame();
                 frame.CornerRadius = 20;
-
+                frame.BorderColor = Color.Black;
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
 
@@ -172,8 +172,8 @@ namespace Fundoo.View
                 return;
             }
 
-            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
-            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(114.5, GridUnitType.Absolute) });
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
 
@@ -237,7 +237,7 @@ namespace Fundoo.View
                 stackLayout2.Margin = 2;
 
                 var frame = new Frame();
-
+                frame.BorderColor = Color.Black;
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);

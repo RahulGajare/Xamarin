@@ -21,7 +21,7 @@
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
+            Plugin.InputKit.Platforms.Droid.Config.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 

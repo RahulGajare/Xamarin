@@ -5,6 +5,7 @@
              BackgroundColor="White">
 
 
+
     <ContentPage.ToolbarItems>
      
 
@@ -52,7 +53,7 @@
     <ContentPage.Content>
 
         <StackLayout>
-            <StackLayout Spacing="20" Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20,0,20,0">
+            <StackLayout Spacing="20" Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20,20,20,0">
                 <Label Text="Title"/>
                 <Entry x:Name="Entrytitle" Placeholder="Title" FontAttributes="Bold"/>
                 <Label Text ="Info"/>
@@ -62,7 +63,7 @@
             <StackLayout Orientation="Horizontal" HeightRequest="50">
                 <Image x:Name="AddBoxIcon" Source="AddBoxIcon" VerticalOptions="End" HorizontalOptions="End" HeightRequest="35" WidthRequest="35"/>
 
-                <ScrollView Orientation="Horizontal" VerticalOptions="End">
+                <ScrollView Orientation="Horizontal" VerticalOptions="End" Margin="0,0,0,5">
                     <StackLayout Orientation="Horizontal" Spacing="10" >
                         <Button BackgroundColor="Aqua" CornerRadius="20"  WidthRequest="30" HeightRequest="30" Clicked="Aqua_Clicked"/>
                         <Button BackgroundColor="DarkGoldenrod" CornerRadius="20" WidthRequest="30" HeightRequest="30" Clicked="DarkGoldenrod_Clicked"/>

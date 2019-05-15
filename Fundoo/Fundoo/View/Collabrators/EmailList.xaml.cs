@@ -1,9 +1,11 @@
 ﻿using Fundoo.DataHandler;
 using Fundoo.DependencyServices;
 using Fundoo.Model;
+using Fundoo.View.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,18 +77,24 @@ namespace Fundoo.View.Collabrators
                   await  notesHandler.SaveEditedNote(this.noteKey, note);
                      
 
-                    ////Creating a Collaborator Object that will be saved under receiver UId.
+                    ////Creating a Collaborator Object that will be saved under receiver UID.
                     CollaboratorModel collaboratorModel = new CollaboratorModel();
                     collaboratorModel.SenderUid = FireBaseThroughAuthentication.GetUid();
                     collaboratorModel.NoteKey = this.noteKey;
                     collaboratorModel.SenderEmail = entry.Value;
                     collaboratorModel.ReceiverEmail = collabratorsEmail.Text;
 
+
+                    ////Storing Collaborator details under receiver UID.
                     collabratorsHandler.AddCollaborator(collaboratorModel,entry.Key);
-                   
+
+
+
+                    //this.SendEmail();
+                  
 
                     await DisplayAlert("Alert", "Notes will be shared With the Collabaorator", "OK");
-
+                    return;
                 }                         
             }
             await DisplayAlert("Alert", "The User with provided email Doesnot Exist", "Try Again");
@@ -94,5 +102,33 @@ namespace Fundoo.View.Collabrators
 
 
         }
+
+
+        //public void SendEmail()
+        //{
+        //    try
+        //    {
+
+        //        MailMessage mail = new MailMessage();
+        //        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+        //        mail.From = new MailAddress(collabratorsEmail.Text);
+        //        mail.To.Add(txtTo.Text);
+        //        mail.Subject = "A note has been Shared with you";
+        //        mail.Body = "FundooNotes";
+
+        //        SmtpServer.Port = 587;
+        //        SmtpServer.Host = "smtp.gmail.com";
+        //        SmtpServer.EnableSsl = true;
+        //        SmtpServer.UseDefaultCredentials = false;
+        //        SmtpServer.Credentials = new System.Net.NetworkCredential("","");
+
+        //        SmtpServer.Send(mail);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        DisplayAlert("Failed", ex.Message, "OK");
+        //    }
+        //}
     }
 }

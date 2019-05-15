@@ -19,8 +19,8 @@ namespace Fundoo.ModelView
     {
         public static async Task<IList<MasterMenuItems>> AddLablestoMasterPage(IList<MasterMenuItems> list)
         {
-            DataLogic dataLogic = new DataLogic();
-           var lablesList = await dataLogic.GetAllLables();
+            LabelHandler labelHandler = new LabelHandler();
+           var lablesList = await labelHandler.GetAllLables();
 
             if (lablesList == null)
             {

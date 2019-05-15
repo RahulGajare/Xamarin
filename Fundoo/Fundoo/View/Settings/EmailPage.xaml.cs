@@ -29,7 +29,7 @@ namespace Fundoo.View.Settings
                     //Cc = ccRecipients,
                     //Bcc = bccRecipients
                 };
-                await Email.ComposeAsync(message);
+                //await Email.ComposeAsync(message);
             }
             catch (FeatureNotSupportedException fbsEx)
             {

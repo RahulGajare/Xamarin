@@ -106,13 +106,13 @@ namespace Fundoo.View
 
         public async Task CallGetLableByKey()
         {
-           
-            DataLogic dataLogic = new DataLogic();
-            Model.LabelModel lable = await dataLogic.GetLabelByKey(this.lableKey);
+
+            LabelHandler labelHandler = new LabelHandler();
+            Model.LabelModel lable = await labelHandler.GetLabelByKey(this.lableKey);
 
             lable.NoteKeysList.Add(this.noteKey);
 
-            if (await dataLogic.SaveLableByKey(lable, this.lableKey))
+            if (await labelHandler.SaveLableByKey(lable, this.lableKey))
             {
                 Message.ShowToastMessage("Notes Saved");
             }

@@ -115,7 +115,7 @@ namespace Fundoo.View
 
             ////To add Lables Names To Master Page
             await MasterPageLable.AddLablestoMasterPage(list);
-
+             
             list.Add(new MasterMenuItems()
             {
                 Text = "CreateNewLabel",

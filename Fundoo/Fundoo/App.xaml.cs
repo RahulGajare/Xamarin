@@ -65,7 +65,7 @@ namespace Fundoo
 
             //// For Sending Push Notification using AppCenter.
             AppCenter.Start("4451c333-7a45-472f-8c06-7336aeae7a74", typeof(Push));
-            AppCenter.Start("4451c333-7a45-472f-8c06-7336aeae7a74", typeof(Push));
+          
         }
 
         /// <summary>

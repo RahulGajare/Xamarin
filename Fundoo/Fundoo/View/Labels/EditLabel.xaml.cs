@@ -22,7 +22,7 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditLabel : ContentPage
     {
-        DataLogic dataLogic = new DataLogic();
+        LabelHandler LabelHandler = new LabelHandler();
         Fundoo.Model.LabelModel retrivedLabel = null;
         string labelKey;
 
@@ -60,9 +60,9 @@ namespace Fundoo.View
         /// <param name="labelKey">The label key.</param>
         public async void GetTappedNotes(string labelKey)
         {
-            DataLogic datalogic = new DataLogic();
+            LabelHandler labelHandler = new LabelHandler();
 
-            this.retrivedLabel = await datalogic.GetLabelByKey(labelKey);
+            this.retrivedLabel = await labelHandler.GetLabelByKey(labelKey);
             UserLable.Text = retrivedLabel.LableName;
 
         }
@@ -77,7 +77,7 @@ namespace Fundoo.View
             bool result = await DisplayAlert("Attention", "Are you sure you want to delete this Label", "Yes", "Cancel");
             if (result)
             {
-                await dataLogic.DeleteLableByKey(this.labelKey);
+                await LabelHandler.DeleteLableByKey(this.labelKey);
                 Message.ShowToastMessage("Label Deleted");
                 await Navigation.PopAsync();
             }
@@ -100,7 +100,7 @@ namespace Fundoo.View
 
             retrivedLabel.LableName = UserLable.Text;
 
-            await dataLogic.SaveLableByKey(retrivedLabel, this.labelKey);
+            await LabelHandler.SaveLableByKey(retrivedLabel, this.labelKey);
             Message.ShowToastMessage("Label saved");
             await Navigation.PopAsync();
         }
@@ -113,7 +113,7 @@ namespace Fundoo.View
         /// </remarks>
         protected async override void OnAppearing()
         {
-            this.retrivedLabel = await dataLogic.GetLabelByKey(labelKey);
+            this.retrivedLabel = await LabelHandler.GetLabelByKey(labelKey);
             base.OnAppearing();
         }
     }

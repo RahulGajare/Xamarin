@@ -25,6 +25,7 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GridNotesPage : ContentPage
     {
+        private bool PinnedNotes = false;
         List<Note> notesList = new List<Note>();
         public GridNotesPage()
         {
@@ -127,8 +128,17 @@ namespace Fundoo.View
 
             }
 
-            this.DynamicGridViewPinned(pinnedList, labelsList);
-            this.DynamicGridViewUnpinned(UnpinnedList, labelsList);
+            if (pinnedList.Count > 0)
+            {
+                this.DynamicGridViewPinned(pinnedList, labelsList);
+                this.PinnedNotes = true;
+            }
+
+            if (UnpinnedList.Count > 0)
+            {
+                this.DynamicGridViewUnpinned(UnpinnedList, labelsList);
+            }
+            
         }
 
         /// <summary>
@@ -150,15 +160,13 @@ namespace Fundoo.View
         /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewPinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
-            if (notesList.Count == 0)
-            {
-                return;
-            }
+            pinnedLabel.Text = "Pinned";          
 
+           
             ////initializing with 2 columns and 1 row.
             gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
             gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });        
-            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
+            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
             int column = 0;
@@ -169,7 +177,7 @@ namespace Fundoo.View
                 //// For after every 3rd Column adds a new row.
                 if (column == 2)
                 {
-                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
+                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
                     column = 0;
                     row++;
                 }
@@ -249,7 +257,7 @@ namespace Fundoo.View
                             ////Creating a new frame for Displaying label Name.
                             var labelFrame = new Frame();
                             labelFrame.BorderColor = Color.Black;
-                            labelFrame.CornerRadius = 30;
+                            labelFrame.CornerRadius = 25;
                             labelFrame.HeightRequest = 20;
                             labelFrame.Content = labelName;
                             stackLayout1.Children.Add(labelFrame);
@@ -261,8 +269,8 @@ namespace Fundoo.View
                 }
 
                 var frame = new Frame();
-                /// frame.BorderColor = Color.Black;
-                frame.CornerRadius = 20;
+                frame.BorderColor = Color.Black;
+                frame.CornerRadius = 10;
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout1;
@@ -278,16 +286,25 @@ namespace Fundoo.View
         /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewUnpinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
+            if (this.PinnedNotes)
+            {
+                UnpinnedLabel.Text = "Others";
+            }
+           
+
+           
+
             if (notesList.Count == 0)
             {
                 return;
             }
 
             //// initializing with 2 columns and 1 row.
-            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
+            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
+           
 
 
             int column = 0;
@@ -384,7 +401,7 @@ namespace Fundoo.View
                             ////Creating a new frame for Displaying label Name.
                             var labelFrame = new Frame();
                             labelFrame.BorderColor = Color.Black;
-                            labelFrame.CornerRadius = 30;
+                            labelFrame.CornerRadius = 25;
                             labelFrame.HeightRequest = 20;
                             labelFrame.WidthRequest = 5;
 
@@ -399,12 +416,12 @@ namespace Fundoo.View
 
 
                 var frame = new Frame();
-                //// frame.BorderColor = Color.Black;
-                frame.CornerRadius = 20;
+                frame.BorderColor = Color.Black;
+                frame.CornerRadius = 10;
 
                 FrameColorSetter.GetColor(note, frame);
                 frame.Content = stackLayout2;
-
+                
                 gridLayoutUnpinned.Children.Add(frame, column, row);
                 column++;
 

@@ -74,7 +74,7 @@ namespace Fundoo.DataHandler
         public async Task<List<Note>> GetAllNotes()
         {
             return (await this.firebaseClient
-              .Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Notes")
+              .Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes")
               .OnceAsync<Note>()).Select(item => new Note
               {
                   Title = item.Object.Title,
@@ -117,7 +117,7 @@ namespace Fundoo.DataHandler
         /// <returns></returns>
         public async Task SaveEditedNote(string noteKey, Note note)
         {
-            await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid).Child("Notes").Child(noteKey).PutAsync<Note>(note);
+            await firebaseClient.Child("FundooUsers").Child("UserList").Child(FireBaseThroughAuthentication.GetUid()).Child("Notes").Child(noteKey).PutAsync<Note>(note);
         }
 
         /// <summary>

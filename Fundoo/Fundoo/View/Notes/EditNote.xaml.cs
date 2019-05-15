@@ -48,10 +48,15 @@ namespace Fundoo.View
         /// <param name="noteKey">The note key.</param>
         public EditNote(string noteKey)
         {
+            this.InitializeComponent();
+
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.Black;
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.OrangeRed;
+
             ToolbarItems.Clear();
             this.noteKey = noteKey;
             this.GetTappedNotes(noteKey);
-            this.InitializeComponent();
+         
 
             var AddBoxIconTap = new TapGestureRecognizer();
             //// Binding events 
