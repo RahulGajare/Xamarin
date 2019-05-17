@@ -292,13 +292,7 @@ namespace Fundoo.View
             }
            
 
-           
-
-            if (notesList.Count == 0)
-            {
-                return;
-            }
-
+          
             //// initializing with 2 columns and 1 row.
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });

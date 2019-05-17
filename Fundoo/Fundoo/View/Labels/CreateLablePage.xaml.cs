@@ -112,8 +112,8 @@ namespace Fundoo.View
                 return;
             }
 
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(350, GridUnitType.Absolute) });
-            gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(60, GridUnitType.Absolute) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(400, GridUnitType.Absolute) });
+            gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(80, GridUnitType.Absolute) });
             gridLayout.Margin = new Thickness(2, 2, 2, 2);
             gridLayout.RowSpacing = 5;
 
@@ -145,10 +145,11 @@ namespace Fundoo.View
                 var labelName = new Xamarin.Forms.Label
                 {
                     Text = lable.LableName,
-                    TextColor = Color.Black,
+                    TextColor = Color.Gray,
                     FontAttributes = FontAttributes.Bold,
                     VerticalOptions = LayoutOptions.Center,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    HorizontalOptions = LayoutOptions.Start,
+                    Margin = new Thickness(9,0,0,0)
                 };
 
                 var labelKey = new Xamarin.Forms.Label
@@ -159,10 +160,10 @@ namespace Fundoo.View
 
                 var labelIcon = new Image
                 {
-                    VerticalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.StartAndExpand,
                     HorizontalOptions = LayoutOptions.Start,
-                    HeightRequest = 20,
-                    WidthRequest = 20,
+                    HeightRequest = 30,
+                    WidthRequest = 30,
                     Source = "LableIcon",
                 };
 
@@ -170,8 +171,8 @@ namespace Fundoo.View
                 {
                     VerticalOptions = LayoutOptions.Center,
                     HorizontalOptions = LayoutOptions.EndAndExpand,
-                    HeightRequest = 20,
-                    WidthRequest = 20,
+                    HeightRequest = 30,
+                    WidthRequest = 30,
                     Source = "EditIcon",
                 };
 

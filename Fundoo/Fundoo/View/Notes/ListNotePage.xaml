@@ -13,17 +13,17 @@
         <StackLayout>
             <ScrollView>
             <StackLayout>
-                
-                    <StackLayout>
-                        <Label Text="PINNED" FontAttributes="Bold"/>
+
+                    <StackLayout  Margin="7,0,7,0">
+                        <Label x:Name="pinnedLabel" FontAttributes="Bold"/>
                         <Grid x:Name="gridLayoutPinned">
 
                         </Grid>
 
                     </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="OTHERS" FontAttributes="Bold"/>
+                    <StackLayout  Margin="7,0,7,0">
+                        <Label x:Name="UnpinnedLabel" FontAttributes="Bold"/>
                         <Grid x:Name="gridLayoutUnpinned">
 
                         </Grid>

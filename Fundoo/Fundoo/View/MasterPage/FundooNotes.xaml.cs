@@ -62,8 +62,8 @@ namespace Fundoo.View
                 var imgsource = new UriImageSource { Uri = new Uri(url) };
                 imgsource.CachingEnabled = false;
                 ProfilePic.Source = imgsource;
-                ProfilePic.HeightRequest = 100;
-                ProfilePic.WidthRequest = 100;
+                ProfilePic.HeightRequest = 60;
+                ProfilePic.WidthRequest = 60;
             }
             else
             {

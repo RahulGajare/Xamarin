@@ -64,6 +64,12 @@ namespace Fundoo.ModelView
                 frame.BackgroundColor = Color.MintCream;
                 return;
             }
+
+            if (note.Color.Equals("LightPink"))
+            {
+                frame.BackgroundColor = Color.LightPink;
+                return;
+            }
         }
 
         public static string GetHexColor(Note note)
@@ -114,6 +120,14 @@ namespace Fundoo.ModelView
 
                 return "f5fffa";
             }
+
+            if (note.Color.Equals("LightPink"))
+            {
+
+                return "ffb6c1";
+            }
+
+
 
             return "ffffff";
         }

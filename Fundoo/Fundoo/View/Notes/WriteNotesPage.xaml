@@ -27,14 +27,14 @@
 
         <ScrollView Orientation="Horizontal" VerticalOptions="End">
             <StackLayout Orientation="Horizontal" Spacing="10" >
-                <Button BackgroundColor="Aqua" CornerRadius="20"  WidthRequest="40" HeightRequest="40" Clicked="Aqua_Clicked"/>
-                <Button BackgroundColor="DarkGoldenrod" CornerRadius="20" WidthRequest="40" HeightRequest="40" Clicked="DarkGoldenrod_Clicked"/>
-                <Button BackgroundColor="Green" CornerRadius="20" WidthRequest="40" HeightRequest="40" Clicked="Green_Clicked"/>
-                <Button BackgroundColor="Gold" CornerRadius="20" WidthRequest="40" HeightRequest="40" Clicked="Gold_Clicked_"/>
-                <Button BackgroundColor="GreenYellow" CornerRadius="20" WidthRequest="40" HeightRequest="40" Clicked="GreenYellow_Clicked"/>
-                <Button BackgroundColor="Gray" CornerRadius="20" WidthRequest="40" HeightRequest="40" Clicked="Gray_Clicked"/>
-                <Button BackgroundColor="Lavender" CornerRadius="20" WidthRequest="40" HeightRequest="40" Clicked="Lavender_Clicked"/>
-                <Button BackgroundColor="MintCream" CornerRadius="20" WidthRequest="40" HeightRequest="40" Clicked="MintCream_Clicked"/>
+                    <Button BackgroundColor="Aqua" CornerRadius="20"  WidthRequest="40" BorderColor="Gray" BorderWidth="2" HeightRequest="40" Clicked="Aqua_Clicked"/>
+                    <Button BackgroundColor="DarkGoldenrod" CornerRadius="20" WidthRequest="40" BorderColor="Gray" BorderWidth="2" HeightRequest="40" Clicked="DarkGoldenrod_Clicked"/>
+                    <Button BackgroundColor="Green" CornerRadius="20" WidthRequest="40" BorderColor="Gray" BorderWidth="2" HeightRequest="40" Clicked="Green_Clicked"/>
+                    <Button BackgroundColor="Gold" CornerRadius="20" WidthRequest="40" BorderColor="Gray" BorderWidth="2" HeightRequest="40" Clicked="Gold_Clicked_"/>
+                    <Button BackgroundColor="GreenYellow" CornerRadius="20" WidthRequest="40" BorderColor="Gray" BorderWidth="2" HeightRequest="40" Clicked="GreenYellow_Clicked"/>
+                    <Button BackgroundColor="Gray" CornerRadius="20" WidthRequest="40" BorderColor="Gray" BorderWidth="2" HeightRequest="40" Clicked="Gray_Clicked"/>
+                    <Button BackgroundColor="Lavender" CornerRadius="20" WidthRequest="40" BorderColor="Gray" BorderWidth="2" HeightRequest="40" Clicked="Lavender_Clicked"/>
+                    <Button BackgroundColor="MintCream" CornerRadius="20" WidthRequest="40" BorderColor="Gray" BorderWidth="2" HeightRequest="40" Clicked="MintCream_Clicked"/>
                 </StackLayout>
         </ScrollView>
             </StackLayout>

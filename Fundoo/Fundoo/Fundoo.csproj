@@ -51,6 +51,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.394984-pre10" />
     <PackageReference Include="Xamarin.Forms.InputKit" Version="3.0.11" />
+    <PackageReference Include="Xamarin.Forms.Mocks" Version="3.5.0.1" />
   </ItemGroup>
 
   <ItemGroup>

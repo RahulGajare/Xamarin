@@ -60,19 +60,21 @@
                 <Editor x:Name="Editorinfo" Placeholder="Note" AutoSize="TextChanges"/>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" HeightRequest="50">
+            <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="4,0,4,2">
                 <Image x:Name="AddBoxIcon" Source="AddBoxIcon" VerticalOptions="End" HorizontalOptions="End" HeightRequest="35" WidthRequest="35"/>
 
                 <ScrollView Orientation="Horizontal" VerticalOptions="End" Margin="0,0,0,5">
                     <StackLayout Orientation="Horizontal" Spacing="10" >
-                        <Button BackgroundColor="Aqua" CornerRadius="20"  WidthRequest="30" HeightRequest="30" Clicked="Aqua_Clicked"/>
-                        <Button BackgroundColor="DarkGoldenrod" CornerRadius="20" WidthRequest="30" HeightRequest="30" Clicked="DarkGoldenrod_Clicked"/>
-                        <Button BackgroundColor="Green" CornerRadius="20" WidthRequest="30" HeightRequest="30" Clicked="Green_Clicked"/>
-                        <Button BackgroundColor="Gold" CornerRadius="20" WidthRequest="30" HeightRequest="30" Clicked="Gold_Clicked_"/>
-                        <Button BackgroundColor="GreenYellow" CornerRadius="20" WidthRequest="30" HeightRequest="30" Clicked="GreenYellow_Clicked"/>
-                        <Button BackgroundColor="Gray" CornerRadius="20" WidthRequest="30" HeightRequest="30" Clicked="Gray_Clicked"/>
-                        <Button BackgroundColor="Lavender" CornerRadius="20" WidthRequest="30" HeightRequest="30" Clicked="Lavender_Clicked"/>
-                        <Button BackgroundColor="MintCream" CornerRadius="20" WidthRequest="30" HeightRequest="30" Clicked="MintCream_Clicked"/>
+                        <Button BackgroundColor="Aqua" CornerRadius="20"  WidthRequest="30" HeightRequest="30" BorderColor="Gray" BorderWidth="2" Clicked="Aqua_Clicked"/>
+                        <Button BackgroundColor="DarkGoldenrod" CornerRadius="20" WidthRequest="30" HeightRequest="30"  BorderColor="Gray" BorderWidth="2" Clicked="DarkGoldenrod_Clicked"/>
+                        <Button BackgroundColor="Green" CornerRadius="20" WidthRequest="30" HeightRequest="30"  BorderColor="Gray" BorderWidth="2" Clicked="Green_Clicked"/>
+                        <Button BackgroundColor="Gold" CornerRadius="20" WidthRequest="30" HeightRequest="30"  BorderColor="Gray" BorderWidth="2" Clicked="Gold_Clicked_"/>
+                        <Button BackgroundColor="GreenYellow" CornerRadius="20" WidthRequest="30" HeightRequest="30" BorderColor="Gray" BorderWidth="2" Clicked="GreenYellow_Clicked"/>
+                        <Button BackgroundColor="Gray" CornerRadius="20" WidthRequest="30" HeightRequest="30" BorderColor="Gray" BorderWidth="2" Clicked="Gray_Clicked"/>
+                        <Button BackgroundColor="Lavender" CornerRadius="20" WidthRequest="30" HeightRequest="30" BorderColor="Gray" BorderWidth="2" Clicked="Lavender_Clicked"/>
+                        <Button BackgroundColor="MintCream" CornerRadius="20" WidthRequest="30" HeightRequest="30" BorderColor="Gray" BorderWidth="2" Clicked="MintCream_Clicked"/>
+                        <Button BackgroundColor="LightPink" CornerRadius="20" WidthRequest="30" HeightRequest="30" BorderColor="Gray" BorderWidth="2" Clicked="LightPink_Clicked"/>
+
 
                     </StackLayout>
                 </ScrollView>

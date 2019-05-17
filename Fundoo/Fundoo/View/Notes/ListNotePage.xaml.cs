@@ -23,6 +23,7 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListNotePage : ContentPage
     {
+        private bool PinnedNotes = false;
         public ListNotePage()
         {
             InitializeComponent();
@@ -60,9 +61,16 @@ namespace Fundoo.View
                     }
                 }
             }
+            if (pinnedList.Count > 0)
+            {
+                this.DynamicGridViewPinned(pinnedList, labelsList);
+                this.PinnedNotes = true;
+            }
 
-            this.DynamicGridViewPinned(pinnedList, labelsList);
-            this.DynamicGridViewUnpinned(UnpinnedList, labelsList);
+            if (UnpinnedList.Count > 0)
+            {
+                this.DynamicGridViewUnpinned(UnpinnedList, labelsList);
+            }
         }
 
         protected override void OnAppearing()
@@ -78,10 +86,7 @@ namespace Fundoo.View
         /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewPinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
-            if (notesList.Count == 0)
-            {
-                return;
-            }
+            pinnedLabel.Text = "Pinned";
 
             gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);

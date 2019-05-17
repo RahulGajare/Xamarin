@@ -17,7 +17,7 @@
     </pages:PopupPage.Animation>
     <StackLayout Margin="12"
                  Padding="24"
-                 BackgroundColor="White"
+                 BackgroundColor="Transparent"
                  HorizontalOptions="End"
                  VerticalOptions="End">
         <Grid x:Name="controlGrid" RowSpacing="0" ColumnSpacing="2">

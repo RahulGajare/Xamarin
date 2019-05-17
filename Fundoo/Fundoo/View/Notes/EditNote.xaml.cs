@@ -427,6 +427,12 @@ namespace Fundoo.View
             this.noteColor = "MintCream";
         }
 
+        private void LightPink_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.LightPink;
+            this.noteColor = "LightPink";
+        }
+
         /// <summary>
         /// Handles the Clicked event of the ReminderIcon control.
         /// </summary>
@@ -436,5 +442,7 @@ namespace Fundoo.View
         {
             Navigation.PushAsync(new RemindersPage());
         }
+
+        
     }
 }
