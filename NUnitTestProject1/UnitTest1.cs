@@ -41,8 +41,6 @@ namespace Tests
                 {
                     info.Text = string.Empty;
                 }
-
-
             }
 
             Assert.IsNotNull(title.Text);
@@ -67,29 +65,6 @@ namespace Tests
             Assert.AreEqual(0, view.Opacity);
         }
 
-        [Test]
-        public void MarkupExtension()
-        {
-            var label = new Label();
-            label.LoadFromXaml("<Label xmlns:f=\"clr-namespace:Xamarin.Forms.Mocks.Tests;assembly=Xamarin.Forms.Mocks.Tests\" Text=\"{f:Terrible}\" />");
-            Assert.AreEqual("2016", label.Text); //amirite?
-        }
-
-       [Test]
-        public void TestMethod1()
-        {
-            //Arrange  
-            Method m1 = new Method();
-            int expectedResult = 16;
-
-
-            //Act  
-            int actualResult = m1.Addition(11, 5);
-
-
-            //Assert  
-            Assert.AreEqual(expectedResult, actualResult);
-
-        }
+      
     }
 }

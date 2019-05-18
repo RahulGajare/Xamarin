@@ -32,9 +32,9 @@
                
             </StackLayout>
             </ScrollView>
-
-            <StackLayout VerticalOptions="EndAndExpand">
-                <Button x:Name="TakeaNote" 
+            <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal" >
+                <StackLayout  Orientation="Horizontal">
+                    <Button x:Name="TakeaNote" 
                         HeightRequest="35"
                     Text="Take a note ..."
                     VerticalOptions="End" 
@@ -42,7 +42,9 @@
                     BackgroundColor="Transparent" 
                     Margin="10,0,175,20"
                     Clicked="TakeaNote_Clicked">
-                </Button>
+                    </Button>
+                    <Image x:Name="cameraIcon" Source="CameraIcon"  />
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

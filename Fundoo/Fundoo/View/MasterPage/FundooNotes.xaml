@@ -22,7 +22,7 @@
                                     <ViewCell>
                                         <StackLayout Orientation="Horizontal" >
                                             <Image Source="{Binding ImagePath}" HorizontalOptions="Start" HeightRequest="30" Margin="10,0,0,0"/>
-                                            <Label Text="{Binding Text}" TextColor="Gray" FontSize="Medium" Margin="15,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Text}" TextColor="Black" FontSize="Small" Margin="15,0,0,0" VerticalOptions="Center" FontAttributes="Bold"/>
                                         </StackLayout>
                                     </ViewCell>
 

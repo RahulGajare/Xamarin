@@ -206,9 +206,9 @@ namespace Fundoo.View
         /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewUnpinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
-            if (notesList.Count == 0)
+            if (this.PinnedNotes)
             {
-                return;
+                UnpinnedLabel.Text = "Others";
             }
 
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
