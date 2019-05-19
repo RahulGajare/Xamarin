@@ -26,6 +26,9 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ArchivePage : ContentPage
     {
+
+        private bool PinnedNotes = false;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ArchivePage"/> class.
         /// </summary>
@@ -52,7 +55,9 @@ namespace Fundoo.View
         public async void GetNotes()
         {
             NotesHandler notesHandler = new NotesHandler();
-              var notesList = await notesHandler.GetAllNotes();
+            LabelHandler labelHandler = new LabelHandler();
+            var notesList = await notesHandler.GetAllNotes();
+            var labelsList = await labelHandler.GetAllLables();
             List<Note> pinnedList = new List<Note>();
             List<Note> unpinnedList = new List<Note>();
 
@@ -72,24 +77,29 @@ namespace Fundoo.View
                 }
             }
 
-            this.DynamicGridViewPinned(pinnedList);
-            this.DynamicGridViewUnpinned(unpinnedList);
+            if (pinnedList.Count > 0)
+            {
+                this.DynamicGridViewPinned(pinnedList, labelsList);
+                this.PinnedNotes = true;
+            }
+
+            if (unpinnedList.Count > 0)
+            {
+                this.DynamicGridViewUnpinned(unpinnedList, labelsList);
+            }
         }
 
         /// <summary>
         /// Dynamics the grid view pinned.
         /// </summary>
         /// <param name="notesList">The notes list.</param>
-        private void DynamicGridViewPinned(List<Model.Note> notesList)
+        private void DynamicGridViewPinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
-            if (notesList.Count == 0)
-            {
-                return;
-            }
+            pinnedLabel.IsVisible = true;
 
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });     
-            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });     
+            gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
             int column = 0;
@@ -99,7 +109,7 @@ namespace Fundoo.View
                 //// For after every 3rd Column adds a new row.
                 if (column == 2)
                 {
-                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+                    gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
                     column = 0;
                     row++;
                 }
@@ -150,6 +160,33 @@ namespace Fundoo.View
                 stackLayout1.Spacing = 2;
                 stackLayout1.Margin = 2;
 
+                foreach (LabelModel label in labelsList)
+                {
+                    List<string> noteKeyList = label.NoteKeysList;
+                    foreach (string id in noteKeyList)
+                    {
+                        if (note.Key.Equals(id))
+                        {
+                            var labelName = new Label
+                            {
+                                Text = label.LableName,
+                                TextColor = Color.Black
+                            };
+
+                            ////Creating a new frame for Displaying label Name.
+                            var labelFrame = new Frame();
+                            labelFrame.BorderColor = Color.Black;
+                            labelFrame.CornerRadius = 25;
+                            labelFrame.HeightRequest = 20;
+                            labelFrame.Content = labelName;
+                            stackLayout1.Children.Add(labelFrame);
+
+                            ////this Methods Set the BackGround Color Of frame same as notes Color.
+                            FrameColorSetter.GetColor(note, labelFrame);
+                        }
+                    }
+                }
+
                 var frame = new Frame();
                 frame.CornerRadius = 20;
                 frame.BorderColor = Color.Black;
@@ -165,16 +202,16 @@ namespace Fundoo.View
         /// Dynamics the grid view unpinned.
         /// </summary>
         /// <param name="notesList">The notes list.</param>
-        private void DynamicGridViewUnpinned(List<Model.Note> notesList)
+        private void DynamicGridViewUnpinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
-            if (notesList.Count == 0)
+            if (this.PinnedNotes)
             {
-                return;
+                UnpinnedLabel.IsVisible = true;
             }
 
-            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
+            gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
+            gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
 
             int column = 0;
@@ -184,7 +221,7 @@ namespace Fundoo.View
                 //// For after every 3rd Column adds a new row.
                 if (column == 2)
                 {
-                    gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
+                    gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Auto) });
                     column = 0;
                     row++;
                 }
@@ -235,6 +272,37 @@ namespace Fundoo.View
                 stackLayout2.Children.Add(noteColor);
                 stackLayout2.Spacing = 2;
                 stackLayout2.Margin = 2;
+
+                foreach (LabelModel label in labelsList)
+                {
+                    List<string> noteKeyList = label.NoteKeysList;
+                    foreach (string id in noteKeyList)
+                    {
+                        if (note.Key.Equals(id))
+                        {
+                            var labelName = new Label
+                            {
+                                Text = label.LableName,
+                                TextColor = Color.Black,
+
+                                VerticalOptions = LayoutOptions.Center
+                            };
+
+                            ////Creating a new frame for Displaying label Name.
+                            var labelFrame = new Frame();
+                            labelFrame.BorderColor = Color.Black;
+                            labelFrame.CornerRadius = 25;
+                            labelFrame.HeightRequest = 20;
+                            labelFrame.WidthRequest = 5;
+
+                            ////this Methods Set the BackGround Color Of frame same as notes Color.
+                            FrameColorSetter.GetColor(note, labelFrame);
+
+                            labelFrame.Content = labelName;
+                            stackLayout2.Children.Add(labelFrame);
+                        }
+                    }
+                }
 
                 var frame = new Frame();
                 frame.BorderColor = Color.Black;

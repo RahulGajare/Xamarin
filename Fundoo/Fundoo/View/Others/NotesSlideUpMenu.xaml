@@ -15,7 +15,7 @@
                                    ScaleIn="1.2"
                                    ScaleOut="0.8" />
     </pages:PopupPage.Animation>
-    <StackLayout Margin="12"
+    <StackLayout x:Name="page" Margin="12"
                  Padding="24"
                  BackgroundColor="Transparent"
                  HorizontalOptions="End"

@@ -160,12 +160,12 @@ namespace Fundoo.View
         /// <param name="labelsList">The labels list.</param>
         private void DynamicGridViewPinned(List<Model.Note> notesList, List<LabelModel> labelsList)
         {
-            pinnedLabel.Text = "Pinned";          
+            pinnedLabel.IsVisible = true;          
 
            
             ////initializing with 2 columns and 1 row.
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });        
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
+            gridLayoutPinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });        
             gridLayoutPinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
             gridLayoutPinned.Margin = new Thickness(2, 2, 2, 2);
 
@@ -288,7 +288,7 @@ namespace Fundoo.View
         {
             if (this.PinnedNotes)
             {
-                UnpinnedLabel.Text = "Others";
+                UnpinnedLabel.IsVisible = true;
             }
            
 

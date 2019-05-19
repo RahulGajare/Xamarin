@@ -21,7 +21,7 @@
 
                     <StackLayout x:Name="pinnedStack" Margin="7,0,7,0">
 
-                        <Label x:Name="pinnedLabel" FontAttributes="Bold"/>
+                        <Label x:Name="pinnedLabel" Text="Pinned Notes" IsVisible="False" FontAttributes="Bold"/>
                         <Grid x:Name="gridLayoutPinned" >
 
                         </Grid>
@@ -29,7 +29,7 @@
                     </StackLayout>
 
                     <StackLayout x:Name="UnpinnedStack" Margin="7,0,7,0">
-                        <Label x:Name="UnpinnedLabel" FontAttributes="Bold"/>    
+                        <Label x:Name="UnpinnedLabel" Text ="Other Notes" IsVisible="False" FontAttributes="Bold"/>    
                         <Grid x:Name="gridLayoutUnpinned" >
 
                         </Grid>

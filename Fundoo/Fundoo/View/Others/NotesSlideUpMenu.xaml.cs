@@ -7,6 +7,7 @@
 
 using Fundoo.DataHandler;
 using Fundoo.Model;
+using Fundoo.ModelView;
 using Fundoo.View.Collabrators;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -24,6 +25,8 @@ namespace Fundoo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NotesSlideUpMenu : PopupPage
     {
+        NotesHandler notesHandler = new NotesHandler();
+        FrameColorSetter frameColorSetter = new FrameColorSetter();
         private string noteKey;
         /// <summary>
         /// Initializes a new instance of the <see cref="NotesSlideUpMenu"/> class.
@@ -31,6 +34,8 @@ namespace Fundoo.View
         public NotesSlideUpMenu()
         {
             InitializeComponent();
+           
+
         }
 
         /// <summary>
@@ -40,7 +45,21 @@ namespace Fundoo.View
         {
             InitializeComponent();
             this.noteKey = noteKey;
+             this.SetPageColor();
+          
         }
+
+
+        public async Task SetPageColor()
+        {
+          var note =await notesHandler.GetNote(this.noteKey);
+            page.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(note));
+        }
+
+
+
+
+
 
         /// <summary>
         /// Handles the Clicked event of the Button control.
@@ -94,6 +113,12 @@ namespace Fundoo.View
             
           await  Navigation.PushAsync(new EmailList(this.noteKey));
             await PopupNavigation.Instance.PopAsync(true);
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+             PopupNavigation.Instance.RemovePageAsync(this);
+            return base.OnBackButtonPressed();
         }
     }
 }

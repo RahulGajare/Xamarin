@@ -5,7 +5,7 @@
 
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="7,0,7,0">
             
             <Grid x:Name="gridLayout">
 

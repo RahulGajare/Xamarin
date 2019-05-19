@@ -12,7 +12,7 @@
     <ContentPage.Content>
        
             <StackLayout>
-            <StackLayout>
+            <StackLayout Margin="7,0,7,0">
                 <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="500">
                     <Grid x:Name="gridLayout">
 

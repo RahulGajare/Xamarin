@@ -74,8 +74,8 @@ namespace Fundoo.View
                 return;
             }
             ////initializing with 2 columns and 1 row.
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
-            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(175, GridUnitType.Absolute) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
             gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(100, GridUnitType.Absolute) });
             gridLayout.Margin = new Thickness(2, 2, 2, 2);
 
@@ -138,7 +138,7 @@ namespace Fundoo.View
                 stackLayout1.Margin = 2;
 
                 var frame = new Frame();
-                /// frame.BorderColor = Color.Black;
+                frame.BorderColor = Color.Black;
                 frame.CornerRadius = 20;
 
                 FrameColorSetter.GetColor(note, frame);

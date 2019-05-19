@@ -133,7 +133,7 @@ namespace Fundoo.View
             list.Add(new MasterMenuItems()
             {
                 Text = "Archive",
-                ImagePath = "ArchiveIcon.png",
+                ImagePath = "ArchiveMaster.png",
                 TargetPage = typeof(ArchivePage)
             });
 
