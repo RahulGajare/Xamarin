@@ -16,6 +16,7 @@ namespace Fundoo.Droid.Implementations
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+    using Android.Content;
     using Firebase.Auth;
     using Fundoo.Interfaces;
 
@@ -99,5 +100,8 @@ namespace Fundoo.Droid.Implementations
         {
             FirebaseAuth.Instance.SignOut();
         }
+
+      
+
     }
 }

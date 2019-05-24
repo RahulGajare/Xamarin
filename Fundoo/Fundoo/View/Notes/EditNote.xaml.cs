@@ -440,7 +440,7 @@ namespace Fundoo.View
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ReminderIcon_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new RemindersPage());
+            Navigation.PushAsync(new RemindersPage(this.retrivedNote.Title, this.retrivedNote.Info));
         }
 
         

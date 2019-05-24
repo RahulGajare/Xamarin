@@ -15,6 +15,7 @@ namespace Fundoo
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Push;
     using Plugin.Connectivity;
+    using Plugin.LocalNotifications;
 
     /// <summary>
     /// partial App Class
@@ -27,6 +28,7 @@ namespace Fundoo
         /// </summary>
         public App()
         {
+            
             this.InitializeComponent();
 
             if (!CrossConnectivity.Current.IsConnected)

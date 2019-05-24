@@ -26,6 +26,7 @@
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
             await CrossMedia.Current.Initialize();
+            
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FirebaseApp.InitializeApp(Application.Context);

@@ -9,12 +9,12 @@
     <ContentPage.Content>
         <StackLayout>
 
-            
+
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start" Spacing="10" Margin="0,0,0,20">
                 <!--<Label Text="Welcome To FundooNotes"  FontAttributes="Italic" FontSize="50" HorizontalTextAlignment="Center" TextColor="DarkBlue"></Label>-->
-                <Image x:Name="FundooLogo" Source="FundooNotes.png"  WidthRequest="300" HeightRequest="100"></Image>             
+                <Image x:Name="FundooLogo" Source="FundooNotes.png"  WidthRequest="300" HeightRequest="100"></Image>
             </StackLayout>
-            
+
             <StackLayout>
                 <Entry x:Name="txtEmail"   Margin="20,0,20,0" Placeholder="Enter Email Here"/>
                 <Entry x:Name="txtPassWord" Margin="20,0,20,0" Placeholder="Enter Password here" IsPassword="True"/>

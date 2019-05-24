@@ -6,6 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
+using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,14 +23,23 @@ namespace Fundoo.View
     public partial class RemindersPage : ContentPage
     {
         DateTime _triggerTime;
+        string title = null;
+        string info = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RemindersPage"/> class.
         /// </summary>
-        public RemindersPage()
+        public RemindersPage(string title ,string body)
         {
+            this.title = title;
+            this.info = body;
             InitializeComponent();
             Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+        }
+
+        public RemindersPage()
+        {
+            
         }
 
         /// <summary>
@@ -41,7 +51,8 @@ namespace Fundoo.View
             if (_switch.IsToggled && DateTime.Now >= _triggerTime)
             {
                 _switch.IsToggled = false;
-                DisplayAlert("Timer Alert", "The '" + _entry.Text + "' timer has elapsed", "OK");
+                //DisplayAlert("Timer Alert", "The '" + _entry.Text + "' timer has elapsed", "OK");
+                CrossLocalNotifications.Current.Show(this.title, this.info);
             }
             return true;
         }

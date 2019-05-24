@@ -19,6 +19,7 @@ namespace Fundoo.View
     using Fundoo.Model;
     using Fundoo.ModelView;
     using Plugin.Connectivity;
+    using Plugin.LocalNotifications;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -36,7 +37,8 @@ namespace Fundoo.View
         {         
             this.InitializeComponent();
 
-            
+           
+
             this.LoadProfilePic();
             
           
