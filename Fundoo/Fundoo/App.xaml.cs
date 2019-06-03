@@ -16,6 +16,8 @@ namespace Fundoo
     using Microsoft.AppCenter.Push;
     using Plugin.Connectivity;
     using Plugin.LocalNotifications;
+    using Fundoo.DataHandler;
+    using System.IO;
 
     /// <summary>
     /// partial App Class
@@ -23,12 +25,14 @@ namespace Fundoo
     /// <seealso cref="Xamarin.Forms.Application" />
     public partial class App : Application
     {
+       
         /// <summary>
         /// Initializes a new instance of the <see cref="App"/> class.
         /// </summary>
         public App()
         {
             
+
             this.InitializeComponent();
 
             if (!CrossConnectivity.Current.IsConnected)

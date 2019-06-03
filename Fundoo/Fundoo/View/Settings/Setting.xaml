@@ -33,6 +33,8 @@
             <Button Text="SendEmail" FontSize="Large" BackgroundColor="Transparent" Clicked="Button_Clicked"/>
             <Button Text="VersionTracking" FontSize="Large" BackgroundColor="Transparent" Clicked="Version_Clicked"/>
             <Button Text="Clipboard" FontSize="Large" BackgroundColor="Transparent" Clicked="Clipboard_clicked"/>
+            <Button Text="ChangePassword" FontSize="Large" BackgroundColor="Transparent" Clicked="ChangePassword_clicked"/>
+
 
 
         </StackLayout>

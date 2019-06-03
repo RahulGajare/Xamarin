@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -19,9 +19,38 @@ namespace Fundoo.Droid.Implementations
 {
     public class ResetPassword : IResetPassword
     {
+      
+
+       
+
         public void SendPassword(string emailAddress)
         {
             FirebaseAuth.Instance.SendPasswordResetEmail(emailAddress);
         }
+
+        public void UpdatePassword(string oldPassword ,string newPassword)
+        {
+          var res =  FirebaseAuth.Instance.CurrentUser;
+           string email = res.Email;
+           
+               // await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, oldPassword);
+                AuthCredential credential = EmailAuthProvider.GetCredential(email, oldPassword);
+               //var task =  res.Reauthenticate(credential);
+           var task =   FirebaseAuth.Instance.CurrentUser.ReauthenticateAsync(credential);
+
+            if (task.IsCompletedSuccessfully)
+            {
+                  FirebaseAuth.Instance.CurrentUser.UpdatePasswordAsync(newPassword);
+            }
+            else
+            {
+                
+            }
+
+
+
+        }
+
+        
     }
 }

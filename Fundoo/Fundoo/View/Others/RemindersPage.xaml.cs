@@ -39,7 +39,8 @@ namespace Fundoo.View
 
         public RemindersPage()
         {
-            
+            InitializeComponent();
+            Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
         }
 
         /// <summary>

@@ -10,6 +10,7 @@ namespace Fundoo.DependencyServices
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
     using Fundoo.Interfaces;
     using Xamarin.Forms;
 
@@ -25,6 +26,12 @@ namespace Fundoo.DependencyServices
         public void Resetpassword(string emailAddress)
         {
             DependencyService.Get<IResetPassword>().SendPassword(emailAddress);
+        }
+
+        public  void Changepassword(string oldPassword ,string newPassword)
+        {
+             DependencyService.Get<IResetPassword>().UpdatePassword(oldPassword,newPassword);
+            
         }
     }
 }

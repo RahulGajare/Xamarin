@@ -84,5 +84,10 @@ namespace Fundoo.View
         {
             Navigation.PushAsync(new ClipboardPage());
         }
+
+        private void ChangePassword_clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ChangePassword());
+        }
     }
 }

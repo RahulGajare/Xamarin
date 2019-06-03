@@ -10,6 +10,7 @@ namespace Fundoo.Interfaces
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// IResetPassword Class
@@ -21,5 +22,7 @@ namespace Fundoo.Interfaces
         /// </summary>
         /// <param name="emailAddress">The email address.</param>
         void SendPassword(string emailAddress);
+
+        void UpdatePassword(string oldPassword ,string newPassword);
     }
 }

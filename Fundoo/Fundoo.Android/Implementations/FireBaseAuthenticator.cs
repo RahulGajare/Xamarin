@@ -85,7 +85,9 @@ namespace Fundoo.Droid.Implementations
             try
             {
                 var response = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+                
                 return response.User.Uid;
+
             }
             catch (Exception)
             {             

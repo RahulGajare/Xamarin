@@ -9,12 +9,17 @@ namespace Fundoo.Model
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using SQLite;
 
     /// <summary>
     /// 
     /// </summary>
     public class Note
     {
+       
+        private int notesId;
+
+
         /// <summary>
         /// The title
         /// </summary>
@@ -146,6 +151,9 @@ namespace Fundoo.Model
         /// The sender uid.
         /// </value>
         public string SenderUid { get => senderUid; set => senderUid = value; }
+
+        [PrimaryKey, AutoIncrement]
+        public int NotesId { get => notesId; set => notesId = value; }
     }
 
 }

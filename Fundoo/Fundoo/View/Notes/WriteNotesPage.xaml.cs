@@ -51,7 +51,8 @@ namespace Fundoo.View
             ToolbarItems.Clear();
             ToolbarItems.Add(this.UnPinnedIcon);        
         }
-  
+
+       
         protected override async void OnDisappearing()
         {       
             try

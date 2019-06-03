@@ -291,7 +291,6 @@ namespace Fundoo.View
                 UnpinnedLabel.IsVisible = true;
             }
            
-
           
             //// initializing with 2 columns and 1 row.
             gridLayoutUnpinned.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200, GridUnitType.Absolute) });
@@ -299,11 +298,8 @@ namespace Fundoo.View
             gridLayoutUnpinned.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
             gridLayoutUnpinned.Margin = new Thickness(2, 2, 2, 2);
            
-
-
             int column = 0;
             int row = 0;
-
 
             foreach (Note note in notesList)
             {
